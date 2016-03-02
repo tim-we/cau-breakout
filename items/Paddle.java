@@ -16,7 +16,9 @@ public setPosition (double x){
   Position.setX(x);
 }
 
-
+public getWidth(){
+  return this.paddleWidth;
+}
 
 
 
