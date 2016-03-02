@@ -9,7 +9,7 @@ public class Ball extends MovingObject {
 
 	private Color color = new Color(255,0,0);
 	
-	public BreakoutBall(Vector2D position) {
+	public Ball(Vector2D position) {
 	  this.Position = position;
 	  setBBox(width,height);
 	}
@@ -19,10 +19,7 @@ public class Ball extends MovingObject {
 	}
 	
 	public void scaleVelocity(double f) {
-		velocity = velocity.scale(f);
+		Velocity = Velocity.scale(f);
 	}
-	
-	
-	
-}
+
 }
