@@ -20,15 +20,15 @@ public class View {
 	
 	public void update(Model model) {
 		int paddleWidth = (int) Math.round(model.getPaddle().getWidth());
-		int[] paddlePos = getPixelVector(model.getPaddle().getPosition());
+		int[] paddlePos = getPixelVector(model.getPaddle().getPosition(), model);
 		paintRect(paddlePos[0], paddlePos[1], paddleWidth, 1, model.getPaddle().getColor());
 	}
 	
-	private int[] getPixelVector(Vector2D v) {
+	private int[] getPixelVector(Vector2D v, Model m) {
 		int[] o = new int[2];
 		
-		o[0] = (int) Math.round(v.getX());
-		o[1] = (int) Math.round(v.getY());
+		o[0] = (int) Math.round((v.getX()/m.getWidth()) * ViewWidth);
+		o[1] = (int) Math.round((v.getY()/m.getHeight()) * ViewHeight);
 		
 		return o;
 	}

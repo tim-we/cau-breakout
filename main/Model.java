@@ -70,6 +70,6 @@ public class Model extends Observable {
 		return this.worldWidth;
 	}
 	public double getHeight(){
-		return this.wolrdHeight;
+		return this.worldHeight;
 	}
 }
