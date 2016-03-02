@@ -4,19 +4,14 @@ import breakout.physics.*;
 
 public class Paddle extends PhysicsObject{
 
-private double paddleWidth = 4*PIXELWIDTH;
+private double paddleWidth = 4*PixelSizes.PIXELWIDTH;
 
-public Paddle(){
-  this.Position = new Vector2D(((28/2)-2)*PIXELWIDTH,13*PIXELHEIGHT)
-}
-
-public setPosition (double x){
-  Position.setX(x);
-}
-
-
-
-
-
+	public Paddle(){
+	  this.Position = new Vector2D(((28/2)-2)*PixelSizes.PIXELWIDTH,13*PixelSizes.PIXELHEIGHT);
+	}
+	
+	public void setPosition (double x){
+	  Position.setX(x);
+	}
 
 }

@@ -8,7 +8,7 @@ import breakout.physics.*;
 
 public class Controller implements Observer {
 	
-	public static final double WORLDWIDTH = 700;
+	public static final double WORLDWIDTH = 600;
 	public static final double WORLDHEIGHT = 800;
 	
 	public static final int FPS = 30;
@@ -33,15 +33,15 @@ public class Controller implements Observer {
 			for(Ball ball : model.getBalls()) {
 				time_remaining = (int)(1000d/FPS)/1000d;
 				k = 0;
-				/*
-				 * loop to prevent double bounce errors
-				 * */
+				
+				 //loop to prevent double bounce errors
 				while(time_remaining > 0 && k<MAX_PHYS_ITERATIONS) {
 					time_remaining = phys.updateObject(ball, time_remaining) * time_remaining;
 					k++;
 				}
 			}
 			
+			//model updates views
 			model.update();	
 		}
 		
