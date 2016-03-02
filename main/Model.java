@@ -57,4 +57,12 @@ public class Model extends Observable {
 			view.update(this);
 		}
 	}
+	
+	public getScore(){
+		return this.score;
+	}
+	
+	public void addPoints(){
+		score+=175;
+	}
 }
