@@ -1,5 +1,7 @@
 package breakout.items;
 
+import breakout.assets.*;
+
 public class Brick extends PhysicsObject {
 
 private byte brickType;
