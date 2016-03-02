@@ -3,6 +3,7 @@ package breakout.main;
 import java.awt.Color;
 
 import breakout.assets.PixelImage;
+import breakout.items.*;
 import breakout.lighthouse.LhSimulator;
 import breakout.physics.Vector2D;
 
@@ -24,15 +25,36 @@ public class View {
 	public void update(Model model) {
 		PixelImage nextFrame = new PixelImage(ViewWidth, ViewHeight);
 		
+		double widthScale	= (double)ViewWidth / model.getWidth();
+		double heightScale	= (double)ViewHeight / model.getHeight();
+		
 		//draw paddle
-			int paddleWidth = (int) Math.round((model.getPaddle().getWidth()/model.getWidth()) * ViewWidth);
-			
+			int paddleWidth = (int) Math.round(model.getPaddle().getWidth() * widthScale);			
 			int[] paddlePos = getPixelVector(model.getPaddle().getPosition(), model);
 			
-			System.out.println(paddlePos[0] + ", " + paddlePos[1]);
+			//position seems to be wrong...
+				//System.out.println(paddlePos[0] + ", " + paddlePos[1]);
+				//returns "12,13" ?!
 			
 			paintRect(nextFrame, paddlePos[0], paddlePos[1], paddleWidth, 1, model.getPaddle().getColor());
 		
+		//draw bricks
+			int brickWidth = (int) Math.round( Brick.brickWidth * widthScale );
+			int brickHeight = (int) Math.round( Brick.brickHeight * heightScale );
+			
+			for(Brick brick : model.getBricks()) {
+				int[] brickPos = getPixelVector(brick.getPosition(), model);
+				
+				paintRect(nextFrame, brickPos[0], brickPos[1], brickWidth, brickHeight, brick.getColor());
+			}
+			
+		//draw ball(s)
+			for(Ball ball : model.getBalls()) {
+				int[] ballPos = getPixelVector(ball.getPosition(), model);
+				
+				nextFrame.setPixel(ballPos[0], ballPos[1], ball.getColor());
+			}
+			
 		frame = nextFrame;
 		
 		display.draw(frame);

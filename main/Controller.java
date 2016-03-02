@@ -31,6 +31,10 @@ public class Controller implements Observer {
 		
 		PhysicsContext phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
 		
+		phys.staticObjects.add(model.getPaddle());
+		
+		//TODO: add bricks as staticObjects
+		
 		boolean runLoop = true;
 		int k;
 		int pause_time = (int)(1000d/FPS);

@@ -28,6 +28,8 @@ public class Model extends Observable {
 		worldHeight = h;
 		
 		paddle = new Paddle();
+		
+		bricks.add(new Brick(42d,42d, (byte)0));
 	}
 	
 	public void addView(View view) {
