@@ -52,7 +52,7 @@ public class Model extends Observable {
 		return paddle;
 	}
 	
-	public void update() {
+	public void updateViews() {
 		notifyViews();
 	}
 	

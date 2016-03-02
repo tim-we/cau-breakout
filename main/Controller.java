@@ -6,6 +6,7 @@ import java.util.Observer;
 import breakout.items.*;
 import breakout.lighthouse.LhSimulator;
 import breakout.physics.*;
+import breakout.input.BreakoutInput;
 
 public class Controller implements Observer {
 	
@@ -16,13 +17,15 @@ public class Controller implements Observer {
 	
 	public static final int MAX_PHYS_ITERATIONS = 5; //per frame
 	
-	public Controller() {
+	private BreakoutInput InputHandler;
+	
+	public Controller(BreakoutInput input) {
+		InputHandler = input;
 	}
 	
 	public void runController() {
 		
-		Model model = new Model(WORLDWIDTH, WORLDHEIGHT);
-		
+		Model model = new Model(WORLDWIDTH, WORLDHEIGHT);	
 		
 		LhSimulator lhs = new LhSimulator();
 		View view = new View(28, 14, lhs);
@@ -40,9 +43,12 @@ public class Controller implements Observer {
 		int pause_time = (int)(1000d/FPS);
 		double time_remaining;
 		
+		//start LhSimulator (acm GraphicsProgram)
 		lhs.start();
 		
 		while(runLoop) {
+			
+			InputHandler.update(model.getPaddle(), pause_time);
 			
 			for(Ball ball : model.getBalls()) {
 				time_remaining = (double)pause_time/1000d;
@@ -56,7 +62,7 @@ public class Controller implements Observer {
 			}
 			
 			//model updates views
-			model.update();	
+			model.updateViews();	
 			
 			try {
 			    Thread.sleep(pause_time);
