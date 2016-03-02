@@ -28,6 +28,9 @@ public class View {
 			int paddleWidth = (int) Math.round((model.getPaddle().getWidth()/model.getWidth()) * ViewWidth);
 			
 			int[] paddlePos = getPixelVector(model.getPaddle().getPosition(), model);
+			
+			System.out.println(paddlePos[0] + ", " + paddlePos[1]);
+			
 			paintRect(nextFrame, paddlePos[0], paddlePos[1], paddleWidth, 1, model.getPaddle().getColor());
 		
 		frame = nextFrame;
