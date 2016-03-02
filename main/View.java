@@ -21,7 +21,7 @@ public class View {
 	public void update(Model model) {
 		int paddleWidth = (int) Math.round(model.getPaddle().getWidth());
 		int[] paddlePos = getPixelVector(model.getPaddle().getPosition());
-		paintRect(paddlePos[0], paddlePos[1], model.getPaddle().getColor());
+		paintRect(paddlePos[0], paddlePos[1], paddleWidth, 1, model.getPaddle().getColor());
 	}
 	
 	private int[] getPixelVector(Vector2D v) {
