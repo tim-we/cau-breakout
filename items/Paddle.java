@@ -20,6 +20,9 @@ public getWidth(){
   return this.paddleWidth;
 }
 
+public getColor(){
+  return this.color;
+}
 
 
 
