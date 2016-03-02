@@ -3,6 +3,7 @@ package breakout.main;
 import java.awt.Color;
 
 import breakout.assets.PixelImage;
+import breakout.lighthouse.LhSimulator;
 import breakout.physics.Vector2D;
 
 public class View {
@@ -10,18 +11,28 @@ public class View {
 	private int ViewWidth;
 	private int ViewHeight;
 	private PixelImage frame;
+	private LhSimulator display;
 	
 	//constructor
-	public View(int width, int height) {
+	public View(int width, int height, LhSimulator lhs) {
 		frame = new PixelImage(width, height);
 		ViewWidth = width;
 		ViewHeight = height;
+		display = lhs;
 	}
 	
 	public void update(Model model) {
-		int paddleWidth = (int) Math.round(model.getPaddle().getWidth());
-		int[] paddlePos = getPixelVector(model.getPaddle().getPosition(), model);
-		paintRect(paddlePos[0], paddlePos[1], paddleWidth, 1, model.getPaddle().getColor());
+		PixelImage nextFrame = new PixelImage(ViewWidth, ViewHeight);
+		
+		//draw paddle
+			int paddleWidth = (int) Math.round((model.getPaddle().getWidth()/model.getWidth()) * ViewWidth);
+			
+			int[] paddlePos = getPixelVector(model.getPaddle().getPosition(), model);
+			paintRect(nextFrame, paddlePos[0], paddlePos[1], paddleWidth, 1, model.getPaddle().getColor());
+		
+		frame = nextFrame;
+		
+		display.draw(frame);
 	}
 	
 	private int[] getPixelVector(Vector2D v, Model m) {
@@ -33,12 +44,12 @@ public class View {
 		return o;
 	}
 	
-	private void paintRect(int x, int y, int width, int height, Color color) {
+	private void paintRect(PixelImage pic, int x, int y, int width, int height, Color color) {
 		assert (width>=0 && height>=0);
 		
 		for(int i=0; i<width; i++) {
 			for(int k=0; k<height; k++) {
-				frame.setPixel(x + i, y + k, color);
+				pic.setPixel(x + i, y + k, color);
 			}
 		}
 		

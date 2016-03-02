@@ -4,11 +4,12 @@ import java.util.Observable;
 import java.util.Observer;
 
 import breakout.items.*;
+import breakout.lighthouse.LhSimulator;
 import breakout.physics.*;
 
 public class Controller implements Observer {
 	
-	public static final double WORLDWIDTH = 600;
+	public static final double WORLDWIDTH = 588;
 	public static final double WORLDHEIGHT = 800;
 	
 	public static final int FPS = 30;
@@ -22,11 +23,19 @@ public class Controller implements Observer {
 		
 		Model model = new Model(WORLDWIDTH, WORLDHEIGHT);
 		
+		
+		LhSimulator lhs = new LhSimulator();
+		View view = new View(28, 14, lhs);
+		
+		model.addView(view);
+		
 		PhysicsContext phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
 		
 		boolean runLoop = true;
 		int k;
 		double time_remaining;
+		
+		lhs.start();
 		
 		while(runLoop) {
 			
@@ -43,6 +52,8 @@ public class Controller implements Observer {
 			
 			//model updates views
 			model.update();	
+			
+			//Thread.sleep((int)(1000d/FPS));
 		}
 		
 	}

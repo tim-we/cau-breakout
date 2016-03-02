@@ -26,6 +26,8 @@ public class Model extends Observable {
 		
 		worldWidth = w;
 		worldHeight = h;
+		
+		paddle = new Paddle();
 	}
 	
 	public void addView(View view) {
