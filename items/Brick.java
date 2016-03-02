@@ -18,11 +18,11 @@ public setBrickType (byte brickType){
   this.brickType = brickType;
 }
 
-public getBrickType (){
+public byte getBrickType (){
   return this.brickType;
 }
 
-public getColor(){
+public Color getColor(){
   return this.color[brickType];
 }
 
