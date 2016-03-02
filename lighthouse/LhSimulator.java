@@ -15,10 +15,10 @@ public class LhSimulator extends GraphicsProgram {
 	private static final int WINDOW_HEIGHT = 25;
 	private static final int BORDER = 5;
 	
-	private static final Color BGCOLOR = new Color(64,64,64);
-	private static final Color WIN_OFF_CLR = new Color(100,100,100);
+	private static final Color BGCOLOR = new Color(32,32,32);
+	private static final Color WIN_OFF_CLR = new Color(0,0,0);
 	
-	private static final int WTF_OFFSET = 62;
+	private static final int WTF_OFFSET = 62; //no further explanation needed. DEAL WITH IT
 	
 	public void run() {		
 		setSize(BORDER + WIDTH*(WINDOW_WIDTH + BORDER) + WTF_OFFSET - 42 -3, BORDER + HEIGHT*(WINDOW_HEIGHT + BORDER) + WTF_OFFSET);

@@ -1,6 +1,6 @@
 package breakout.items;
 
-import breakout.assets.PixelSizes;
+import breakout.assets.BreakoutConstants;
 import breakout.physics.Vector2D;
 import breakout.physics.PhysicsObject;
 import java.awt.Color;
@@ -11,8 +11,8 @@ public class Brick extends PhysicsObject {
 	private byte brickType;
 	
 	//avoid getter & setter functions:
-	public static final double brickWidth = 2*PixelSizes.PIXELWIDTH;
-	public static final double brickHeight = PixelSizes.PIXELHEIGHT;
+	public static final double brickWidth = 2 * BreakoutConstants.WINDOW_WIDTH;
+	public static final double brickHeight = BreakoutConstants.WINDOW_HEIGHT;
 
 	public Brick(double x, double y, byte brickType){
 		this.Position = new Vector2D(x,y);
@@ -28,8 +28,9 @@ public class Brick extends PhysicsObject {
 	  return this.brickType;
 	}
 
-	public Color getColor(){
-	  return this.color[brickType];
+	public Color getColor() {
+		if(brickType<0) { return new Color(0,0,0,0); }
+		return this.color[brickType];
 	}
 
 	@Override

@@ -7,11 +7,12 @@ import breakout.items.*;
 import breakout.lighthouse.LhSimulator;
 import breakout.physics.*;
 import breakout.input.BreakoutInput;
+import breakout.assets.BreakoutConstants;
 
 public class Controller implements Observer {
 	
-	public static final double WORLDWIDTH = 588;
-	public static final double WORLDHEIGHT = 800;
+	public static final double WORLDWIDTH = BreakoutConstants.WINDOW_COLUMNS * BreakoutConstants.WINDOW_WIDTH;
+	public static final double WORLDHEIGHT = BreakoutConstants.WINDOW_ROWS * BreakoutConstants.WINDOW_HEIGHT;
 	
 	public static final int FPS = 30;
 	
@@ -54,7 +55,7 @@ public class Controller implements Observer {
 				time_remaining = (double)pause_time/1000d;
 				k = 0;
 				
-				 //loop to prevent double bounce errors
+				//loop to prevent double bounce errors
 				while(time_remaining > 0 && k<MAX_PHYS_ITERATIONS) {
 					time_remaining = phys.updateObject(ball, time_remaining) * time_remaining;
 					k++;

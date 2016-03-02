@@ -28,16 +28,6 @@ public class View {
 		double widthScale	= (double)ViewWidth / model.getWidth();
 		double heightScale	= (double)ViewHeight / model.getHeight();
 		
-		//draw paddle
-			int paddleWidth = (int) Math.round(model.getPaddle().getWidth() * widthScale);			
-			int[] paddlePos = getPixelVector(model.getPaddle().getPosition(), model);
-			
-			//position seems to be wrong...
-				//System.out.println(paddlePos[0] + ", " + paddlePos[1]);
-				//returns "12,13" ?!
-			
-			paintRect(nextFrame, paddlePos[0], paddlePos[1], paddleWidth, 1, model.getPaddle().getColor());
-		
 		//draw bricks
 			int brickWidth = (int) Math.round( Brick.brickWidth * widthScale );
 			int brickHeight = (int) Math.round( Brick.brickHeight * heightScale );
@@ -54,6 +44,12 @@ public class View {
 				
 				nextFrame.setPixel(ballPos[0], ballPos[1], ball.getColor());
 			}
+		
+		//draw paddle
+			int paddleWidth = (int) Math.round(model.getPaddle().getWidth() * widthScale);			
+			int[] paddlePos = getPixelVector(model.getPaddle().getPosition(), model);
+			
+			paintRect(nextFrame, paddlePos[0], paddlePos[1], paddleWidth, 1, model.getPaddle().getColor());
 			
 		frame = nextFrame;
 		
