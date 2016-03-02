@@ -50,8 +50,6 @@ public class LhSimulator extends GraphicsProgram {
 			
 		removeAll();
 		add(bb);
-		
-		pause(33);
 	}
 	
 }

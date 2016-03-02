@@ -33,6 +33,7 @@ public class Controller implements Observer {
 		
 		boolean runLoop = true;
 		int k;
+		int pause_time = (int)(1000d/FPS);
 		double time_remaining;
 		
 		lhs.start();
@@ -40,7 +41,7 @@ public class Controller implements Observer {
 		while(runLoop) {
 			
 			for(Ball ball : model.getBalls()) {
-				time_remaining = (int)(1000d/FPS)/1000d;
+				time_remaining = (double)pause_time/1000d;
 				k = 0;
 				
 				 //loop to prevent double bounce errors
@@ -53,7 +54,12 @@ public class Controller implements Observer {
 			//model updates views
 			model.update();	
 			
-			//Thread.sleep((int)(1000d/FPS));
+			try {
+			    Thread.sleep(pause_time);
+			} catch(InterruptedException ex) {
+			    Thread.currentThread().interrupt();
+			    // -> change pause_time ?
+			}
 		}
 		
 	}
