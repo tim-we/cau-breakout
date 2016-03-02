@@ -1,9 +1,9 @@
 package breakout.items;
 
 import breakout.assets.*;
-
+import java.awt.Color;
 public class Brick extends PhysicsObject {
-
+private Color[] color = {new Color(255,0,0),new Color(0,255,0),new Color(0,0,255)};
 private byte brickType;
 private static final brickWidth = 2*PixelSizes.PIXELWIDTH;
 private static final brickHeight = PixelSizes.PIXELHEIGHT;
@@ -21,6 +21,12 @@ public setBrickType (byte brickType){
 public getBrickType (){
   return this.brickType;
 }
+
+public getColor(){
+  return this.color[brickType];
+}
+
+
 
 @Override
 public void onCollision(PhysicsObejct obj){
