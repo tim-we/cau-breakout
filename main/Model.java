@@ -2,8 +2,9 @@ package breakout.main;
 
 import java.util.ArrayList;
 import breakout.items.*;
+import java.util.Observable;
 
-public class Model {
+public class Model extends Observable {
 	
 	private ArrayList<View> views;
 	
