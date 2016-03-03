@@ -104,8 +104,8 @@ public class Model extends Observable {
 		return this.score;
 	}
 	
-	public void addPoints(){
-		score += 175;
+	public void addPoints(int points){
+		score += points;
 	}
 	
 	public double getWidth(){

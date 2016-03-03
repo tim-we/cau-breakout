@@ -10,7 +10,7 @@ import breakout.input.BreakoutInput;
 import breakout.assets.BreakoutConstants;
 import breakout.levels.*;
 
-public class Controller implements Observer {
+public class Controller implements Observer, PhysicsEventReceiver {
 	
 	public static final double WORLDWIDTH = BreakoutConstants.WINDOW_COLUMNS * BreakoutConstants.WINDOW_WIDTH;
 	public static final double WORLDHEIGHT = BreakoutConstants.WINDOW_ROWS * BreakoutConstants.WINDOW_HEIGHT;
@@ -41,9 +41,8 @@ public class Controller implements Observer {
 		InputHandler.init(model, view);
 		
 		phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
-		//Level level = new Level("");
-		//level.setLevel();
-		//model.setBricks(level.getLevel());
+		phys.eventReceiver = this;
+		
 		model.setBricks("-222-222-11-111-11-0000000-");
 	
 		refreshStaticObjects();
@@ -83,6 +82,18 @@ public class Controller implements Observer {
 		}
 		
 		System.out.println("Game ended. Score: " + model.getScore());
+	}
+	
+	public void onCollision(CollisionEvent e) {		
+		PhysicsObject x = e.getObjectA() instanceof Ball ? e.getObjectB() : e.getObjectA();
+		
+		if(x instanceof Brick) {
+			model.getBricks().remove(x);
+			
+			model.addPoints(((Brick)x).getHitPoints());
+			
+			refreshStaticObjects();
+		}
 	}
 	
 	private void refreshStaticObjects() {

@@ -32,6 +32,10 @@ public class Brick extends PhysicsObject {
 		if(brickType<0) { return new Color(0,0,0,0); }
 		return this.color[brickType % color.length];
 	}
+	
+	public int getHitPoints() {
+		return 42;
+	}
 
 	@Override
 	public void onCollision(PhysicsObject obj){

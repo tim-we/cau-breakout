@@ -18,6 +18,8 @@ public class PhysicsContext {
 		staticObjects = new ArrayList<PhysicsObject>();
 	}
 	
+	public PhysicsEventReceiver eventReceiver = null;
+	
 	/** public for debugging!
 	 * @param a - start point of the first line segment
 	 * @param b - vector from start to end point of the first line segment
@@ -165,7 +167,17 @@ public class PhysicsContext {
 			//trigger collision event
 				obj.onCollision(collisionObject);
 				if(collisionObject != null) { collisionObject.onCollision(obj); }
-			
+				
+				CollisionEvent e = new CollisionEvent(
+						obj, 
+						collisionObject, 
+						Vector2D.add(obj.getPosition(), vel.scale(minFactor))
+					);
+				
+				if(eventReceiver != null) {
+					eventReceiver.onCollision(e);
+				}
+				
 			return 1d-minFactor;
 		} else {			
 			obj.move(deltaTime);
