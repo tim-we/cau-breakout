@@ -24,4 +24,12 @@ public class Level {
 	public String getLevel(){
 		return this.level;
 	}
+	
+	public void loadLevel(){
+		
+	}
+	
+	public void saveLevelin(){
+		
+	}
 }
