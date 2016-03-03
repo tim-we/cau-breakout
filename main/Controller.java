@@ -2,12 +2,14 @@ package breakout.main;
 
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Scanner;
 
 import breakout.items.*;
 import breakout.lighthouse.LhSimulator;
 import breakout.physics.*;
 import breakout.input.BreakoutInput;
 import breakout.assets.BreakoutConstants;
+import breakout.levels.*;
 
 public class Controller implements Observer {
 	
@@ -40,9 +42,10 @@ public class Controller implements Observer {
 		InputHandler.init(model, view);
 		
 		phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
-		
-		model.setBricks("-222-222-11-111-11-0000000-");
-		
+		Level level = new Level("");
+		level.setLevel();
+		model.setBricks(level.getLevel());
+	
 		refreshStaticObjects();
 		
 		boolean runLoop = true;
