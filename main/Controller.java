@@ -1,6 +1,5 @@
 package breakout.main;
 
-import java.awt.MouseInfo;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -37,6 +36,8 @@ public class Controller implements Observer {
 		View view = new View(28, 14, lhs);
 		
 		model.addView(view);
+		
+		InputHandler.init(model, view);
 		
 		phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
 		

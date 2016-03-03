@@ -2,10 +2,12 @@ package breakout.input;
 
 import java.awt.MouseInfo;
 
+import breakout.main.*;
 import breakout.items.Paddle;
 
 public class BasicMouseInput implements BreakoutInput {
 	
+	public void init(Model model, View view) {}
 	
 	public void update(Paddle paddle, int ms) {
 		//Absolute Position, but relative Position needed.
@@ -14,5 +16,4 @@ public class BasicMouseInput implements BreakoutInput {
 		paddle.setPosition(newPosition);
 		
 	}
-	
 }

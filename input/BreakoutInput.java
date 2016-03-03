@@ -1,6 +1,7 @@
 package breakout.input;
 
 import breakout.items.Paddle;
+import breakout.main.*;
 
 public interface BreakoutInput {
 	
@@ -12,4 +13,5 @@ public interface BreakoutInput {
 	 */
 	public void update(Paddle paddle, int ms);
 	
+	public void init(Model model, View view);
 }
