@@ -10,6 +10,8 @@ public class Breakout {
 		Controller c = new Controller(userinput);
 		
 		while(true) {
+			System.out.println("Game starting...");
+			
 			c.runController();
 		}	
 	}

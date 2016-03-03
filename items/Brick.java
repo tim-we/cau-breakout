@@ -7,7 +7,7 @@ import java.awt.Color;
 
 public class Brick extends PhysicsObject {
 	
-	private Color[] color = {new Color(255,0,0),new Color(0,255,0),new Color(0,0,255)};
+	private Color[] color = {new Color(255,0,0), new Color(0,255,0), new Color(0,0,255)};
 	private byte brickType;
 	
 	//avoid getter & setter functions:
@@ -30,7 +30,7 @@ public class Brick extends PhysicsObject {
 
 	public Color getColor() {
 		if(brickType<0) { return new Color(0,0,0,0); }
-		return this.color[brickType];
+		return this.color[brickType % color.length];
 	}
 
 	@Override

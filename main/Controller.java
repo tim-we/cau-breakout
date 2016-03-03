@@ -20,24 +20,28 @@ public class Controller implements Observer {
 	
 	private BreakoutInput InputHandler;
 	
+	private Model model;
+	
+	private PhysicsContext phys;
+	
 	public Controller(BreakoutInput input) {
 		InputHandler = input;
 	}
 	
 	public void runController() {
 		
-		Model model = new Model(WORLDWIDTH, WORLDHEIGHT);	
+		model = new Model(WORLDWIDTH, WORLDHEIGHT);	
 		
 		LhSimulator lhs = new LhSimulator();
 		View view = new View(28, 14, lhs);
 		
 		model.addView(view);
 		
-		PhysicsContext phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
+		phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
 		
-		phys.staticObjects.add(model.getPaddle());
+		model.setBricks("-222-222-11-111-11-0000000-");
 		
-		//TODO: add bricks as staticObjects
+		refreshStaticObjects();
 		
 		boolean runLoop = true;
 		int k;
@@ -73,6 +77,15 @@ public class Controller implements Observer {
 			}
 		}
 		
+		System.out.println("Game ended. Score: " + model.getScore());
+	}
+	
+	private void refreshStaticObjects() {
+		phys.staticObjects.clear();
+		
+		phys.staticObjects.add(model.getPaddle());
+		
+		//TODO: add bricks to staticObjects
 	}
 	
 	@Override
