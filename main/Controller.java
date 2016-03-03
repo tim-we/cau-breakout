@@ -2,7 +2,6 @@ package breakout.main;
 
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Scanner;
 
 import breakout.items.*;
 import breakout.lighthouse.LhSimulator;
@@ -42,9 +41,10 @@ public class Controller implements Observer {
 		InputHandler.init(model, view);
 		
 		phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
-		Level level = new Level("");
-		level.setLevel();
-		model.setBricks(level.getLevel());
+		//Level level = new Level("");
+		//level.setLevel();
+		//model.setBricks(level.getLevel());
+		model.setBricks("-222-222-11-111-11-0000000-");
 	
 		refreshStaticObjects();
 		
@@ -90,7 +90,9 @@ public class Controller implements Observer {
 		
 		phys.staticObjects.add(model.getPaddle());
 		
-		//TODO: add bricks to staticObjects
+		for(Brick brick : model.getBricks()) {
+			phys.staticObjects.add(brick);
+		}
 	}
 	
 	@Override

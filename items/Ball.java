@@ -10,8 +10,14 @@ public class Ball extends MovingObject {
 	private Color color = new Color(255,255,255);
 	
 	public Ball(Vector2D position) {
-	  this.Position = position;
-	  setBBox(width,height);
+		this.Position = position;
+		setBBox(width,height);
+	}
+	
+	public Ball(Vector2D position, Vector2D velocity) {
+		this.Position = position;
+		setBBox(width,height);
+		this.Velocity = velocity;
 	}
 	
 	public Color getColor() {

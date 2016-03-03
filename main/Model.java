@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import breakout.assets.BreakoutConstants;
 import breakout.items.*;
+import breakout.physics.Vector2D;
 import java.util.Observable;
 
 public class Model extends Observable {
@@ -30,6 +31,8 @@ public class Model extends Observable {
 		worldHeight = h;
 		
 		paddle = new Paddle();
+		
+		balls.add( new Ball(new Vector2D(worldWidth/2, worldHeight/2), new Vector2D(42, 200)) );
 	}
 	
 	public void addView(View view) {
