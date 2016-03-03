@@ -1,9 +1,13 @@
 package breakout.assets;
 
 public class BreakoutConstants {
-	public static final int WINDOW_WIDTH = 21;
+	public static final int WINDOW_WIDTH = 20;
 	
-	public static final int WINDOW_HEIGHT = 50;
+	public static final int WINDOW_HEIGHT = 30;
+	
+	public static final int WINDOW_X_OFFSET = 5;
+	
+	public static final int WINDOW_Y_OFFSET = 20;
 	
 	public static final int WINDOW_ROWS = 14;
 	

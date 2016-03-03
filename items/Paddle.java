@@ -6,9 +6,9 @@ import java.awt.Color;
 
 public class Paddle extends PhysicsObject{
 
-	private double paddleWidth = 84d;
+	private double paddleWidth = BreakoutConstants.WINDOW_WIDTH*4;
 	
-	private Color color = new Color (142,33,125);
+	private Color color = new Color (229,55,203);
 	
 	public Paddle(){
 		this.Position = new Vector2D(
