@@ -84,15 +84,22 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		System.out.println("Game ended. Score: " + model.getScore());
 	}
 	
-	public void onCollision(CollisionEvent e) {		
+	public void onCollision(CollisionEvent e) {
+		if(e.isWallCollision()) { return; }
+		
 		PhysicsObject x = e.getObjectA() instanceof Ball ? e.getObjectB() : e.getObjectA();
 		
 		if(x instanceof Brick) {
-			model.getBricks().remove(x);
+			Brick brick = (Brick)x;
 			
-			model.addPoints(((Brick)x).getHitPoints());
-			
-			refreshStaticObjects();
+			if(brick.getBrickType() < 0) {
+				
+				model.getBricks().remove(x);
+				
+				model.addPoints(((Brick)x).getHitPoints());
+				
+				refreshStaticObjects();
+			}
 		}
 	}
 	
