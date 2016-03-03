@@ -53,7 +53,7 @@ public class Model extends Observable {
 		
 		for(int i=0; i<brickData.length(); i++) {
 			byte brickType = -1;
-			
+			xPos = BreakoutConstants.BRICK_X_OFFSET;
 			switch(brickData.charAt(i)) {
 				case '0':
 					brickType = 0; break;
@@ -63,10 +63,14 @@ public class Model extends Observable {
 					brickType = 2; break;
 				case '.': //forced line break
 					xk=bricksPerRow-1;
+				case '$':
+					xPos -= BreakoutConstants.BRICK_X_OFFSET;
+				case '?':
+					yPos -= BreakoutConstants.BRICK_Y_OFFSET;
 				
 			}
 			
-			xPos = BreakoutConstants.BRICK_X_OFFSET + xk * (Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET);
+			xPos +=Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET;
 			
 			if(brickType >= 0) { bricks.add(new Brick(xPos, yPos, (byte)brickType)); }
 			xk++;
