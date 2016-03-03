@@ -1,5 +1,6 @@
 package breakout.main;
 
+import java.awt.MouseInfo;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -29,7 +30,7 @@ public class Controller implements Observer {
 	}
 	
 	public void runController() {
-		
+			
 		model = new Model(WORLDWIDTH, WORLDHEIGHT);	
 		
 		LhSimulator lhs = new LhSimulator();

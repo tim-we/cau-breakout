@@ -19,6 +19,8 @@ public class Paddle extends PhysicsObject{
 		this.setBBox(paddleWidth, BreakoutConstants.WINDOW_HEIGHT);
 	}
 	
+
+	
 	public void setPosition (double x){
 		//TODO: check if x>=0 && x<=worldWidth-paddleWidth
 		Position.setX(x);
