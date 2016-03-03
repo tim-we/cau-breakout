@@ -1,35 +1,33 @@
 package breakout.levels;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Level {
 
-	private String level;
+	private static final String[] levels = {
+			"-222-222-11-111-11-0000000-",
+			"000000000000000000000000000",
+			"111111111111111111111111111",
+			"222222222222222222222222222",
+			"012012012012012012012012012",
+			"010101010101010101010101010",
+			"121212121212121212121212121",
+			"020202020202020202020202020",
+			"-1-1-1-1-1-1-1-1-1-1-1-1-1-",
+			"-1--1--1--1--1--1--1--1--1-",
+	};
 	
-	public Level(String input){
-		this.level = input;
-	}
 	
-	public void setLevel(){
-		Scanner user_input = new Scanner(System.in);
-		System.out.print("Please enter the top row of your Level: ");
-		String toprowinput = user_input.nextLine();
-		System.out.print("Please enter the middle row of your Level: ");
-		String middlerowinput = user_input.nextLine();
-		System.out.print("Please enter the last row of your Level: ");
-		String lastrowinput = user_input.nextLine();
-		String userinput = toprowinput+middlerowinput+lastrowinput;
-		this.level = userinput;
-	}
-	public String getLevel(){
-		return this.level;
-	}
 	
-	public void loadLevel(){
-		
+	public String randomLevel(){
+		Random rgen = new Random();
+		int lvl = rgen.nextInt(10);
+		return levels[lvl];
 	}
 	
-	public void saveLevelin(){
-		
+	public String getLevelByIndex(int i){
+		return levels[i];
 	}
+	
 }
