@@ -50,10 +50,10 @@ public class Model extends Observable {
 		int xk = 0;
 		double xPos;
 		double yPos = BreakoutConstants.BRICK_Y_OFFSET;
-		
+		xPos = BreakoutConstants.BRICK_X_OFFSET;
 		for(int i=0; i<brickData.length(); i++) {
 			byte brickType = -1;
-			xPos = BreakoutConstants.BRICK_X_OFFSET;
+			
 			switch(brickData.charAt(i)) {
 				case '0':
 					brickType = 0; break;
@@ -67,18 +67,18 @@ public class Model extends Observable {
 					xPos -= BreakoutConstants.BRICK_X_OFFSET;
 				case '?':
 					yPos -= BreakoutConstants.BRICK_Y_OFFSET;
-				
+								
 			}
 			
-			xPos +=Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET;
-			
-			if(brickType >= 0) { bricks.add(new Brick(xPos, yPos, (byte)brickType)); }
-			xk++;
-			
-			if(xk==bricksPerRow) {
-				xk = 0;
+			if (xPos>=worldWidth){
+				xPos=BreakoutConstants.BRICK_X_OFFSET;
 				yPos += Brick.brickHeight + BreakoutConstants.BRICK_Y_OFFSET;
-			}		
+			}
+						
+			if(brickType >= 0) { bricks.add(new Brick(xPos, yPos, (byte)brickType)); }
+			if(brickData.charAt(i)!='$'&&brickData.charAt(i)!='?'){
+			xPos +=Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET;}
+			
 		}
 	}
 	
