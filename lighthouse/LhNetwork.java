@@ -55,7 +55,7 @@ public class LhNetwork extends Observable implements Runnable {
 				e.printStackTrace();
 			}
 			
-			// Notifiy observers
+			// Notify observers
 			setChanged();
 			notifyObservers(s);
 		}
