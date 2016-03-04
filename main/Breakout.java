@@ -1,6 +1,7 @@
 package breakout.main;
 
 import breakout.input.*;
+import breakout.lighthouse.LhSimulator;
 
 public class Breakout {
 	
@@ -9,12 +10,16 @@ public class Breakout {
 		
 		Controller c = new Controller(userinput);
 		
+		//temporary solution
+		LhSimulator lhs = new LhSimulator();
+		lhs.start();
+		
 		while(true) {
 			System.out.println("Game starting...");
 			
-			c.runController();
+			c.runController(lhs);
 			
-			pause(200);
+			pause(300);
 		}	
 	}
 	

@@ -31,11 +31,10 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		InputHandler = input;
 	}
 	
-	public void runController() {
+	public void runController(LhSimulator lhs) {
 			
 		model = new Model(WORLDWIDTH, WORLDHEIGHT);	
 		
-		LhSimulator lhs = new LhSimulator();
 		View view = new View(28, 14, lhs);
 		
 		model.addView(view);
@@ -54,9 +53,6 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		int k;
 		int pause_time = (int)(1000d/FPS);
 		double time_remaining;
-		
-		//start LhSimulator (acm GraphicsProgram)
-		lhs.start();
 		
 		while(runLoop) {
 			
@@ -81,7 +77,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		
 		System.out.println("Game ended. Score: " + model.getScore());
 		
-		lhs.destroy();
+		//lhs.destroy();
 	}
 	
 	public void pause(int ms) {
