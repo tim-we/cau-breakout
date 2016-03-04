@@ -43,7 +43,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
 		phys.eventReceiver = this;
 		
-		model.level.setBricks("-222-222-11-111-11-0000000-");
+		model.level.setBricks("?2$2$2--$$1--$$$0-0 ?2$---$1$1-$0-0 ?2--1-$$1-$$0-0 ?2--1$1$1-$$0-0 ?2$--1-10$0$0$0 ?2$2$2-$$1-10$0$0$0");
 	
 		refreshStaticObjects();
 		
