@@ -43,7 +43,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
 		phys.eventReceiver = this;
 		
-		model.setBricks("-222-222-1$1-111-11-0000000-");
+		model.level.setBricks("-222-222-11-111-11-0000000-");
 	
 		refreshStaticObjects();
 		
@@ -98,7 +98,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			if(brick.getBrickType() < 0) {
 				
-				model.getBricks().remove(x);
+				model.level.getBricks().remove(x);
 				
 				model.addPoints(((Brick)x).getHitPoints());
 				
@@ -112,7 +112,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		
 		phys.staticObjects.add(model.getPaddle());
 		
-		for(Brick brick : model.getBricks()) {
+		for(Brick brick : model.level.getBricks()) {
 			phys.staticObjects.add(brick);
 		}
 	}

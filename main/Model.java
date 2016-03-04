@@ -2,6 +2,7 @@ package breakout.main;
 
 import java.util.ArrayList;
 
+import breakout.levels.*;
 import breakout.assets.BreakoutConstants;
 import breakout.items.*;
 import breakout.physics.Vector2D;
@@ -11,11 +12,11 @@ public class Model extends Observable {
 	
 	private ArrayList<View> views;
 	
-	private ArrayList<Brick> bricks;
-	
 	private ArrayList<Ball> balls;
 	
 	private Paddle paddle;
+	
+	Level level;
 	
 	private int score = 0;
 	
@@ -24,9 +25,8 @@ public class Model extends Observable {
 	
 	public Model(double w, double h) {
 		this.views = new ArrayList<View>();
-		this.bricks = new ArrayList<Brick>();
 		this.balls = new ArrayList<Ball>();
-		
+		this.level = new Level(w);
 		worldWidth = w;
 		worldHeight = h;
 		
@@ -37,53 +37,6 @@ public class Model extends Observable {
 	
 	public void addView(View view) {
 		this.views.add(view);
-	}
-	
-	public void setBricks(String brickData) {
-		//remove all existing bricks
-		bricks = new ArrayList<Brick>();
-		
-		System.out.println("loading level: " + brickData);
-		
-		int bricksPerRow = (int) Math.floor( (worldWidth - BreakoutConstants.BRICK_X_OFFSET) / (Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET) );
-		
-		int xk = 0;
-		double xPos;
-		double yPos = BreakoutConstants.BRICK_Y_OFFSET;
-		xPos = BreakoutConstants.BRICK_X_OFFSET;
-		for(int i=0; i<brickData.length(); i++) {
-			byte brickType = -1;
-			
-			switch(brickData.charAt(i)) {
-				case '0':
-					brickType = 0; break;
-				case '1':
-					brickType = 1; break;
-				case '2':
-					brickType = 2; break;
-				case '.': //forced line break
-					xk=bricksPerRow-1;
-				case '$':
-					xPos -= BreakoutConstants.BRICK_X_OFFSET;
-				case '?':
-					yPos -= BreakoutConstants.BRICK_Y_OFFSET;
-								
-			}
-			
-			if (xPos>=worldWidth){
-				xPos=BreakoutConstants.BRICK_X_OFFSET;
-				yPos += Brick.brickHeight + BreakoutConstants.BRICK_Y_OFFSET;
-			}
-						
-			if(brickType >= 0) { bricks.add(new Brick(xPos, yPos, (byte)brickType)); }
-			if(brickData.charAt(i)!='$'&&brickData.charAt(i)!='?'){
-			xPos +=Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET;}
-			
-		}
-	}
-	
-	public ArrayList<Brick> getBricks() {
-		return bricks;
 	}
 	
 	public ArrayList<Ball> getBalls() {
