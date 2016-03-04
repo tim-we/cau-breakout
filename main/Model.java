@@ -35,7 +35,7 @@ public class Model extends Observable {
 		
 		paddle = new Paddle();
 		
-		balls.add( new Ball(new Vector2D(worldWidth/2, worldHeight/2), new Vector2D(42, 200)) );
+		balls.add( new Ball(new Vector2D(worldWidth/2, worldHeight/2), new Vector2D(3 * BreakoutConstants.WINDOW_HEIGHT, 7 * BreakoutConstants.WINDOW_HEIGHT)) );
 	}
 	
 	public void addView(View view) {

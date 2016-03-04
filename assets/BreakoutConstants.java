@@ -1,13 +1,13 @@
 package breakout.assets;
 
 public class BreakoutConstants {
-	public static final int WINDOW_WIDTH = 20;
+	public static final int WINDOW_WIDTH = 10;
 	
-	public static final int WINDOW_HEIGHT = 30;
+	public static final int WINDOW_HEIGHT = 15;
 	
-	public static final int WINDOW_X_OFFSET = 5;
+	public static final int WINDOW_X_OFFSET = 3;
 	
-	public static final int WINDOW_Y_OFFSET = 20;
+	public static final int WINDOW_Y_OFFSET = 10;
 	
 	public static final int WINDOW_ROWS = 14;
 	
@@ -19,7 +19,7 @@ public class BreakoutConstants {
 	
 	public static final double BALL_BOUNCE_SPEED_FACTOR = 1.04;
 	
-	public static final double BALL_MAX_SPEED = 500;
+	public static final double BALL_MAX_SPEED = 400;
 	
 	public static final boolean BALL_BOUNCE_ADVANCED_MACHANICS = false;
 }
