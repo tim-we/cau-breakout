@@ -18,7 +18,7 @@ public class Model extends Observable {
 	
 	private Paddle paddle;
 	
-	//Level level;
+	private BarOfDeath bottomBar;
 	
 	private int score = 0;
 	
@@ -29,11 +29,13 @@ public class Model extends Observable {
 		this.views = new ArrayList<View>();
 		this.balls = new ArrayList<Ball>();
 		this.bricks = new ArrayList<Brick>();
-		//this.level = new Level(w);
+
 		worldWidth = w;
 		worldHeight = h;
 		
 		paddle = new Paddle();
+		
+		bottomBar = new BarOfDeath((BreakoutConstants.WINDOW_ROWS-0.2) * BreakoutConstants.WINDOW_HEIGHT, worldWidth, 0.2 * BreakoutConstants.WINDOW_HEIGHT);
 		
 		balls.add( new Ball(new Vector2D(worldWidth/2, worldHeight/2), new Vector2D(3 * BreakoutConstants.WINDOW_HEIGHT, 7 * BreakoutConstants.WINDOW_HEIGHT)) );
 	}
@@ -60,6 +62,10 @@ public class Model extends Observable {
 	
 	public Paddle getPaddle() {
 		return paddle;
+	}
+	
+	public BarOfDeath getBarOfDeath() {
+		return bottomBar;
 	}
 	
 	public void updateViews() {

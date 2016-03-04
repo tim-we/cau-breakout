@@ -25,6 +25,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 	
 	private PhysicsContext phys;
 	
+	private boolean runLoop = false;
+	
 	public Controller(BreakoutInput input) {
 		InputHandler = input;
 	}
@@ -48,7 +50,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 	
 		refreshStaticObjects();
 		
-		boolean runLoop = true;
+		runLoop = true;
 		int k;
 		int pause_time = (int)(1000d/FPS);
 		double time_remaining;
@@ -74,15 +76,21 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			//model updates views
 			model.updateViews();	
 			
-			try {
-			    Thread.sleep(pause_time);
-			} catch(InterruptedException ex) {
-			    Thread.currentThread().interrupt();
-			    // -> change pause_time ?
-			}
+			pause(pause_time);
 		}
 		
 		System.out.println("Game ended. Score: " + model.getScore());
+		
+		lhs.destroy();
+	}
+	
+	public void pause(int ms) {
+		try {
+		    Thread.sleep(ms);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		    // -> do something ?
+		}
 	}
 	
 	public void onCollision(CollisionEvent e) {
@@ -105,6 +113,10 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				
 				refreshStaticObjects();
 			}
+		} else if(x instanceof BarOfDeath) {
+			runLoop = false;
+			
+			System.out.println("your dead");
 		}
 	}
 	
@@ -112,6 +124,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		phys.staticObjects.clear();
 		
 		phys.staticObjects.add(model.getPaddle());
+		
+		phys.staticObjects.add(model.getBarOfDeath());
 		
 		for(Brick brick : model.getBricks()) {
 			phys.staticObjects.add(brick);

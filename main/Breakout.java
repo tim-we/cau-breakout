@@ -13,6 +13,17 @@ public class Breakout {
 			System.out.println("Game starting...");
 			
 			c.runController();
+			
+			pause(200);
 		}	
+	}
+	
+	public static void pause(int ms) {
+		try {
+		    Thread.sleep(ms);
+		} catch(InterruptedException ex) {
+		    Thread.currentThread().interrupt();
+		    // -> do something ?
+		}
 	}
 }
