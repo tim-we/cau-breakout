@@ -7,7 +7,7 @@ import breakout.main.Model;
 import breakout.assets.BreakoutConstants;
 import breakout.items.Brick;
 
-public class Level {
+public class LevelLoader {
 
 	private static final String[] levels = { 
 			"-222-222-11-111-11-0000000-", 
@@ -30,7 +30,7 @@ public class Level {
 				+ "?2$2$2-$$1-10$0$0$0 "
 	};
 
-	private Level(double w) {
+	private LevelLoader(double w) {
 	}
 
 	public static String randomLevel() {
@@ -105,12 +105,12 @@ public class Level {
 	}
 	
 	public static void loadLevel(int i, Model m) {
-		String level = Level.getLevelByIndex(i);
-		Level.setBricks(level, m);
+		String level = LevelLoader.getLevelByIndex(i);
+		LevelLoader.setBricks(level, m);
 	}
 	
 	public static void loadLevel(Model m) {
-		String level = Level.randomLevel();
-		Level.setBricks(level, m);
+		String level = LevelLoader.randomLevel();
+		LevelLoader.setBricks(level, m);
 	}
 }
