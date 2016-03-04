@@ -33,5 +33,26 @@ public class Paddle extends PhysicsObject{
 	public Color getColor(){
 	  return this.color;
 	}
-
+	
+	@Override
+	public void onCollision(CollisionEvent e) {
+		PhysicsObject x = e.getObjectA() instanceof Ball ? e.getObjectA() : e.getObjectB();
+		
+		assert x instanceof Ball;
+		
+		Ball ball = (Ball)x;
+		
+		double relativeXPosition = -2*(((e.getCollisionPoint().getX() - Position.getX()) / paddleWidth) - 1.0); //from 0 to 1
+		
+		if(BreakoutConstants.BALL_BOUNCE_ADVANCED_MACHANICS) {
+		
+			double angle = Math.PI * 2 * (1-relativeXPosition);
+			
+			angle = 0.25*Math.PI + angle*0.5;
+			
+			double speed = ball.getVelocity().length();
+			
+			ball.setVelocity(new Vector2D(Math.cos(angle), Math.sin(angle)).scale(speed));
+		}
+	}
 }

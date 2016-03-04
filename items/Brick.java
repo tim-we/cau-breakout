@@ -3,6 +3,7 @@ package breakout.items;
 import breakout.assets.BreakoutConstants;
 import breakout.physics.Vector2D;
 import breakout.physics.PhysicsObject;
+import breakout.physics.CollisionEvent;
 import java.awt.Color;
 
 public class Brick extends PhysicsObject {
@@ -38,7 +39,7 @@ public class Brick extends PhysicsObject {
 	}
 
 	@Override
-	public void onCollision(PhysicsObject obj){
+	public void onCollision(CollisionEvent e){
 	  brickType--;
 	}
 

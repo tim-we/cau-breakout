@@ -165,18 +165,16 @@ public class PhysicsContext {
 				else { obj.bounceY(); }
 				
 			//trigger collision event
-				obj.onCollision(collisionObject);
-				if(collisionObject != null) { collisionObject.onCollision(obj); }
-				
 				CollisionEvent e = new CollisionEvent(
 						obj, 
 						collisionObject, 
 						Vector2D.add(obj.getPosition(), vel.scale(minFactor))
 					);
 				
-				if(eventReceiver != null) {
-					eventReceiver.onCollision(e);
-				}
+				obj.onCollision(e);
+				if(collisionObject != null) { collisionObject.onCollision(e); }
+				
+				if(eventReceiver != null) {	eventReceiver.onCollision(e); }
 				
 			return 1d-minFactor;
 		} else {			

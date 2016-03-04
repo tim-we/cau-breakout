@@ -92,6 +92,10 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		if(x instanceof Brick) {
 			Brick brick = (Brick)x;
 			
+			for(Ball ball : model.getBalls()) {
+				ball.scaleVelocity(BreakoutConstants.BALL_BOUNCE_SPEED_FACTOR);
+			}
+			
 			if(brick.getBrickType() < 0) {
 				
 				model.getBricks().remove(x);

@@ -37,5 +37,5 @@ public abstract class PhysicsObject {
 		Position = pos;
 	}
 	
-	public void onCollision(PhysicsObject obj) {}
+	public void onCollision(CollisionEvent e) {}
 }
