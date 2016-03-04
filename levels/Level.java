@@ -2,7 +2,6 @@ package breakout.levels;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 import breakout.main.Model;
 import breakout.assets.BreakoutConstants;
@@ -10,39 +9,52 @@ import breakout.items.Brick;
 
 public class Level {
 
-	private double worldWidth;
-	private ArrayList<Brick> bricks;
+	private static final String[] levels = { 
+			"-222-222-11-111-11-0000000-", 
+			"000000000000000000000000000",
+			"111111111111111111111111111", 
+			"222222222222222222222222222", 
+			"012012012012012012012012012",
+			"010101010101010101010101010", 
+			"121212121212121212121212121", 
+			"020202020202020202020202020",
+			"-1-1-1-1-1-1-1-1-1-1-1-1-1-", 
+			"-1--1--1--1--1--1--1--1--1-",
+			
+			//CAU Level:
+			"?2$2$2--$$1--$$$0-0 "
+				+ "?2$---$1$1-$0-0 "
+				+ "?2--1-$$1-$$0-0 "
+				+ "?2--1$1$1-$$0-0 "
+				+ "?2$--1-10$0$0$0 "
+				+ "?2$2$2-$$1-10$0$0$0 "
+	};
 
-	private static final String[] levels = { "-222-222-11-111-11-0000000-", "000000000000000000000000000",
-			"111111111111111111111111111", "222222222222222222222222222", "012012012012012012012012012",
-			"010101010101010101010101010", "121212121212121212121212121", "020202020202020202020202020",
-			"-1-1-1-1-1-1-1-1-1-1-1-1-1-", "-1--1--1--1--1--1--1--1--1-", };
-
-	public Level(double w) {
-		this.bricks = new ArrayList<Brick>();
-		this.worldWidth = w;
+	private Level(double w) {
 	}
 
-	public String randomLevel() {
+	public static String randomLevel() {
 		Random rgen = new Random();
-		int lvl = rgen.nextInt(10);
+		int lvl = rgen.nextInt(levels.length);
 		return levels[lvl];
 	}
 
-	public String getLevelByIndex(int i) {
+	public static String getLevelByIndex(int i) {
+		if(i<0 || i>=levels.length) { return ""; }
+		
 		return levels[i];
 	}
 
-	public void setBricks(String brickData) {
+	public static void setBricks(String brickData, Model m) {
 		// remove all existing bricks
-		bricks = new ArrayList<Brick>();
+		m.clearBricks();
+		
+		//for debugging:
+		//System.out.println("loading level: " + brickData);
 
-		System.out.println("loading level: " + brickData);
+		//int bricksPerRow = (int) Math.floor((worldWidth - BreakoutConstants.BRICK_X_OFFSET) / (Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET));
 
-		int bricksPerRow = (int) Math.floor((worldWidth - BreakoutConstants.BRICK_X_OFFSET)
-				/ (Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET));
-
-		int xk = 0;
+		//int xk = 0;
 		double xPos;
 		double yPos = BreakoutConstants.BRICK_Y_OFFSET;
 		xPos = BreakoutConstants.BRICK_X_OFFSET;
@@ -61,7 +73,8 @@ public class Level {
 				brickType = 2;
 				break;
 			case '.': // forced line break
-				xk = bricksPerRow - 1;
+				//xk = bricksPerRow - 1;
+				break;
 			case '$':
 				xPos -= BreakoutConstants.BRICK_X_OFFSET;
 				break;
@@ -74,13 +87,13 @@ public class Level {
 
 			}
 
-			if (xPos >= worldWidth) {
+			if (xPos >= m.getWidth()) {
 				xPos = BreakoutConstants.BRICK_X_OFFSET;
 				yPos += Brick.brickHeight + BreakoutConstants.BRICK_Y_OFFSET;
 			}
 
 			if (brickType >= 0) {
-				bricks.add(new Brick(xPos, yPos, (byte) brickType));
+				m.addBrick(new Brick(xPos, yPos, (byte) brickType));
 			}
 
 			if (brickData.charAt(i) != '$' && brickData.charAt(i) != '?' && brickData.charAt(i) != ';') {
@@ -88,10 +101,16 @@ public class Level {
 			}
 
 		}
+		
 	}
-
-	public ArrayList<Brick> getBricks() {
-		return bricks;
+	
+	public static void loadLevel(int i, Model m) {
+		String level = Level.getLevelByIndex(i);
+		Level.setBricks(level, m);
 	}
-
+	
+	public static void loadLevel(Model m) {
+		String level = Level.randomLevel();
+		Level.setBricks(level, m);
+	}
 }

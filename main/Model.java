@@ -2,7 +2,7 @@ package breakout.main;
 
 import java.util.ArrayList;
 
-import breakout.levels.*;
+//import breakout.levels.*;
 import breakout.assets.BreakoutConstants;
 import breakout.items.*;
 import breakout.physics.Vector2D;
@@ -14,9 +14,11 @@ public class Model extends Observable {
 	
 	private ArrayList<Ball> balls;
 	
+	private ArrayList<Brick> bricks;
+	
 	private Paddle paddle;
 	
-	Level level;
+	//Level level;
 	
 	private int score = 0;
 	
@@ -26,7 +28,8 @@ public class Model extends Observable {
 	public Model(double w, double h) {
 		this.views = new ArrayList<View>();
 		this.balls = new ArrayList<Ball>();
-		this.level = new Level(w);
+		this.bricks = new ArrayList<Brick>();
+		//this.level = new Level(w);
 		worldWidth = w;
 		worldHeight = h;
 		
@@ -41,6 +44,18 @@ public class Model extends Observable {
 	
 	public ArrayList<Ball> getBalls() {
 		return balls;
+	}
+	
+	public ArrayList<Brick> getBricks() {
+		return bricks;
+	}
+	
+	public void addBrick(Brick brick) {
+		if(brick != null) { bricks.add(brick); }
+	}
+	
+	public void clearBricks() {
+		bricks.clear();
 	}
 	
 	public Paddle getPaddle() {

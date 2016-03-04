@@ -32,7 +32,7 @@ public class View {
 			int brickWidth = (int) Math.round( Brick.brickWidth * widthScale );
 			int brickHeight = (int) Math.round( Brick.brickHeight * heightScale );
 			
-			for(Brick brick : model.level.getBricks()) {
+			for(Brick brick : model.getBricks()) {
 				int[] brickPos = getPixelVector(brick.getPosition(), model);
 				
 				paintRect(nextFrame, brickPos[0], brickPos[1], brickWidth, brickHeight, brick.getColor());

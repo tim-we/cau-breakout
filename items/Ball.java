@@ -34,7 +34,7 @@ public class Ball extends MovingObject {
 		
 		Velocity = Velocity.scale(f);
 		
-		System.out.println("Velocity^2: " + Velocity.sqlength());
+		//System.out.println("Velocity^2: " + Velocity.sqlength());
 	}
 
 
