@@ -168,7 +168,8 @@ public class PhysicsContext {
 				CollisionEvent e = new CollisionEvent(
 						obj, 
 						collisionObject, 
-						Vector2D.add(obj.getPosition(), vel.scale(minFactor))
+						Vector2D.add(obj.getPosition(), vel.scale(minFactor)),
+						horizontal
 					);
 				
 				obj.onCollision(e);

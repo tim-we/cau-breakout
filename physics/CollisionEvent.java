@@ -10,10 +10,13 @@ public class CollisionEvent {
 	
 	private Vector2D point;
 	
-	public CollisionEvent(PhysicsObject a, PhysicsObject b, Vector2D point) {
+	private boolean horizontal;
+	
+	public CollisionEvent(PhysicsObject a, PhysicsObject b, Vector2D point, boolean h) {
 		this.a = a;
 		this.b = b;
 		this.point = point;
+		this.horizontal = h;
 	}
 	
 	public PhysicsObject getObjectA() { return a; }

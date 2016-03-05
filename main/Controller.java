@@ -1,5 +1,6 @@
 package breakout.main;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -60,7 +61,11 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			InputHandler.update(model.getPaddle(), pause_time);
 			
-			for(Ball ball : model.getBalls()) {
+			int n = model.getBalls().size();
+			for(int i=0; i<n; i++) {
+				Ball ball = model.getBalls().get(i);
+				if(ball==null) { continue; }
+				
 				time_remaining = (double)pause_time/1000d;
 				k = 0;
 				
@@ -129,7 +134,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		} else if(x instanceof BarOfDeath) {
 			//TODO: remove ball, if no balls left trigger game over
 			
-			//model.clearBalls();
+			model.clearBalls();
 			
 			if(e.getObjectA() instanceof Ball) { 
 				
