@@ -76,7 +76,7 @@ public class PixelImage {
 		return getPixel(x, y, BGCOLOR);
 	}
 	
-	public Color blendColors(Color bg, Color fg, double alpha, BlendingMode mode) {
+	public static Color blendColors(Color bg, Color fg, double alpha, BlendingMode mode) {
 		if(fg==null) { return bg; }
 		if(bg==null) { return fg; }
 		
@@ -105,7 +105,7 @@ public class PixelImage {
 		
 	}
 	
-	public Color blendColors(Color bg, Color fg) {
+	public static Color blendColors(Color bg, Color fg) {
 		return blendColors(bg, fg, fg.getAlpha()/255d, BlendingMode.NORMAL);
 	}
 	

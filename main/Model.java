@@ -78,8 +78,10 @@ public class Model extends Observable {
 	//other
 	public void update() {		
 		//garbage-collect animations:
-		for(Animation anim : animations) {
-			if(anim.hasFinished()) {
+		for(int i=0; i<animations.size(); i++) {
+			Animation anim = animations.get(i);
+			
+			if(anim != null && anim.hasFinished()) {
 				animations.remove(anim);
 			}
 		}

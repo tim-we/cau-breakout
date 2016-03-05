@@ -7,8 +7,7 @@ import breakout.items.*;
 import breakout.lighthouse.LhSimulator;
 import breakout.physics.*;
 import breakout.input.BreakoutInput;
-import breakout.animations.Animation;
-import breakout.animations.DeathAnimation;
+import breakout.animations.*;
 import breakout.assets.BreakoutConstants;
 import breakout.levels.*;
 
@@ -111,6 +110,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			Brick brick = (Brick)x;
 			
 			for(Ball ball : model.getBalls()) {
+				//TODO: change speed by a constant amount, NOT by percentage
 				ball.scaleVelocity(BreakoutConstants.BALL_BOUNCE_SPEED_FACTOR);
 			}
 			
@@ -121,6 +121,10 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				model.addPoints(((Brick)x).getHitPoints());
 				
 				refreshStaticObjects();
+				
+				Vector2D p = e.getCollisionPoint();
+				
+				model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
 			}
 		} else if(x instanceof BarOfDeath) {
 			//TODO: remove ball, if no balls left trigger game over

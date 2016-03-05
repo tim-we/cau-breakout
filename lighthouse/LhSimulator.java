@@ -44,7 +44,10 @@ public class LhSimulator extends GraphicsProgram {
 				GRect wind = new GRect(x, y, WINDOW_WIDTH, WINDOW_HEIGHT);
 				wind.setFilled(true);
 				
-				wind.setColor(frame.getPixel(column, row, WIN_OFF_CLR));
+				Color c = frame.getPixel(column, row, WIN_OFF_CLR);
+				if(c.getAlpha() < 255) { c = PixelImage.blendColors(Color.BLACK, c); }
+				
+				wind.setColor(c);
 				
 				bb.add(wind);
 			}		
