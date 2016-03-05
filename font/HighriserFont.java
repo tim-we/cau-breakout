@@ -27,7 +27,20 @@ public class HighriserFont implements Font {
         charMap.put('v', new Letter(5, 5, "00000"+"10010"+"10010"+"10010"+"01100"));
         charMap.put('w', new Letter(6, 5, "000000"+"100010"+"100010"+"101010"+"010100"));
         charMap.put('W', new Letter(6, 5, "100010"+"100010"+"100010"+"101010"+"010100"));
+        charMap.put('x', new Letter(4, 5, "0000"+"0000"+"1010"+"0100"+"1010"));
+        charMap.put('X', new Letter(4, 5, "1010"+"1010"+"0100"+"1010"+"1010"));
+        
+        //numbers:
+        charMap.put('0', new Letter(5, 5, "01100"+"10010"+"10010"+"10010"+"01100"));
+        charMap.put('1', new Letter(2, 5, "01"+"10"+"10"+"10"+"10"));
+        charMap.put('2', new Letter(5, 5, "11100"+"00010"+"00100"+"01000"+"11110"));
+        charMap.put('4', new Letter(5, 5, "10010"+"10010"+"11110"+"00010"+"00010"));
+        
+        //other symbols
         charMap.put('!', new Letter(2, 5, "10"+"10"+"10"+"00"+"10"));
+        charMap.put(':', new Letter(2, 5, "00"+"00"+"10"+"00"+"10"));
+        charMap.put('.', new Letter(2, 5, "00"+"00"+"00"+"00"+"10"));
+        charMap.put('-', new Letter(4, 5, "0000"+"0000"+"0110"+"0000"+"0000"));
     }
     
     public Letter getLetter(char c) {

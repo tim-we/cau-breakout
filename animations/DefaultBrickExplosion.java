@@ -26,7 +26,7 @@ public class DefaultBrickExplosion extends Animation {
 		double ratio = (double)height/(double)width;
 		
 		double s = 1.0;
-		if(currentFrame>=8) { s = 1.0 - 0.2*(currentFrame-8); }
+		if(currentFrame>=6) { s = 1.0 - 0.15*(currentFrame-6); }
 		
 		double d,f;
 		

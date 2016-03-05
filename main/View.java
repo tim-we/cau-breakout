@@ -38,13 +38,6 @@ public class View {
 				
 				paintRect(nextFrame, brickPos[0], brickPos[1], brickWidth, brickHeight, brick.getColor());
 			}
-			
-		//draw ball(s)
-			for(Ball ball : model.getBalls()) {
-				int[] ballPos = getPixelVector(ball.getPosition(), model);
-				
-				nextFrame.setPixel(ballPos[0], ballPos[1], ball.getColor());
-			}
 		
 		//draw paddle
 			int paddleWidth = (int) Math.round(model.getPaddle().getWidth() * widthScale);			
@@ -56,6 +49,13 @@ public class View {
 			for(Animation anim : model.getAnimations()) {
 				nextFrame = anim.renderNextFrame(nextFrame);
 			}
+		
+		//draw ball(s)
+			for(Ball ball : model.getBalls()) {
+				int[] ballPos = getPixelVector(ball.getPosition(), model);
+				
+				nextFrame.setPixel(ballPos[0], ballPos[1], ball.getColor());
+			}	
 			
 		frame = nextFrame;
 		
