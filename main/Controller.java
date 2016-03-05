@@ -125,9 +125,15 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			}
 		} else if(x instanceof BarOfDeath) {
 			//TODO: remove ball, if no balls left trigger game over
-			runLoop = false;
 			
-			System.out.println("your dead");
+			//model.clearBalls();
+			
+			if(e.getObjectA() instanceof Ball) { 
+				
+				((Ball)e.getObjectA()).scaleVelocity(0); 
+			}
+			
+			runLoop = false;
 		}
 	}
 	

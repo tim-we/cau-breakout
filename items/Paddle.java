@@ -8,21 +8,29 @@ public class Paddle extends PhysicsObject{
 
 	private double paddleWidth = BreakoutConstants.WINDOW_WIDTH*4;
 	
+	private double availableWidth = 0;
+	
 	private Color color = new Color (229,55,203);
 	
-	public Paddle(){
+	private double speed = 0;
+	
+	public Paddle(double width) {
 		this.Position = new Vector2D(
 			((BreakoutConstants.WINDOW_COLUMNS/2d)-2) * BreakoutConstants.WINDOW_WIDTH,
 			(BreakoutConstants.WINDOW_ROWS-1) * BreakoutConstants.WINDOW_HEIGHT
 		);
 		
 		this.setBBox(paddleWidth, BreakoutConstants.WINDOW_HEIGHT);
+		
+		availableWidth = width;
 	}
 	
 
 	
 	public void setPosition (double x){
-		//TODO: check if x>=0 && x<=worldWidth-paddleWidth
+		
+		x = Math.max(0, Math.min(x, availableWidth-paddleWidth));
+		
 		Position.setX(x);
 	}
 
@@ -42,7 +50,7 @@ public class Paddle extends PhysicsObject{
 		
 		Ball ball = (Ball)x;
 		
-		double relativeXPosition = -2*(((e.getCollisionPoint().getX() - Position.getX()) / paddleWidth) - 1.0); //from 0 to 1
+		double relativeXPosition = (e.getCollisionPoint().getX() - Position.getX()) / paddleWidth; //from 0 to 1
 		
 		if(BreakoutConstants.BALL_BOUNCE_ADVANCED_MACHANICS) {
 		
@@ -53,6 +61,8 @@ public class Paddle extends PhysicsObject{
 			double speed = ball.getVelocity().length();
 			
 			ball.setVelocity(new Vector2D(Math.cos(angle), Math.sin(angle)).scale(speed));
+			
+			
 		}
 	}
 }

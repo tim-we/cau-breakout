@@ -28,6 +28,7 @@ public class Model extends Observable {
 	private double worldWidth;
 	private double worldHeight;
 	
+	//constructor
 	public Model(double w, double h) {
 		this.views = new ArrayList<View>();
 		this.balls = new ArrayList<Ball>();
@@ -37,49 +38,44 @@ public class Model extends Observable {
 		worldWidth = w;
 		worldHeight = h;
 		
-		paddle = new Paddle();
+		paddle = new Paddle(worldWidth);
 		
 		bottomBar = new BarOfDeath((BreakoutConstants.WINDOW_ROWS-0.2) * BreakoutConstants.WINDOW_HEIGHT, worldWidth, 0.2 * BreakoutConstants.WINDOW_HEIGHT);
 		
 		balls.add( new Ball(new Vector2D(worldWidth/2, worldHeight/2), new Vector2D(3 * BreakoutConstants.WINDOW_HEIGHT, 7 * BreakoutConstants.WINDOW_HEIGHT)) );
 	}
 	
-	public void addView(View view) {
-		this.views.add(view);
-	}
+	//getter
+	public ArrayList<Ball> getBalls() {	return balls; }
 	
-	public ArrayList<Ball> getBalls() {
-		return balls;
-	}
+	public ArrayList<Brick> getBricks() { return bricks; }
 	
-	public ArrayList<Brick> getBricks() {
-		return bricks;
-	}
+	public Paddle getPaddle() {	return paddle; }
 	
-	public void addBrick(Brick brick) {
-		if(brick != null) { bricks.add(brick); }
-	}
+	public void clearBricks() {	bricks = new ArrayList<Brick>(); }
 	
-	public void clearBricks() {
-		bricks.clear();
-	}
+	public void clearBalls() { balls = new ArrayList<Ball>(); }
 	
-	public Paddle getPaddle() {
-		return paddle;
-	}
+	public ArrayList<Animation> getAnimations() { return animations; }
 	
-	public BarOfDeath getBarOfDeath() {
-		return bottomBar;
-	}
+	public BarOfDeath getBarOfDeath() {	return bottomBar; }
 	
-	public ArrayList<Animation> getAnimations() {
-		return animations;
-	}
+	public int getScore() { return this.score; }
 	
-	public void addAnimation(Animation anim) {
-		animations.add(anim);
-	}
+	public double getWidth() { return this.worldWidth; }
 	
+	public double getHeight() {	return this.worldHeight; }
+	
+	//"adder"
+	public void addBrick(Brick brick) {	if(brick != null) { bricks.add(brick); } }
+	
+	public void addView(View view) { this.views.add(view); }
+	
+	public void addAnimation(Animation anim) {	animations.add(anim); }
+	
+	public void addPoints(int points) {	score += points; }
+	
+	//other
 	public void update() {		
 		//garbage-collect animations:
 		for(Animation anim : animations) {
@@ -98,18 +94,4 @@ public class Model extends Observable {
 		}
 	}
 	
-	public int getScore(){
-		return this.score;
-	}
-	
-	public void addPoints(int points){
-		score += points;
-	}
-	
-	public double getWidth(){
-		return this.worldWidth;
-	}
-	public double getHeight(){
-		return this.worldHeight;
-	}
 }

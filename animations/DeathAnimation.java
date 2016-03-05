@@ -12,24 +12,35 @@ public class DeathAnimation extends Animation {
 	
 	private FontRenderer fr;
 	
-	private static final Color textColor = new Color(255,255,255);
+	private PixelImage background;
 	
 	public DeathAnimation() {
 		width = BreakoutConstants.WINDOW_COLUMNS;
 		height = BreakoutConstants.WINDOW_ROWS;
 		
-		frames = 5;
+		frames = 15;
 		
 		fr = new FontRenderer(new HighriserFont());
 	}
 	
 	@Override
-	public void renderNextFrame(PixelImage frame) {
-		//clear Frame
-		frame.clear();
+	public PixelImage renderNextFrame(PixelImage frame) {
+		//last frame as background
+		if(currentFrame == 0) {
+			frame.fill( new Color(0,0,0,200) );
+			background = new PixelImage(frame); //clone image
+		} else {
+			frame = new PixelImage(background);
+		}
+		
+		//red fill
+			int red_alpha = (int)(Math.sin(currentFrame/3d) * 100);
+			frame.fill( new Color(255, 0, 0, Math.max(0, red_alpha)) );
 		
 		//render Text on frame
-		fr.render(frame, 1, 0+currentFrame, "WASTED!", textColor);
+			int v = currentFrame <= 6 ? (42 * currentFrame) : 255;
+			Color textColor = new Color(v,v,v);
+			fr.render(frame, 1, Math.min(currentFrame, 5)-1, "WASTED!", textColor);
 		
 		currentFrame++;
 		
@@ -37,5 +48,7 @@ public class DeathAnimation extends Animation {
 			finished = true;
 			currentFrame = 0;
 		}
+		
+		return frame;
 	}
 }

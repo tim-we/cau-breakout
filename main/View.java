@@ -54,7 +54,7 @@ public class View {
 		
 		//render animations
 			for(Animation anim : model.getAnimations()) {
-				anim.renderNextFrame(nextFrame);
+				nextFrame = anim.renderNextFrame(nextFrame);
 			}
 			
 		frame = nextFrame;

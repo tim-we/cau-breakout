@@ -1,7 +1,7 @@
 package breakout.assets;
 
 import java.awt.Color;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PixelImage {
 	
@@ -26,12 +26,30 @@ public class PixelImage {
 		this.imageData = new Color[width*height];
 	}
 	
+	public PixelImage(PixelImage img) {
+		this.width = img.getWidth();
+		this.height = img.getHeight();
+		this.imageData = new Color[width*height];
+		
+		this.imageData = Arrays.copyOf(img.getColorArray(), img.getColorArray().length);
+	}
+	
 	public int getWidth() { return width; }
 	public int getHeight() { return width; }
 	
 	public void clear() {
 		imageData = new Color[width*height];
 	}
+	
+	public void fill(Color color) {
+		for(int i=0; i<imageData.length; i++) {
+			if(imageData[i] == null) {
+				imageData[i] = color;
+			} else {
+				imageData[i] = blendColors(imageData[i], color);
+			}
+		}
+	} 
 	
 	private int getArrayIndex(int column, int row) {
 		if(column<0 || width<=column) { return -1; }
@@ -60,7 +78,7 @@ public class PixelImage {
 	
 	public Color blendColors(Color bg, Color fg, double alpha, BlendingMode mode) {
 		if(fg==null) { return bg; }
-		if(bg==null) { return null; }
+		if(bg==null) { return fg; }
 		
 		double a = Math.min(1, Math.max(alpha, 0));
 		
@@ -90,6 +108,8 @@ public class PixelImage {
 	public Color blendColors(Color bg, Color fg) {
 		return blendColors(bg, fg, fg.getAlpha()/255d, BlendingMode.NORMAL);
 	}
+	
+	public Color[] getColorArray() { return imageData; }
 	
 	public byte[] getByteArray() {
 		byte[] buf = new byte[width*height*3];

@@ -9,11 +9,16 @@ public class BasicMouseInput implements BreakoutInput {
 	
 	public void init(Model model, View view) {}
 	
+	private int lastMouseXPos = 0;
+	
 	public void update(Paddle paddle, int ms) {
-		//Absolute Position, but relative Position needed.
-		int newPosition;
-		newPosition = MouseInfo.getPointerInfo().getLocation().x;
-		paddle.setPosition(newPosition);
+
+		int newPosition = MouseInfo.getPointerInfo().getLocation().x;
 		
+		int d = newPosition-lastMouseXPos;
+		
+		paddle.setPosition( paddle.getPosition().getX() + d );
+		
+		lastMouseXPos = newPosition;
 	}
 }
