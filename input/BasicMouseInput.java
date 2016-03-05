@@ -11,11 +11,13 @@ public class BasicMouseInput implements BreakoutInput {
 	
 	private int lastMouseXPos = 0;
 	
+	private double mouseSpeed = 0.8;
+	
 	public void update(Paddle paddle, int ms) {
 
 		int newPosition = MouseInfo.getPointerInfo().getLocation().x;
 		
-		int d = newPosition-lastMouseXPos;
+		double d = mouseSpeed * (newPosition-lastMouseXPos);
 		
 		paddle.setPosition( paddle.getPosition().getX() + d );
 		

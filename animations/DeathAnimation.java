@@ -27,20 +27,25 @@ public class DeathAnimation extends Animation {
 	public PixelImage renderNextFrame(PixelImage frame) {
 		//last frame as background
 		if(currentFrame == 0) {
-			frame.fill( new Color(0,0,0,200) );
 			background = new PixelImage(frame); //clone image
 		} else {
 			frame = new PixelImage(background);
 		}
+		
+		int alpha = Math.min(50 * currentFrame, 200);
+		frame.fill( new Color(0,0,0,alpha) );
 		
 		//red fill
 			int red_alpha = (int)(Math.sin(currentFrame/3d) * 100);
 			frame.fill( new Color(255, 0, 0, Math.max(0, red_alpha)) );
 		
 		//render Text on frame
-			int v = currentFrame <= 6 ? (42 * currentFrame) : 255;
-			Color textColor = new Color(v,v,v);
-			fr.render(frame, 1, Math.min(currentFrame, 5)-1, "WASTeD!", textColor);
+			if(currentFrame >= 4) {
+				int p = currentFrame - 4;
+				int v = p <= 6 ? (42 * p) : 255;
+				Color textColor = new Color(v,v,v);
+				fr.render(frame, 1, Math.min(p, 5)-1, "WASTeD!", textColor);
+			}
 		
 		currentFrame++;
 		
