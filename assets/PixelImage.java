@@ -26,6 +26,13 @@ public class PixelImage {
 		this.imageData = new Color[width*height];
 	}
 	
+	public int getWidth() { return width; }
+	public int getHeight() { return width; }
+	
+	public void clear() {
+		imageData = new Color[width*height];
+	}
+	
 	private int getArrayIndex(int column, int row) {
 		if(column<0 || width<=column) { return -1; }
 		if(row<0 || height<=row) { return -1; }

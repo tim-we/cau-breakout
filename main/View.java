@@ -2,6 +2,7 @@ package breakout.main;
 
 import java.awt.Color;
 
+import breakout.animations.Animation;
 import breakout.assets.PixelImage;
 import breakout.items.*;
 import breakout.lighthouse.LhSimulator;
@@ -50,6 +51,11 @@ public class View {
 			int[] paddlePos = getPixelVector(model.getPaddle().getPosition(), model);
 			
 			paintRect(nextFrame, paddlePos[0], paddlePos[1], paddleWidth, 1, model.getPaddle().getColor());
+		
+		//render animations
+			for(Animation anim : model.getAnimations()) {
+				anim.renderNextFrame(nextFrame);
+			}
 			
 		frame = nextFrame;
 		

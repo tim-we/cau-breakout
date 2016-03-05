@@ -7,6 +7,7 @@ import breakout.assets.BreakoutConstants;
 import breakout.items.*;
 import breakout.physics.Vector2D;
 import java.util.Observable;
+import breakout.animations.Animation;
 
 public class Model extends Observable {
 	
@@ -15,6 +16,8 @@ public class Model extends Observable {
 	private ArrayList<Ball> balls;
 	
 	private ArrayList<Brick> bricks;
+	
+	private ArrayList<Animation> animations;
 	
 	private Paddle paddle;
 	
@@ -29,6 +32,7 @@ public class Model extends Observable {
 		this.views = new ArrayList<View>();
 		this.balls = new ArrayList<Ball>();
 		this.bricks = new ArrayList<Brick>();
+		this.animations = new ArrayList<Animation>();
 
 		worldWidth = w;
 		worldHeight = h;
@@ -68,7 +72,23 @@ public class Model extends Observable {
 		return bottomBar;
 	}
 	
-	public void updateViews() {
+	public ArrayList<Animation> getAnimations() {
+		return animations;
+	}
+	
+	public void addAnimation(Animation anim) {
+		animations.add(anim);
+	}
+	
+	public void update() {		
+		//garbage-collect animations:
+		for(Animation anim : animations) {
+			if(anim.hasFinished()) {
+				animations.remove(anim);
+			}
+		}
+		
+		//update views
 		notifyViews();
 	}
 	

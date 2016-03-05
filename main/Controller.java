@@ -7,8 +7,11 @@ import breakout.items.*;
 import breakout.lighthouse.LhSimulator;
 import breakout.physics.*;
 import breakout.input.BreakoutInput;
+import breakout.animations.Animation;
+import breakout.animations.DeathAnimation;
 import breakout.assets.BreakoutConstants;
 import breakout.levels.*;
+
 
 public class Controller implements Observer, PhysicsEventReceiver {
 	
@@ -69,13 +72,24 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				}
 			}
 			
-			//model updates views
-			model.updateViews();	
+			//update model -> update views
+			model.update();	
 			
 			pause(pause_time);
 		}
 		
+		//temporary solution:
+		Animation death_anim = new DeathAnimation();
+		model.addAnimation(death_anim);
+		
+		for(int i=0; i<death_anim.numFrames(); i++) {
+			model.update();
+			pause(pause_time);
+		}
+		
 		System.out.println("Game ended. Score: " + model.getScore());
+		
+		pause(1000);
 		
 		//lhs.destroy();
 	}
@@ -110,6 +124,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				refreshStaticObjects();
 			}
 		} else if(x instanceof BarOfDeath) {
+			//TODO: remove ball, if no balls left trigger game over
 			runLoop = false;
 			
 			System.out.println("your dead");

@@ -4,15 +4,18 @@ import breakout.assets.PixelImage;
 
 public abstract class Animation {
 	
-	private int width;
-	private int height;
+	protected int width;
+	protected int height;
 	
-	private int frames = 0;
+	protected int frames = 0;
 	
-	private int currentFrame = 0;
+	protected int currentFrame = 0;
 	
-	public PixelImage getNextFrame() {
-		return null;
-	};
+	protected boolean finished = false;
 	
+	public int numFrames() { return frames; }
+	
+	public void renderNextFrame(PixelImage img) {};
+	
+	public boolean hasFinished() { return finished; }
 }

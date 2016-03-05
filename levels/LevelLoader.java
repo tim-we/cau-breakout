@@ -37,6 +37,9 @@ public class LevelLoader {
 	public static Level randomLevel() {
 		Random rgen = new Random();
 		int lvl = rgen.nextInt(levels.length);
+		
+		System.out.println("Loading level " + lvl + ".");
+		
 		return levels[lvl];
 	}
 
