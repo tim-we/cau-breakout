@@ -40,7 +40,7 @@ public class DeathAnimation extends Animation {
 		//render Text on frame
 			int v = currentFrame <= 6 ? (42 * currentFrame) : 255;
 			Color textColor = new Color(v,v,v);
-			fr.render(frame, 1, Math.min(currentFrame, 5)-1, "WASTED!", textColor);
+			fr.render(frame, 1, Math.min(currentFrame, 5)-1, "WASTeD!", textColor);
 		
 		currentFrame++;
 		

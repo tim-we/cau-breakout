@@ -21,7 +21,7 @@ public class HighriserFont implements Font {
         charMap.put('o', new Letter(5, 5, "00000"+"01100"+"10010"+"10010"+"01100"));
         charMap.put('r', new Letter(4, 5, "1100"+"1010"+"1100"+"1010"+"1010"));
         charMap.put('s', new Letter(4, 5, "0000"+"1110"+"1000"+"0010"+"1110"));
-        charMap.put('S', new Letter(4, 5, "1110"+"1000"+"0100"+"0010"+"1110"));
+        charMap.put('S', new Letter(4, 5, "1110"+"1000"+"1110"+"0010"+"1110"));
         charMap.put('t', new Letter(4, 5, "0000"+"1110"+"0100"+"0100"+"0100"));
         charMap.put('T', new Letter(4, 5, "1110"+"0100"+"0100"+"0100"+"0100"));
         charMap.put('v', new Letter(5, 5, "00000"+"10010"+"10010"+"10010"+"01100"));

@@ -91,7 +91,6 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		
 		pause(1000);
 		
-		//lhs.destroy();
 	}
 	
 	public void pause(int ms) {
