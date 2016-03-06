@@ -1,6 +1,5 @@
 package breakout.main;
 
-import breakout.lighthouse.LhNetwork;
 import breakout.lighthouse.LhSimulator;
 
 public class ACMView extends View {

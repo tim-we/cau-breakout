@@ -41,8 +41,6 @@ public class SpawnBall extends Animation {
 			
 			finished = true;
 			currentFrame = 0;
-			
-			System.out.println("finished");
 		}
 		
 		return frame;

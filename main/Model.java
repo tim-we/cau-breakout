@@ -93,6 +93,9 @@ public class Model extends Observable {
 		
 		//update views
 		notifyViews();
+		
+		setChanged();
+		notifyObservers();
 	}
 	
 	private void notifyViews() {

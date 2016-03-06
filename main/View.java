@@ -5,10 +5,12 @@ import java.awt.Color;
 import breakout.animations.Animation;
 import breakout.assets.PixelImage;
 import breakout.items.*;
-import breakout.lighthouse.*;
 import breakout.physics.Vector2D;
 
-public abstract class View {
+import java.util.Observable;
+import java.util.Observer;
+
+public abstract class View extends Observable implements Observer {
 	
 	private int ViewWidth;
 	private int ViewHeight;
@@ -19,6 +21,14 @@ public abstract class View {
 		frame = new PixelImage(width, height);
 		ViewWidth = width;
 		ViewHeight = height;
+	}
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		assert o instanceof Model;
+		
+		// Simply print the current score to the console
+		System.out.println(((Model) o).getScore());
 	}
 	
 	public abstract void update(Model m);

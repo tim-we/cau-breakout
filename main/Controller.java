@@ -65,6 +65,13 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		int pause_time = (int)(1000d/FPS);
 		double time_remaining;
 		
+		/*	Start the network connection in a separate thread. That's important,
+		*	because our program should continue doing stuff instead of idling around
+		*	while it waits for the server to send the next request
+		*/
+				 
+		//new Thread(net).start();
+		
 		model.spawnBall(new Vector2D(WORLDWIDTH/2, WORLDHEIGHT/2), new Vector2D(3 * BreakoutConstants.WINDOW_HEIGHT, 6 * BreakoutConstants.WINDOW_HEIGHT));
 		
 		while(runLoop) {
@@ -111,8 +118,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		try {
 		    Thread.sleep(ms);
 		} catch(InterruptedException ex) {
-		    Thread.currentThread().interrupt();
-		    // -> do something ?
+			ex.printStackTrace();
+		   // Thread.currentThread().interrupt();
 		}
 	}
 	
