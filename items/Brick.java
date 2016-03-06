@@ -15,7 +15,8 @@ public class Brick extends PhysicsObject {
 	//avoid getter & setter functions:
 	public static final double brickWidth = 2 * BreakoutConstants.WINDOW_WIDTH;
 	public static final double brickHeight = BreakoutConstants.WINDOW_HEIGHT;
-
+	
+	//why spawn a destroyed brick?!
 	public Brick(double x, double y, byte brickType, boolean destroy){
 		this.Position = new Vector2D(x,y);
 		if (!destroy) {setBBox(brickWidth, brickHeight);}
@@ -23,7 +24,7 @@ public class Brick extends PhysicsObject {
 		this.destroyed = destroy;
 	}
 
-	public boolean getDestroyed(){
+	public boolean isDestroyed(){
 		return this.destroyed;
 	}
 	

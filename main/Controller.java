@@ -121,7 +121,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				ball.scaleVelocity(BreakoutConstants.BALL_BOUNCE_SPEED_FACTOR);
 			}
 			
-			if(brick.getDestroyed()) {
+			if(brick.isDestroyed()) {
 				
 				model.getBricks().remove(x);
 				

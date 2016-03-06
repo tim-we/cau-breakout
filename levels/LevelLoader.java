@@ -38,7 +38,7 @@ public class LevelLoader {
 		Random rgen = new Random();
 		int lvl = rgen.nextInt(levels.length);
 		
-		System.out.println("Loading level " + lvl + ".");
+		System.out.println("Loading level " + lvl);
 		
 		return levels[lvl];
 	}
@@ -56,9 +56,6 @@ public class LevelLoader {
 		//for debugging:
 		//System.out.println("loading level: " + brickData);
 
-		//int bricksPerRow = (int) Math.floor((worldWidth - BreakoutConstants.BRICK_X_OFFSET) / (Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET));
-
-		//int xk = 0;
 		double xPos;
 		double yPos = BreakoutConstants.BRICK_Y_OFFSET;
 		xPos = BreakoutConstants.BRICK_X_OFFSET;
