@@ -97,5 +97,10 @@ public class Brick extends PhysicsObject {
 		}
 		
 	}
-
+	
+	@Override
+	public String toString() {
+		return destroyed ? "[destroyed Brick]":"[Brick Type: "+brickType+" @ "+Position+"]";
+	}
+	
 }

@@ -172,6 +172,11 @@ public class PhysicsContext {
 						horizontal
 					);
 				
+				//debugging:
+				if(collisionObject instanceof breakout.items.Brick) {
+					System.out.println("collision with " + collisionObject);
+				}
+				
 				obj.onCollision(e);
 				if(collisionObject != null) { collisionObject.onCollision(e); }
 				

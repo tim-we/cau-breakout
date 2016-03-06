@@ -83,6 +83,7 @@ public class Model extends Observable {
 			
 			if(anim != null && anim.hasFinished()) {
 				animations.remove(anim);
+				i--;
 			}
 		}
 		

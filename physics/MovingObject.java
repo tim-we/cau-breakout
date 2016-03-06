@@ -16,4 +16,6 @@ public class MovingObject extends PhysicsObject {
 		Position = Vector2D.add(Position, Velocity.scale(factor));
 	}
 	
+	@Override
+	public String toString() { return "[Moving Object]"; }
 }

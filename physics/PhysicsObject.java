@@ -38,4 +38,6 @@ public abstract class PhysicsObject {
 	}
 	
 	public void onCollision(CollisionEvent e) {}
+	
+	public String toString() { return "[PhysicsObject]"; }
 }
