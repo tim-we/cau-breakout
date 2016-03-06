@@ -26,6 +26,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 	
 	private Model model;
 	
+	private View view;
+	
 	private PhysicsContext phys;
 	
 	private boolean runLoop = false;
@@ -38,7 +40,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 		model = new Model(WORLDWIDTH, WORLDHEIGHT);	
 		
-		View view = new View(28, 14, lhs);
+		view = new View(28, 14, lhs);
 		
 		model.addView(view);
 		
@@ -130,6 +132,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				Vector2D p = e.getCollisionPoint();
 				
 				model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
+				//model.addAnimation(new BlueShockwave(p, model, view));
+				//model.addAnimation(new RedShockwave(p, model, view));
 			}
 		} else if(x instanceof BarOfDeath) {
 			//TODO: remove ball, if no balls left trigger game over
