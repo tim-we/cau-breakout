@@ -99,6 +99,7 @@ public class Model extends Observable {
 		for(View view : views) {
 			view.update(this);
 		}
+		//setchange notify Observers
 	}
 	
 }
