@@ -1,19 +1,47 @@
 package breakout.animations;
 
+import breakout.assets.PixelImage;
+import breakout.items.Ball;
 import breakout.main.Model;
 import breakout.main.View;
 import breakout.physics.Vector2D;
 
 public class SpawnBall extends Animation {
 	
-	private double xpos;
-	private double ypos;
+	private Vector2D Position;
+	private Vector2D Velocity;
+	
+	private int[] viewPos = new int[2];
+	
+	private Model model;
 	
 	public SpawnBall(Vector2D pos, Model m, View v) {
-		int[] tmp = v.getViewCoordinates(pos, m);
+		Position = pos;
+		viewPos = v.getViewCoordinates(pos, m);
 		
-		xpos = tmp[0];
-		ypos = tmp[1];
+		frames = 10;
+		
+		model = m;
+	}
+	
+	@Override
+	public PixelImage renderNextFrame(PixelImage frame) {
+		
+		if((currentFrame/2) % 2 == 0) {
+			frame.setPixel(viewPos[0], viewPos[1], Ball.color);
+		}
+		
+		currentFrame++;
+		
+		if(currentFrame > frames) {
+			
+			model.getBalls().add(new Ball(Position, Velocity));
+			
+			finished = true;
+			currentFrame = 0;
+		}
+		
+		return frame;
 	}
 	
 }

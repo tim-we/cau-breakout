@@ -75,6 +75,10 @@ public class Model extends Observable {
 	
 	public void addPoints(int points) {	score += points; }
 	
+	public void spawnBall(Vector2D pos, Vector2D vel) {
+		//addAnimation(new breakout.animations.SpawnBall(pos, vel));
+	}
+	
 	//other
 	public void update() {		
 		//garbage-collect animations:

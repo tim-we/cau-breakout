@@ -10,7 +10,7 @@ public class Ball extends MovingObject {
 	
 	public static final double MAX_SPEED_2 = BreakoutConstants.BALL_MAX_SPEED*BreakoutConstants.BALL_MAX_SPEED;
   
-	private Color color = new Color(255,255,255);
+	public static final Color color = new Color(255,255,255);
 	
 	public Ball(Vector2D position) {
 		this.Position = position;
