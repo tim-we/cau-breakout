@@ -25,9 +25,9 @@ public class BreakoutConstants {
 	
 	public static final double BALL_VELOCITY_CHANGE = 42;
 	
-	public static final double smallPaddle = 3 * WINDOW_WIDTH;
+	public static final double changeSizePaddle = 2 * WINDOW_WIDTH;
 	
 	public static final double normalPaddle = 5 * WINDOW_WIDTH;
 	
-	public static final double largePaddle = 7 * WINDOW_WIDTH;
+	
 }

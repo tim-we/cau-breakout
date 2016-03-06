@@ -49,7 +49,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
 		phys.eventReceiver = this;
 		
-		LevelLoader.loadLevel(12, model);
+		LevelLoader.loadLevel(2, model);
 		//LevelLoader.loadLevel(model);
 	
 		refreshStaticObjects();
@@ -141,10 +141,14 @@ public class Controller implements Observer, PhysicsEventReceiver {
 					model.getPaddle().toggleReverse();
 				}
 				else if (brick.getBrickType()==6){
-					model.getPaddle().changePaddleWidth(BreakoutConstants.largePaddle);
+					if(model.getPaddle().getWidth()<=BreakoutConstants.normalPaddle){
+						model.getPaddle().changePaddleWidth(BreakoutConstants.changeSizePaddle);
+					}
 				}
 				else if (brick.getBrickType()==7){
-					model.getPaddle().changePaddleWidth(BreakoutConstants.smallPaddle);
+					if(model.getPaddle().getWidth()>=BreakoutConstants.normalPaddle){
+					model.getPaddle().changePaddleWidth(-BreakoutConstants.changeSizePaddle);
+					}
 				}
 				else {
 					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
