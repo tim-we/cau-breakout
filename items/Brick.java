@@ -66,7 +66,7 @@ public class Brick extends PhysicsObject {
 			PhysicsObject x = e.getObjectA() instanceof Ball ? e.getObjectA() : e.getObjectB();
 			if(x instanceof Ball){
 				Ball ball = (Ball)x;
-				ball.changeVelocity(1.5);
+				ball.changeVelocity(BreakoutConstants.BALL_VELOCITY_CHANGE);
 			}
 			destroyed = true;
 			break;
@@ -75,7 +75,7 @@ public class Brick extends PhysicsObject {
 			PhysicsObject y = e.getObjectA() instanceof Ball ? e.getObjectA() : e.getObjectB();
 			if(y instanceof Ball){
 				Ball ball = (Ball)y;
-				ball.changeVelocity(-1.5);
+				ball.changeVelocity(-BreakoutConstants.BALL_VELOCITY_CHANGE);
 			}
 			destroyed = true;
 			break;

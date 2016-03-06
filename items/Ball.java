@@ -1,8 +1,10 @@
 package breakout.items;
+
 import breakout.assets.BreakoutConstants;
 import breakout.physics.*;
 import java.awt.Color;
 import breakout.assets.*;
+
 public class Ball extends MovingObject {
   
 	private double width = BreakoutConstants.WINDOW_WIDTH; 
@@ -33,9 +35,11 @@ public class Ball extends MovingObject {
 		//System.out.println("Velocity^2: " + Velocity.sqlength());
 	}
 	
-	public void changeVelocity(double f){
-		this.Velocity.setX(this.Velocity.getX()+f*BreakoutConstants.BALL_VELOCITY_CHANGE);
-		this.Velocity.setY(this.Velocity.getY()+f*BreakoutConstants.BALL_VELOCITY_CHANGE);
+	public void changeVelocity(double amount){
+		double speed = Velocity.length();
+		double f = (speed + amount) / speed;
+		
+		scaleVelocity(f);
 	}
 	
 
