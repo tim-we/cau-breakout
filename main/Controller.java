@@ -43,7 +43,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		view = new View(28, 14, lhs);
 		
 		model.addView(view);
-		
+		//Lighthouse view hinzufügen
+		//model.addObserver
 		InputHandler.init(model, view);
 		
 		phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
