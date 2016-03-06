@@ -5,25 +5,25 @@ import java.awt.Color;
 import breakout.animations.Animation;
 import breakout.assets.PixelImage;
 import breakout.items.*;
-import breakout.lighthouse.LhSimulator;
+import breakout.lighthouse.*;
 import breakout.physics.Vector2D;
 
-public class View {
+public abstract class View {
 	
 	private int ViewWidth;
 	private int ViewHeight;
-	private PixelImage frame;
-	private LhSimulator display;
+	protected PixelImage frame;
 	
 	//constructor
-	public View(int width, int height, LhSimulator lhs) {
+	public View(int width, int height) {
 		frame = new PixelImage(width, height);
 		ViewWidth = width;
 		ViewHeight = height;
-		display = lhs;
 	}
 	
-	public void update(Model model) {
+	public abstract void update(Model m);
+	
+	public void renderFrame(Model model) {
 		PixelImage nextFrame = new PixelImage(ViewWidth, ViewHeight);
 		
 		double widthScale	= (double)ViewWidth / model.getWidth();
@@ -57,9 +57,7 @@ public class View {
 				nextFrame.setPixel(ballPos[0], ballPos[1], Ball.color);
 			}	
 			
-		frame = nextFrame;
-		
-		display.draw(frame);
+		frame = nextFrame;		
 	}
 	
 	public int[] getViewCoordinates(Vector2D v, Model m) {
@@ -78,7 +76,6 @@ public class View {
 			for(int k=0; k<height; k++) {
 				pic.setPixel(x + i, y + k, color);
 			}
-		}
-		
+		}		
 	}
 }

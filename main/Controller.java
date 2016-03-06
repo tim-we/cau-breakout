@@ -1,11 +1,10 @@
 package breakout.main;
 
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import breakout.items.*;
-import breakout.lighthouse.LhSimulator;
+import breakout.lighthouse.*;
 import breakout.physics.*;
 import breakout.input.BreakoutInput;
 import breakout.animations.*;
@@ -30,8 +29,11 @@ public class Controller implements Observer, PhysicsEventReceiver {
 	
 	private PhysicsContext phys;
 	
+	private LhNetwork net;
+	
 	private boolean runLoop = false;
 	
+	//constructor
 	public Controller(BreakoutInput input) {
 		InputHandler = input;
 	}
@@ -40,19 +42,18 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 		model = new Model(WORLDWIDTH, WORLDHEIGHT);	
 		
-		view = new View(28, 14, lhs);
+		//net = new LhNetwork();
+		
+		view = new ACMView(28, 14, lhs);
 		
 		model.addView(view);
-		//Lighthouse view hinzufÃ¼gen
-		//model.addObserver
+		
+		//Lighthouse view hinzufügen
+		//model.addObserver(view);
 		InputHandler.init(model, view);
 		
 		phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
 		phys.eventReceiver = this;
-		
-
-		LevelLoader.loadLevel(13, model);
-		//LevelLoader.loadLevel(model);
 
 		//LevelLoader.loadLevel(2, model);
 		LevelLoader.loadLevel(model);
