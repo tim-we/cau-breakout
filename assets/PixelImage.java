@@ -67,9 +67,9 @@ public class PixelImage {
 	public Color getPixel(int column, int row, Color emptyColor) {
 		int i = getArrayIndex(column, row);
 		
-		Color clr = this.imageData[i]==null ? emptyColor : this.imageData[i];
+		if(i<0) { return null; }
 		
-		return i>=0 ? clr : null;
+		return this.imageData[i]==null ? emptyColor : this.imageData[i];
 	}
 	
 	public Color getPixel(int x, int y) {
