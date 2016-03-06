@@ -24,4 +24,10 @@ public class BreakoutConstants {
 	public static final boolean BALL_BOUNCE_ADVANCED_MACHANICS = false;
 	
 	public static final double BALL_VELOCITY_CHANGE = 20;
+	
+	public static final double smallPaddle = 3 * WINDOW_WIDTH;
+	
+	public static final double normalPaddle = 5 * WINDOW_WIDTH;
+	
+	public static final double largePaddle = 7 * WINDOW_WIDTH;
 }

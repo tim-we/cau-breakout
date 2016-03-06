@@ -6,7 +6,7 @@ import java.awt.Color;
 
 public class Paddle extends PhysicsObject{
 
-	private double paddleWidth = BreakoutConstants.WINDOW_WIDTH*4;
+	private double paddleWidth = BreakoutConstants.normalPaddle;
 	
 	private double availableWidth = 0;
 	
@@ -29,6 +29,10 @@ public class Paddle extends PhysicsObject{
 	
 	public boolean getReverse(){
 		return this.reverse;
+	}
+	
+	public void changePaddleWidth(double size){
+		this.paddleWidth = size;
 	}
 	
 	public void toggleReverse(){
