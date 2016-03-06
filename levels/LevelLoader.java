@@ -88,7 +88,14 @@ public class LevelLoader {
 				brickType = 5;
 				destroyed=false;
 				break;
-							
+			case '6':
+				brickType = 6;
+				destroyed = false;
+				break;
+			case '7':
+				brickType = 7;
+				destroyed = false;
+				break;
 			case '.': // forced line break
 				//xk = bricksPerRow - 1;
 				break;

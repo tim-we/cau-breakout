@@ -33,6 +33,7 @@ public class Paddle extends PhysicsObject{
 	
 	public void changePaddleWidth(double size){
 		this.paddleWidth = size;
+		this.setBBox(paddleWidth,BreakoutConstants.WINDOW_HEIGHT);
 	}
 	
 	public void toggleReverse(){
