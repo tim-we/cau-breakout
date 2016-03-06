@@ -49,7 +49,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
 		phys.eventReceiver = this;
 		
-		LevelLoader.loadLevel(2, model);
+		LevelLoader.loadLevel(13, model);
 		//LevelLoader.loadLevel(model);
 	
 		refreshStaticObjects();
