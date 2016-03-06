@@ -62,7 +62,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		
 		while(runLoop) {
 			
-			InputHandler.update(model.getPaddle(), pause_time, reverse);
+			InputHandler.update(model.getPaddle(), pause_time);
 			
 			int n = model.getBalls().size();
 			for(int i=0; i<n; i++) {
@@ -136,6 +136,9 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				}
 				else if (brick.getBrickType() == 4){
 					model.addAnimation(new BlueShockwave(p, model, view));
+				}
+				else if (brick.getBrickType()==5){
+					model.getPaddle().toggleReverse();
 				}
 				else {
 					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));

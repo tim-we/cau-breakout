@@ -14,6 +14,8 @@ public class Paddle extends PhysicsObject{
 	
 	private double speed = 0;
 	
+	private boolean reverse = false;
+	
 	public Paddle(double width) {
 		this.Position = new Vector2D(
 			((BreakoutConstants.WINDOW_COLUMNS/2d)-2) * BreakoutConstants.WINDOW_WIDTH,
@@ -25,7 +27,23 @@ public class Paddle extends PhysicsObject{
 		availableWidth = width;
 	}
 	
-
+	public boolean getReverse(){
+		return this.reverse;
+	}
+	
+	public void toggleReverse(){
+		this.reverse=!reverse;
+	}
+	
+	public void move(double d){
+		if(reverse){
+			setPosition (getPosition().getX() - d);
+		}
+		else{
+			setPosition (getPosition().getX() + d);
+		}
+		
+	}
 	
 	public void setPosition (double x){
 		

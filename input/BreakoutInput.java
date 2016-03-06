@@ -12,7 +12,7 @@ public interface BreakoutInput {
 	 * @param ms - time in milliseconds since last frame (for more advanced implementations)
 	 * @param reverse Reverses the Paddle control
 	 * 	 */
-	public void update(Paddle paddle, int ms, boolean reverse);
+	public void update(Paddle paddle, int ms);
 	
 	public void init(Model model, View view);
 }
