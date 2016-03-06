@@ -58,10 +58,11 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		int k;
 		int pause_time = (int)(1000d/FPS);
 		double time_remaining;
+		boolean reverse=false;		
 		
 		while(runLoop) {
 			
-			InputHandler.update(model.getPaddle(), pause_time);
+			InputHandler.update(model.getPaddle(), pause_time, reverse);
 			
 			int n = model.getBalls().size();
 			for(int i=0; i<n; i++) {
