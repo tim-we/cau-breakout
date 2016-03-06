@@ -27,6 +27,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 	
 	private View view;
 	
+	private LhView lhv;
+	
 	private PhysicsContext phys;
 	
 	private LhNetwork net;
@@ -44,13 +46,11 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		
 		//net = new LhNetwork();
 		
-		view = new ACMView(28, 14, lhs);
+		view = new ACMView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, lhs);
+		//lhv = new LhView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, net);
 		
-		model.addView(view);
-		
-		//Lighthouse view hinzufügen
-		//model.addObserver(view);
-		InputHandler.init(model, view);
+		model.addObserver(view);
+		//model.addObserver(lhv);
 		
 		phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
 		phys.eventReceiver = this;
@@ -72,7 +72,11 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				 
 		//new Thread(net).start();
 		
-		model.spawnBall(new Vector2D(WORLDWIDTH/2, WORLDHEIGHT/2), new Vector2D(3 * BreakoutConstants.WINDOW_HEIGHT, 6 * BreakoutConstants.WINDOW_HEIGHT));
+		model.spawnBall(
+				new Vector2D(WORLDWIDTH/2, WORLDHEIGHT/2), 
+				new Vector2D(3 * BreakoutConstants.WINDOW_HEIGHT, 6 * BreakoutConstants.WINDOW_HEIGHT),
+				view
+			);
 		
 		while(runLoop) {
 			

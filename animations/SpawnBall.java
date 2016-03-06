@@ -37,7 +37,7 @@ public class SpawnBall extends Animation {
 		
 		if(currentFrame >= frames) {
 			
-			model.getBalls().add(new Ball(Position, Velocity));
+			model.addBall(new Ball(Position, Velocity));
 			
 			finished = true;
 			currentFrame = 0;

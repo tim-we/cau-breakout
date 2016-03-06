@@ -11,7 +11,7 @@ import breakout.animations.Animation;
 
 public class Model extends Observable {
 	
-	private ArrayList<View> views;
+	//private ArrayList<View> views;
 	
 	private ArrayList<Ball> balls;
 	
@@ -30,7 +30,7 @@ public class Model extends Observable {
 	
 	//constructor
 	public Model(double w, double h) {
-		this.views = new ArrayList<View>();
+		//this.views = new ArrayList<View>();
 		this.balls = new ArrayList<Ball>();
 		this.bricks = new ArrayList<Brick>();
 		this.animations = new ArrayList<Animation>();
@@ -68,15 +68,16 @@ public class Model extends Observable {
 	//"adder"
 	public void addBrick(Brick brick) {	if(brick != null) { bricks.add(brick); } }
 	
-	public void addView(View view) { this.views.add(view); }
+	public void addBall(Ball ball) { if(ball != null) { balls.add(ball); } }
+	
+	//public void addView(View view) { this.views.add(view); }
 	
 	public void addAnimation(Animation anim) {	animations.add(anim); }
 	
 	public void addPoints(int points) {	score += points; }
 	
-	public void spawnBall(Vector2D pos, Vector2D vel) {
-		if(views.size() == 0) { return; }
-		addAnimation(new breakout.animations.SpawnBall(pos, vel, this, views.get(0)));
+	public void spawnBall(Vector2D pos, Vector2D vel, View view) {
+		addAnimation(new breakout.animations.SpawnBall(pos, vel, this, view));
 	}
 	
 	//other
@@ -93,16 +94,11 @@ public class Model extends Observable {
 		
 		//update views
 		notifyViews();
-		
-		setChanged();
-		notifyObservers();
 	}
 	
 	private void notifyViews() {
-		for(View view : views) {
-			view.update(this);
-		}
-		//setchange notify Observers
+		setChanged();
+		notifyObservers();
 	}
 	
 }

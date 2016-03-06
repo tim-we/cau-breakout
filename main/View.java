@@ -28,9 +28,13 @@ public abstract class View extends Observable implements Observer {
 		assert o instanceof Model;
 		
 		// Simply print the current score to the console
-		System.out.println(((Model) o).getScore());
+		System.out.println("Score: " + ((Model) o).getScore());
 	}
 	
+	/**
+	 * DEPRECATED METHOD!
+	 * @param m - Model
+	 */
 	public abstract void update(Model m);
 	
 	public void renderFrame(Model model) {

@@ -13,6 +13,4 @@ public interface BreakoutInput {
 	 * @param reverse Reverses the Paddle control
 	 * 	 */
 	public void update(Paddle paddle, int ms);
-	
-	public void init(Model model, View view);
 }

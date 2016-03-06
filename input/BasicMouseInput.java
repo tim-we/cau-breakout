@@ -7,8 +7,6 @@ import breakout.items.Paddle;
 
 public class BasicMouseInput implements BreakoutInput {
 	
-	public void init(Model model, View view) {}
-	
 	private int lastMouseXPos = 0;
 	
 	private double mouseSpeed = 0.8;
