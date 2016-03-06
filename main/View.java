@@ -34,14 +34,14 @@ public class View {
 			int brickHeight = (int) Math.round( Brick.brickHeight * heightScale );
 			
 			for(Brick brick : model.getBricks()) {
-				int[] brickPos = getPixelVector(brick.getPosition(), model);
+				int[] brickPos = getViewCoordinates(brick.getPosition(), model);
 				
 				paintRect(nextFrame, brickPos[0], brickPos[1], brickWidth, brickHeight, brick.getColor());
 			}
 		
 		//draw paddle
 			int paddleWidth = (int) Math.round(model.getPaddle().getWidth() * widthScale);			
-			int[] paddlePos = getPixelVector(model.getPaddle().getPosition(), model);
+			int[] paddlePos = getViewCoordinates(model.getPaddle().getPosition(), model);
 			
 			paintRect(nextFrame, paddlePos[0], paddlePos[1], paddleWidth, 1, model.getPaddle().getColor());
 		
@@ -52,7 +52,7 @@ public class View {
 		
 		//draw ball(s)
 			for(Ball ball : model.getBalls()) {
-				int[] ballPos = getPixelVector(ball.getPosition(), model);
+				int[] ballPos = getViewCoordinates(ball.getPosition(), model);
 				
 				nextFrame.setPixel(ballPos[0], ballPos[1], ball.getColor());
 			}	
@@ -62,7 +62,7 @@ public class View {
 		display.draw(frame);
 	}
 	
-	private int[] getPixelVector(Vector2D v, Model m) {
+	public int[] getViewCoordinates(Vector2D v, Model m) {
 		int[] o = new int[2];
 		
 		o[0] = (int) Math.round((v.getX()/m.getWidth()) * ViewWidth);
