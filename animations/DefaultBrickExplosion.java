@@ -58,7 +58,7 @@ public class DefaultBrickExplosion extends Animation {
 	}
 	
 	private Color getColor(double f) {
-		f = Math.max(0, Math.min(f, 1));
+		f = Math.max(0, Math.min(f, 0.8));
 		
 		int alpha = (int)Math.round(255 * f);
 		return new Color(255,255 - (currentFrame*15),0,alpha);
