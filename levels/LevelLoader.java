@@ -12,7 +12,7 @@ public class LevelLoader {
 	
 	private static final Level[] levels = { 
 			new Level("-222-222-11-111-11-0000000-"), 
-			new Level("000000000000000000000000000"),
+			new Level("000003434340003434000000000"),
 			new Level("111111111111111111111111111"), 
 			new	Level("222222222222222222222222222"), 
 			new Level("012012012012012012012012012"),
@@ -76,6 +76,16 @@ public class LevelLoader {
 			case '2':
 				brickType = 2;
 				break;
+			case '3':
+				brickType = 3;
+				break;
+			case '4':
+				brickType = 4;
+				break;
+			case '5':
+				brickType = 5;
+				break;
+							
 			case '.': // forced line break
 				//xk = bricksPerRow - 1;
 				break;

@@ -22,4 +22,6 @@ public class BreakoutConstants {
 	public static final double BALL_MAX_SPEED = 400;
 	
 	public static final boolean BALL_BOUNCE_ADVANCED_MACHANICS = false;
+	
+	public static final double BALL_VELOCITY_CHANGE = 20;
 }

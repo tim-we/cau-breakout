@@ -8,7 +8,7 @@ import java.awt.Color;
 
 public class Brick extends PhysicsObject {
 	
-	private Color[] color = {new Color(255,0,0), new Color(0,255,0), new Color(0,0,255)};
+	private Color[] color = {new Color(255,0,0), new Color(0,255,0), new Color(0,0,255), new Color(255,0,255),new Color(0,255,255), new Color(255,255,0)};
 	private byte brickType;
 	
 	//avoid getter & setter functions:
@@ -40,7 +40,51 @@ public class Brick extends PhysicsObject {
 
 	@Override
 	public void onCollision(CollisionEvent e){
-	  brickType--;
+	  
+		switch (brickType){
+		//Normal Brick Red
+		case 0:
+			brickType -= 1;
+			break;
+		//Normal Brick Green	
+		case 1:
+			brickType -= 2;
+			break;
+		//Normal Brick Blue
+		case 2:	
+			brickType -= 3;
+			break;
+		//FastBrick, makes the Ball faster	
+		case 3:
+			PhysicsObject x = e.getObjectA() instanceof Ball ? e.getObjectA() : e.getObjectB();
+			if(x instanceof Ball){
+				Ball ball = (Ball)x;
+				ball.changeVelocity(1.5);
+			}
+			brickType -= 4;
+			break;
+		//SlowBrick, makes the Ball slower
+		case 4:
+			PhysicsObject y = e.getObjectA() instanceof Ball ? e.getObjectA() : e.getObjectB();
+			if(y instanceof Ball){
+				Ball ball = (Ball)y;
+				ball.changeVelocity(-1.5);
+			}
+			brickType -= 5;
+			break;
+		//	
+		case 5:
+			
+			brickType -= 6;
+			break;
+		//	
+		case 6:
+			
+			brickType -= 7;
+			break;
+		
+		}
+		
 	}
 
 }
