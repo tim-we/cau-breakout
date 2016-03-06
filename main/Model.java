@@ -42,7 +42,6 @@ public class Model extends Observable {
 		
 		bottomBar = new BarOfDeath((BreakoutConstants.WINDOW_ROWS-0.2) * BreakoutConstants.WINDOW_HEIGHT, worldWidth, 0.2 * BreakoutConstants.WINDOW_HEIGHT);
 		
-		balls.add( new Ball(new Vector2D(worldWidth/2, worldHeight/2), new Vector2D(3 * BreakoutConstants.WINDOW_HEIGHT, 6 * BreakoutConstants.WINDOW_HEIGHT)) );
 	}
 	
 	//getter
@@ -76,7 +75,8 @@ public class Model extends Observable {
 	public void addPoints(int points) {	score += points; }
 	
 	public void spawnBall(Vector2D pos, Vector2D vel) {
-		//addAnimation(new breakout.animations.SpawnBall(pos, vel));
+		if(views.size() == 0) { return; }
+		addAnimation(new breakout.animations.SpawnBall(pos, vel, this, views.get(0)));
 	}
 	
 	//other

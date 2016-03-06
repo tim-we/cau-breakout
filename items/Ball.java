@@ -23,10 +23,6 @@ public class Ball extends MovingObject {
 		this.Velocity = velocity;
 	}
 	
-	public Color getColor() {
-		return this.color;
-	}
-	
 	public void scaleVelocity(double f) {
 		double max_f = Math.sqrt(MAX_SPEED_2 / Velocity.sqlength());
 		

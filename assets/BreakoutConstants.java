@@ -17,7 +17,7 @@ public class BreakoutConstants {
 	
 	public static final int BRICK_Y_OFFSET = WINDOW_HEIGHT;
 	
-	public static final double BALL_BOUNCE_SPEED_FACTOR = 1.03;
+	//public static final double BALL_BOUNCE_SPEED_FACTOR = 1.03;
 	
 	public static final double BALL_MAX_SPEED = 400;
 	

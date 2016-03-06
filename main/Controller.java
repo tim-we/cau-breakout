@@ -58,7 +58,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		int k;
 		int pause_time = (int)(1000d/FPS);
 		double time_remaining;
-		boolean reverse=false;		
+		
+		model.spawnBall(new Vector2D(WORLDWIDTH/2, WORLDHEIGHT/2), new Vector2D(3 * BreakoutConstants.WINDOW_HEIGHT, 6 * BreakoutConstants.WINDOW_HEIGHT));
 		
 		while(runLoop) {
 			
@@ -117,10 +118,9 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		if(x instanceof Brick) {
 			Brick brick = (Brick)x;
 			
-			for(Ball ball : model.getBalls()) {
+			/*for(Ball ball : model.getBalls()) {
 				//TODO: change speed by a constant amount, NOT by percentage
-				ball.scaleVelocity(BreakoutConstants.BALL_BOUNCE_SPEED_FACTOR);
-			}
+			}*/
 			
 			if(brick.isDestroyed()) {
 				

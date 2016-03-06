@@ -15,11 +15,13 @@ public class SpawnBall extends Animation {
 	
 	private Model model;
 	
-	public SpawnBall(Vector2D pos, Model m, View v) {
+	public SpawnBall(Vector2D pos, Vector2D vel, Model m, View v) {
 		Position = pos;
+		Velocity = vel;
+		
 		viewPos = v.getViewCoordinates(pos, m);
 		
-		frames = 10;
+		frames = 20;
 		
 		model = m;
 	}
@@ -33,12 +35,14 @@ public class SpawnBall extends Animation {
 		
 		currentFrame++;
 		
-		if(currentFrame > frames) {
+		if(currentFrame >= frames) {
 			
 			model.getBalls().add(new Ball(Position, Velocity));
 			
 			finished = true;
 			currentFrame = 0;
+			
+			System.out.println("finished");
 		}
 		
 		return frame;

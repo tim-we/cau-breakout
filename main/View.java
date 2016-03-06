@@ -54,7 +54,7 @@ public class View {
 			for(Ball ball : model.getBalls()) {
 				int[] ballPos = getViewCoordinates(ball.getPosition(), model);
 				
-				nextFrame.setPixel(ballPos[0], ballPos[1], ball.getColor());
+				nextFrame.setPixel(ballPos[0], ballPos[1], Ball.color);
 			}	
 			
 		frame = nextFrame;
