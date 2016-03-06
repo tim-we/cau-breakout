@@ -79,13 +79,20 @@ public class Paddle extends PhysicsObject{
 			Vector2D vel = new Vector2D(ball.getVelocity());
 			double ballspeed2 = vel.sqlength();
 			
-			//System.out.println("ball speed: " + vel.length() + " paddle speed: " + speed);
-			
 			vel.setX( vel.getX() + Math.min(8d*speed, 200d));
 			
 			double f = Math.sqrt(ballspeed2 / vel.sqlength());
 			
 			vel = vel.scale(f);
+			
+			double minYvel = BreakoutConstants.WINDOW_HEIGHT * 2d;
+			
+			if(Math.abs(vel.getY()) < minYvel) {
+				double sgn = vel.getY() < 0 ? -1.0 : 1.0;
+				vel.setY(minYvel * sgn);
+				f = Math.sqrt(ballspeed2 / vel.sqlength());
+				vel = vel.scale(f);
+			}
 			
 			ball.setVelocity(vel);		
 		}

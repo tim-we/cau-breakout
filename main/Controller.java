@@ -49,9 +49,13 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
 		phys.eventReceiver = this;
 		
+
 		LevelLoader.loadLevel(13, model);
 		//LevelLoader.loadLevel(model);
-	
+
+		//LevelLoader.loadLevel(2, model);
+		LevelLoader.loadLevel(model);
+
 		refreshStaticObjects();
 		
 		runLoop = true;
@@ -117,10 +121,6 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		
 		if(x instanceof Brick) {
 			Brick brick = (Brick)x;
-			
-			/*for(Ball ball : model.getBalls()) {
-				//TODO: change speed by a constant amount, NOT by percentage
-			}*/
 			
 			if(brick.isDestroyed()) {
 				
