@@ -130,10 +130,16 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				refreshStaticObjects();
 				
 				Vector2D p = e.getCollisionPoint();
-				
-				model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
-				//model.addAnimation(new BlueShockwave(p, model, view));
-				//model.addAnimation(new RedShockwave(p, model, view));
+				if (brick.getBrickType() == 3){
+					model.addAnimation(new RedShockwave(p, model, view));
+				}
+				else if (brick.getBrickType() == 4){
+					model.addAnimation(new BlueShockwave(p, model, view));
+				}
+				else {
+					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
+				}
+			
 			}
 		} else if(x instanceof BarOfDeath) {
 			//TODO: remove ball, if no balls left trigger game over

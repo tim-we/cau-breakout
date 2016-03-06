@@ -65,7 +65,7 @@ public class LevelLoader {
 
 		for (int i = 0; i < brickData.getString().length(); i++) {
 			byte brickType = -1;
-
+			boolean destroyed=false;
 			switch (brickData.getString().charAt(i)) {
 			case '0':
 				brickType = 0;
@@ -105,8 +105,8 @@ public class LevelLoader {
 				yPos += Brick.brickHeight + BreakoutConstants.BRICK_Y_OFFSET;
 			}
 
-			if (brickType >= 0) {
-				m.addBrick(new Brick(xPos, yPos, (byte) brickType));
+			if (!destroyed) {
+				m.addBrick(new Brick(xPos, yPos, (byte) brickType, false));
 			}
 
 			if (brickData.getString().charAt(i) != '$' && brickData.getString().charAt(i) != '?' && brickData.getString().charAt(i) != ';') {

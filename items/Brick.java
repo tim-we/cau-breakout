@@ -18,7 +18,7 @@ public class Brick extends PhysicsObject {
 
 	public Brick(double x, double y, byte brickType, boolean destroy){
 		this.Position = new Vector2D(x,y);
-		setBBox(brickWidth, brickHeight);
+		if (!destroy) {setBBox(brickWidth, brickHeight);}
 		this.brickType = brickType;
 		this.destroyed = destroy;
 	}
