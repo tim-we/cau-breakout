@@ -10,17 +10,23 @@ public class Brick extends PhysicsObject {
 	
 	private Color[] color = {new Color(255,0,0), new Color(0,255,0), new Color(0,0,255), new Color(255,0,255),new Color(0,255,255), new Color(255,255,0)};
 	private byte brickType;
+	private boolean destroyed;
 	
 	//avoid getter & setter functions:
 	public static final double brickWidth = 2 * BreakoutConstants.WINDOW_WIDTH;
 	public static final double brickHeight = BreakoutConstants.WINDOW_HEIGHT;
 
-	public Brick(double x, double y, byte brickType){
+	public Brick(double x, double y, byte brickType, boolean destroy){
 		this.Position = new Vector2D(x,y);
 		setBBox(brickWidth, brickHeight);
 		this.brickType = brickType;
+		this.destroyed = destroy;
 	}
 
+	public boolean getDestroyed(){
+		return this.destroyed;
+	}
+	
 	public void setBrickType(byte brickType){
 	  this.brickType = brickType;
 	}
@@ -44,15 +50,15 @@ public class Brick extends PhysicsObject {
 		switch (brickType){
 		//Normal Brick Red
 		case 0:
-			brickType -= 1;
+			destroyed = true;
 			break;
 		//Normal Brick Green	
 		case 1:
-			brickType -= 2;
+			destroyed = true;
 			break;
 		//Normal Brick Blue
 		case 2:	
-			brickType -= 3;
+			destroyed = true;
 			break;
 		//FastBrick, makes the Ball faster	
 		case 3:
@@ -61,7 +67,7 @@ public class Brick extends PhysicsObject {
 				Ball ball = (Ball)x;
 				ball.changeVelocity(1.5);
 			}
-			brickType -= 4;
+			destroyed = true;
 			break;
 		//SlowBrick, makes the Ball slower
 		case 4:
@@ -70,19 +76,23 @@ public class Brick extends PhysicsObject {
 				Ball ball = (Ball)y;
 				ball.changeVelocity(-1.5);
 			}
-			brickType -= 5;
+			destroyed = true;
 			break;
-		//	
+		//ReversePaddleBrick	
 		case 5:
 			
-			brickType -= 6;
+			destroyed = true;
 			break;
-		//	
+		//EnlargePaddle	
 		case 6:
 			
-			brickType -= 7;
+			destroyed = true;
 			break;
-		
+		//MinimizePaddle	
+		case 7:
+			
+			destroyed = true;
+			break;
 		}
 		
 	}
