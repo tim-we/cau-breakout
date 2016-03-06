@@ -140,6 +140,12 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				else if (brick.getBrickType()==5){
 					model.getPaddle().toggleReverse();
 				}
+				else if (brick.getBrickType()==6){
+					model.getPaddle().changePaddleWidth(BreakoutConstants.largePaddle);
+				}
+				else if (brick.getBrickType()==7){
+					model.getPaddle().changePaddleWidth(BreakoutConstants.smallPaddle);
+				}
 				else {
 					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
 				}
