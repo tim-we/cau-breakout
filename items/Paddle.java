@@ -41,13 +41,12 @@ public class Paddle extends PhysicsObject{
 	}
 	
 	public void move(double d){
-		if(reverse){
-			setPosition (getPosition().getX() - d);
-		}
-		else{
-			setPosition (getPosition().getX() + d);
-		}
+		d = reverse ? (-d) : d;
+
+		setPosition (getPosition().getX() + d);
 		
+		if(Math.abs(d) > Math.abs(speed)) { speed = d; }
+		else { speed = 0.6 * speed + 0.4*d;	}
 	}
 	
 	public void setPosition (double x){
@@ -73,19 +72,22 @@ public class Paddle extends PhysicsObject{
 		
 		Ball ball = (Ball)x;
 		
-		double relativeXPosition = (e.getCollisionPoint().getX() - Position.getX()) / paddleWidth; //from 0 to 1
+		//double relativeXPosition = (e.getCollisionPoint().getX() - Position.getX()) / paddleWidth; //from 0 to 1
 		
-		if(BreakoutConstants.BALL_BOUNCE_ADVANCED_MACHANICS) {
-		
-			double angle = Math.PI * 2 * (1-relativeXPosition);
+		if(BreakoutConstants.BALL_BOUNCE_ADVANCED_MECHANICS) {
 			
-			angle = 0.25*Math.PI + angle*0.5;
+			Vector2D vel = new Vector2D(ball.getVelocity());
+			double ballspeed2 = vel.sqlength();
 			
-			double speed = ball.getVelocity().length();
+			//System.out.println("ball speed: " + vel.length() + " paddle speed: " + speed);
 			
-			ball.setVelocity(new Vector2D(Math.cos(angle), Math.sin(angle)).scale(speed));
+			vel.setX( vel.getX() + Math.min(8d*speed, 200d));
 			
+			double f = Math.sqrt(ballspeed2 / vel.sqlength());
 			
+			vel = vel.scale(f);
+			
+			ball.setVelocity(vel);		
 		}
 	}
 }

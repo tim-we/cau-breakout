@@ -32,7 +32,6 @@ public class PhysicsContext {
 		double detA = b.getY()*d.getX() - b.getX()*d.getY();
 		
 		if(detA == 0) { System.out.println("! det = 0"); return null; }
-		//else { System.out.println("det = " + detA); }
 		
 		//Cramer's rule (2x2 matrix, 2D vector space):		
 		double detA1 = (c.getY()-a.getY()) * d.getX() - (c.getX()-a.getX()) * d.getY();
@@ -171,11 +170,6 @@ public class PhysicsContext {
 						Vector2D.add(obj.getPosition(), vel.scale(minFactor)),
 						horizontal
 					);
-				
-				//debugging:
-				if(collisionObject instanceof breakout.items.Brick) {
-					System.out.println("collision with " + collisionObject);
-				}
 				
 				obj.onCollision(e);
 				if(collisionObject != null) { collisionObject.onCollision(e); }
