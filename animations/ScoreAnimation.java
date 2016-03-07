@@ -4,16 +4,17 @@ import java.awt.Color;
 
 import breakout.assets.BreakoutConstants;
 import breakout.assets.PixelImage;
-import breakout.font.FontRenderer;
+
 import breakout.font.HighriserFont;
+import breakout.font.FontRenderer;
 
 public class ScoreAnimation extends Animation {
 	
 	private FontRenderer fr;
 	
-	private int score;
-	
 	private PixelImage background;
+	
+	private int score;
 	
 	private static final Color textColor = new Color(255,255,255);
 	
@@ -21,22 +22,24 @@ public class ScoreAnimation extends Animation {
 		width = BreakoutConstants.WINDOW_COLUMNS;
 		height = BreakoutConstants.WINDOW_ROWS;
 		
+		frames = 15;
+		
 		fr = new FontRenderer(new HighriserFont());
 		
-		frames = 42;
+		background = new PixelImage(width, height);
+		background.fill(new Color(0,0,0));
 		
 		this.score = score;
-		
-		background = new PixelImage(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS);
-		background.fill(new Color(0,0,0));
 	}
 	
 	@Override
 	public PixelImage renderNextFrame(PixelImage frame) {
-		frame = background;
+		frame = new PixelImage(background);
 		
-		fr.render(frame, 2, 2, "score", textColor);
-		fr.render(frame, 2, 8, ""+score, textColor);
+		int displayScore = Math.max(0, score-frames+currentFrame);
+		
+		fr.render(frame, 3, 2, "SC0rE", textColor);
+		fr.render(frame, 3, 8, displayScore+"", textColor );
 		
 		currentFrame++;
 		
@@ -47,5 +50,4 @@ public class ScoreAnimation extends Animation {
 		
 		return frame;
 	}
-	
 }

@@ -8,7 +8,7 @@ import java.awt.Color;
 
 public class Brick extends PhysicsObject {
 	
-	private Color[] color = {new Color(255,0,0), new Color(0,255,0), new Color(0,0,255), new Color(255,0,255),new Color(0,255,255), new Color(255,255,0), 
+	private Color[] color = {new Color(255,0,80), new Color(90,255,0), new Color(0,90,255), new Color(255,0,255),new Color(0,255,255), new Color(255,255,0), 
 			new Color(255,137,2), new Color(63,255,146)};
 	private byte brickType;
 	private boolean destroyed;

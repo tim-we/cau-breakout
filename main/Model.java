@@ -2,7 +2,6 @@ package breakout.main;
 
 import java.util.ArrayList;
 
-//import breakout.levels.*;
 import breakout.assets.BreakoutConstants;
 import breakout.items.*;
 import breakout.physics.Vector2D;

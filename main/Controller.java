@@ -130,14 +130,17 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			System.out.println("Game ended. Score: " + model.getScore());
 			
-			/*Animation score_anim = new ScoreAnimation(model.getScore());
-			System.out.println("numframes: "+score_anim.numFrames());
+			pause(600);
+			
+			Animation score_anim =  new ScoreAnimation(model.getScore());
+			model.addAnimation(score_anim);
+			
 			for(int i=0; i<score_anim.numFrames(); i++) {
 				model.update();
 				pause(pause_time);
-			}*/
+			}
 			
-			pause(1500);
+			pause(2500);
 			
 			model.reset();
 		}
