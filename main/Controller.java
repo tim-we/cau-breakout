@@ -53,8 +53,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		
 			if(BreakoutConstants.HIGHRISER_VIEW_ENABLED) {
 				net = new LhNetwork();
-				lhv = new LhView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, net);
-				model.addObserver(lhv);
+				view = new LhView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, net);
+				model.addObserver(view);
 			} else {
 				view = new ACMView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, lhs);				
 				model.addObserver(view);
