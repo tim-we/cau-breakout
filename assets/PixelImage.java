@@ -118,24 +118,25 @@ public class PixelImage {
 	public byte[] getByteArray() {
 		byte[] buf = new byte[width*height*3];
 		
-		int n = imageData.length;
-		int k;
+		int i = 0;
 		
-		for(int i=0; i<n; i++) {
-			Color clr = imageData[i]==null ? BGCOLOR : imageData[i];
-	
-			if(clr.getAlpha() < 255) { clr = blendColors(BGCOLOR, clr); }
-			
-			int r = clr.getRed();
-			int g = clr.getGreen();
-			int b = clr.getBlue();
-			
-			int buf_index = (n - i - 1) * 3;
-			
-			buf[buf_index] = (byte)r;
-			buf[buf_index +1] = (byte)g;
-			buf[buf_index +2] = (byte)b;
+		for(int row=height-1; row>=0; row--) {
+			for(int col=0; col<width; col++) {
+				Color clr = getPixel(col, row, BGCOLOR);
+				
+				int r = clr.getRed();
+				int g = clr.getGreen();
+				int b = clr.getBlue();				
+				
+				buf[i] = (byte)r;
+				buf[i +1] = (byte)g;
+				buf[i +2] = (byte)b;
+				
+				i = i+3;
+			}
 		}
+		
+		System.out.println("i="+i + " size: " + buf.length);
 		
 		return buf;
 	}
