@@ -55,10 +55,10 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				net = new LhNetwork();
 				lhv = new LhView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, net);
 				model.addObserver(lhv);
+			} else {
+				view = new ACMView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, lhs);				
+				model.addObserver(view);
 			}
-		
-			view = new ACMView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, lhs);				
-			model.addObserver(view);
 		
 		//set up physics
 			phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
@@ -88,7 +88,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			model.spawnBall(
 					new Vector2D(WORLDWIDTH/2, WORLDHEIGHT/2), 
-					new Vector2D(4 * BreakoutConstants.WINDOW_HEIGHT, 7 * BreakoutConstants.WINDOW_HEIGHT),
+					new Vector2D(3 * BreakoutConstants.WINDOW_HEIGHT, 7 * BreakoutConstants.WINDOW_HEIGHT),
 					view
 				);
 			
