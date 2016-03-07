@@ -88,7 +88,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			model.spawnBall(
 					new Vector2D(WORLDWIDTH/2, WORLDHEIGHT/2), 
-					new Vector2D(3 * BreakoutConstants.WINDOW_HEIGHT, 6 * BreakoutConstants.WINDOW_HEIGHT),
+					new Vector2D(4 * BreakoutConstants.WINDOW_HEIGHT, 7 * BreakoutConstants.WINDOW_HEIGHT),
 					view
 				);
 			
@@ -130,7 +130,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			System.out.println("Game ended. Score: " + model.getScore());
 			
-			pause(600);
+			pause(1000);
 			
 			Animation score_anim =  new ScoreAnimation(model.getScore());
 			model.addAnimation(score_anim);
