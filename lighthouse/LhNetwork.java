@@ -27,7 +27,7 @@ public class LhNetwork extends Observable implements Runnable {
 	public LhNetwork() {
 		try {
 			// Open connection to the lighthouse or to the local server
-			clientSocket = new Socket("localhost", 8000);
+			clientSocket = new Socket("rtsys.informatik.uni-kiel.de", 8000);
 			
 			// Fetch input and output streams
 			inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));

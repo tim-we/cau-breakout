@@ -17,7 +17,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 	public static final double WORLDWIDTH = BreakoutConstants.WINDOW_COLUMNS * BreakoutConstants.WINDOW_WIDTH;
 	public static final double WORLDHEIGHT = BreakoutConstants.WINDOW_ROWS * BreakoutConstants.WINDOW_HEIGHT;
 	
-	public static final int FPS = 30;
+	public static final int FPS = 25;
 	
 	public static final int MAX_PHYS_ITERATIONS = 5; //per frame
 	
@@ -53,12 +53,12 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		
 			if(BreakoutConstants.HIGHRISER_VIEW_ENABLED) {
 				net = new LhNetwork();
-				view = new LhView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, net);
-				model.addObserver(view);
-			} else {
-				view = new ACMView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, lhs);				
-				model.addObserver(view);
+				lhv = new LhView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, net);
+				model.addObserver(lhv);
 			}
+			
+			view = new ACMView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, lhs);				
+			model.addObserver(view);		
 		
 		//set up physics
 			phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);

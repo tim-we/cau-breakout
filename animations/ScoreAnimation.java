@@ -33,20 +33,13 @@ public class ScoreAnimation extends Animation {
 	}
 	
 	@Override
-	public PixelImage renderNextFrame(PixelImage frame) {
+	public PixelImage renderFrame(PixelImage frame) {
 		frame = new PixelImage(background);
 		
 		int displayScore = Math.max(0, score-frames+currentFrame);
 		
 		fr.render(frame, 3, 2, "SC0rE", textColor);
 		fr.render(frame, 3, 8, displayScore+"", textColor );
-		
-		currentFrame++;
-		
-		if(currentFrame > frames) {
-			finished = true;
-			currentFrame = 0;
-		}
 		
 		return frame;
 	}

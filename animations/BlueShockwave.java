@@ -25,7 +25,7 @@ public class BlueShockwave extends Animation {
 	}
 	
 	@Override
-	public PixelImage renderNextFrame(PixelImage frame) {
+	public PixelImage renderFrame(PixelImage frame) {
 		double radius2 = 0.8*(double)Math.min(1+currentFrame*currentFrame, 10000);
 		double ratio = (double)BreakoutConstants.WINDOW_HEIGHT/(double)BreakoutConstants.WINDOW_WIDTH;
 		
@@ -53,13 +53,6 @@ public class BlueShockwave extends Animation {
 				}
 				
 			}
-		}
-		
-		currentFrame++;
-		
-		if(currentFrame > frames) {
-			finished = true;
-			currentFrame = 0;
 		}
 		
 		return frame;

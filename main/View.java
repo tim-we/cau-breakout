@@ -55,7 +55,7 @@ public abstract class View extends Observable implements Observer {
 		
 		//render animations
 			for(Animation anim : model.getAnimations()) {
-				nextFrame = anim.renderNextFrame(nextFrame);
+				nextFrame = anim.renderFrame(nextFrame);
 			}
 		
 		//draw ball(s)

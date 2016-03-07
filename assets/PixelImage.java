@@ -35,7 +35,7 @@ public class PixelImage {
 	}
 	
 	public int getWidth() { return width; }
-	public int getHeight() { return width; }
+	public int getHeight() { return height; }
 	
 	public void clear() {
 		imageData = new Color[width*height];
@@ -135,8 +135,6 @@ public class PixelImage {
 				i = i+3;
 			}
 		}
-		
-		System.out.println("i="+i + " size: " + buf.length);
 		
 		return buf;
 	}

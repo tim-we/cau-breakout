@@ -19,7 +19,6 @@ public class LhView extends View {
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println(arg);
 		// We are registered as an observer both on the model and on the network
 		if (o instanceof Model) {
 			// The model has updated; generate a new picture we can send to the lighthouse
@@ -29,7 +28,9 @@ public class LhView extends View {
 		} else if (o instanceof LhNetwork) {
 			// The lighthouse sends a request. Send the current image
 			sendBuffer();
-
+			
+			System.out.println(arg);
+			
 			// The lighthouse always tells us how many images it still has in its buffer of
 			// images to be displayed. If the buffer is empty, send the current image again
 			// to prevent the buffer from running empty

@@ -32,5 +32,5 @@ public class BreakoutConstants {
 	/**
 	 * WARNING: only works with linux
 	 */
-	public static final boolean HIGHRISER_VIEW_ENABLED = false;
+	public static final boolean HIGHRISER_VIEW_ENABLED = true;
 }

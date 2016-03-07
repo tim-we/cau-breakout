@@ -15,7 +15,18 @@ public abstract class Animation {
 	
 	public int numFrames() { return frames; }
 	
-	public PixelImage renderNextFrame(PixelImage img) { return img; };
+	public PixelImage renderFrame(PixelImage img) { return img; };
+	
+	public void nextFrame() {
+		
+		if(currentFrame > frames) {
+			finished = true;
+			currentFrame = 0;
+		}
+		
+		currentFrame++;
+		
+	};
 	
 	public boolean hasFinished() { return finished; }
 }

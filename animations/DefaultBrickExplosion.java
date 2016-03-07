@@ -21,7 +21,7 @@ public class DefaultBrickExplosion extends Animation {
 	}
 	
 	@Override
-	public PixelImage renderNextFrame(PixelImage frame) {
+	public PixelImage renderFrame(PixelImage frame) {
 		double radius = Math.min(1d+currentFrame/2d, 5d);
 		double ratio = (double)height/(double)width;
 		
@@ -45,13 +45,6 @@ public class DefaultBrickExplosion extends Animation {
 				}
 				
 			}
-		}
-		
-		currentFrame++;
-		
-		if(currentFrame > frames) {
-			finished = true;
-			currentFrame = 0;
 		}
 		
 		return frame;

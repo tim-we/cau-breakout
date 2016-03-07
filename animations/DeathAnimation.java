@@ -20,11 +20,13 @@ public class DeathAnimation extends Animation {
 		
 		frames = 15;
 		
+		background = new PixelImage(28,14);
+		
 		fr = new FontRenderer(new HighriserFont());
 	}
 	
 	@Override
-	public PixelImage renderNextFrame(PixelImage frame) {
+	public PixelImage renderFrame(PixelImage frame) {
 		//last frame as background
 		if(currentFrame == 0) {
 			background = new PixelImage(frame); //clone image
@@ -46,13 +48,6 @@ public class DeathAnimation extends Animation {
 				Color textColor = new Color(v,v,v);
 				fr.render(frame, 1, Math.min(p, 5)-1, "WASTeD!", textColor);
 			}
-		
-		currentFrame++;
-		
-		if(currentFrame > frames) {
-			finished = true;
-			currentFrame = 0;
-		}
 		
 		return frame;
 	}

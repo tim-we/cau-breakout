@@ -15,6 +15,8 @@ public class SpawnBall extends Animation {
 	
 	private Model model;
 	
+	private boolean spawnedBall = false;
+	
 	public SpawnBall(Vector2D pos, Vector2D vel, Model m, View v) {
 		Position = pos;
 		Velocity = vel;
@@ -27,20 +29,17 @@ public class SpawnBall extends Animation {
 	}
 	
 	@Override
-	public PixelImage renderNextFrame(PixelImage frame) {
+	public PixelImage renderFrame(PixelImage frame) {
 		
 		if((currentFrame/2) % 2 == 0) {
 			frame.setPixel(viewPos[0], viewPos[1], Ball.color);
 		}
 		
-		currentFrame++;
-		
-		if(currentFrame >= frames) {
-			
-			model.addBall(new Ball(Position, Velocity));
-			
-			finished = true;
-			currentFrame = 0;
+		if(currentFrame >= frames) {		
+			if(!spawnedBall) {
+				model.addBall(new Ball(Position, Velocity));
+				spawnedBall = true;
+			}
 		}
 		
 		return frame;
