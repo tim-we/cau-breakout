@@ -19,7 +19,7 @@ public class LhView extends View {
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println(arg.toString());
+		System.out.println(arg);
 		// We are registered as an observer both on the model and on the network
 		if (o instanceof Model) {
 			// The model has updated; generate a new picture we can send to the lighthouse
@@ -51,7 +51,4 @@ public class LhView extends View {
 		net.sendBuff(frame.getByteArray());
 	}
 	
-	public void update(Model m) {
-		/*deprecated*/
-	}
 }

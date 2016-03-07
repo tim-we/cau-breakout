@@ -31,12 +31,6 @@ public abstract class View extends Observable implements Observer {
 		System.out.println("Score: " + ((Model) o).getScore());
 	}
 	
-	/**
-	 * DEPRECATED METHOD!
-	 * @param m - Model
-	 */
-	public abstract void update(Model m);
-	
 	public void renderFrame(Model model) {
 		PixelImage nextFrame = new PixelImage(ViewWidth, ViewHeight);
 		
