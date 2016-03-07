@@ -31,8 +31,6 @@ public class Model extends Observable {
 		worldWidth = w;
 		worldHeight = h;
 		
-		paddle = new Paddle(worldWidth);
-		
 		bottomBar = new BarOfDeath((BreakoutConstants.WINDOW_ROWS-0.2) * BreakoutConstants.WINDOW_HEIGHT, worldWidth, 0.2 * BreakoutConstants.WINDOW_HEIGHT);
 		
 		reset();
@@ -44,6 +42,8 @@ public class Model extends Observable {
 		this.animations = new ArrayList<Animation>();
 		
 		score = 0;
+		
+		paddle = new Paddle(worldWidth);
 		
 		setChanged();
 	}
