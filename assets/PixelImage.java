@@ -118,7 +118,10 @@ public class PixelImage {
 	public byte[] getByteArray() {
 		byte[] buf = new byte[width*height*3];
 		
-		for(int i=imageData.length-1; i>=0; i--) {
+		int n = imageData.length;
+		int k;
+		
+		for(int i=0; i<n; i++) {
 			Color clr = imageData[i]==null ? BGCOLOR : imageData[i];
 	
 			if(clr.getAlpha() < 255) { clr = blendColors(BGCOLOR, clr); }
@@ -127,7 +130,7 @@ public class PixelImage {
 			int g = clr.getGreen();
 			int b = clr.getBlue();
 			
-			int buf_index = i*3;
+			int buf_index = (n - i - 1) * 3;
 			
 			buf[buf_index] = (byte)r;
 			buf[buf_index +1] = (byte)g;
