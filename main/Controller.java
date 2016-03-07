@@ -31,6 +31,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 	
 	private PhysicsContext phys;
 	
+	private LhSimulator lhs;
+	
 	private LhNetwork net;
 	
 	private boolean runLoop = false;
@@ -38,29 +40,30 @@ public class Controller implements Observer, PhysicsEventReceiver {
 	//constructor
 	public Controller(BreakoutInput input) {
 		InputHandler = input;
+		
+		lhs = new LhSimulator();
+		lhs.start();
 	}
 	
-	public void runController(LhSimulator lhs) {
+	public void runController() {
 			
 		model = new Model(WORLDWIDTH, WORLDHEIGHT);	
 		
-		//net = new LhNetwork();
 		
-		view = new ACMView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, lhs);
-		//lhv = new LhView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, net);
+		//create views and register them with the model
+			//net = new LhNetwork();
+			//lhv = new LhView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, net);
+			//model.addObserver(lhv);
+			
+			view = new ACMView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, lhs);				
+			model.addObserver(view);
 		
-		model.addObserver(view);
-		//model.addObserver(lhv);
 		
 		phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
 		phys.eventReceiver = this;
 
 		//LevelLoader.loadLevel(2, model);
-		LevelLoader.loadLevel(model);
-
-		refreshStaticObjects();
 		
-		runLoop = true;
 		int k;
 		int pause_time = (int)(1000d/FPS);
 		double time_remaining;
@@ -72,49 +75,60 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				 
 		//new Thread(net).start();
 		
-		model.spawnBall(
-				new Vector2D(WORLDWIDTH/2, WORLDHEIGHT/2), 
-				new Vector2D(3 * BreakoutConstants.WINDOW_HEIGHT, 6 * BreakoutConstants.WINDOW_HEIGHT),
-				view
-			);
-		
-		while(runLoop) {
+		while(true) {
 			
-			InputHandler.update(model.getPaddle(), pause_time);
+			LevelLoader.loadLevel(model);
+
+			refreshStaticObjects();
 			
-			int n = model.getBalls().size();
-			for(int i=0; i<n; i++) {
-				Ball ball = model.getBalls().get(i);
-				if(ball==null) { continue; }
+			runLoop = true;
+			
+			model.spawnBall(
+					new Vector2D(WORLDWIDTH/2, WORLDHEIGHT/2), 
+					new Vector2D(3 * BreakoutConstants.WINDOW_HEIGHT, 6 * BreakoutConstants.WINDOW_HEIGHT),
+					view
+				);
+			
+			while(runLoop) {
 				
-				time_remaining = (double)pause_time/1000d;
-				k = 0;
+				InputHandler.update(model.getPaddle(), pause_time);
 				
-				//loop to prevent double bounce errors
-				while(time_remaining > 0 && k<MAX_PHYS_ITERATIONS) {
-					time_remaining = phys.updateObject(ball, time_remaining) * time_remaining;
-					k++;
+				int n = model.getBalls().size();
+				for(int i=0; i<n; i++) {
+					Ball ball = model.getBalls().get(i);
+					if(ball==null) { continue; }
+					
+					time_remaining = (double)pause_time/1000d;
+					k = 0;
+					
+					//loop to prevent double bounce errors
+					while(time_remaining > 0 && k<MAX_PHYS_ITERATIONS) {
+						time_remaining = phys.updateObject(ball, time_remaining) * time_remaining;
+						k++;
+					}
 				}
+				
+				//update model -> update views
+				model.update();	
+				
+				pause(pause_time);
 			}
 			
-			//update model -> update views
-			model.update();	
+			//temporary solution:
+			Animation death_anim = new DeathAnimation();
+			model.addAnimation(death_anim);
 			
-			pause(pause_time);
+			for(int i=0; i<death_anim.numFrames(); i++) {
+				model.update();
+				pause(pause_time);
+			}
+			
+			System.out.println("Game ended. Score: " + model.getScore());
+			
+			pause(1500);
+			
+			model.reset();
 		}
-		
-		//temporary solution:
-		Animation death_anim = new DeathAnimation();
-		model.addAnimation(death_anim);
-		
-		for(int i=0; i<death_anim.numFrames(); i++) {
-			model.update();
-			pause(pause_time);
-		}
-		
-		System.out.println("Game ended. Score: " + model.getScore());
-		
-		pause(1000);
 		
 	}
 	

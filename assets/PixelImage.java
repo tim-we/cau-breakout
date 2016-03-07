@@ -105,6 +105,10 @@ public class PixelImage {
 		
 	}
 	
+	public static Color blendColors(Color bg, Color fg, BlendingMode mode) {
+		return blendColors(bg, fg, fg.getAlpha()/255d, mode);
+	}
+	
 	public static Color blendColors(Color bg, Color fg) {
 		return blendColors(bg, fg, fg.getAlpha()/255d, BlendingMode.NORMAL);
 	}
@@ -114,7 +118,7 @@ public class PixelImage {
 	public byte[] getByteArray() {
 		byte[] buf = new byte[width*height*3];
 		
-		for(int i=0; i<imageData.length; i++) {
+		for(int i=imageData.length-1; i>=0; i--) {
 			Color clr = imageData[i]==null ? BGCOLOR : imageData[i];
 	
 			if(clr.getAlpha() < 255) { clr = blendColors(BGCOLOR, clr); }

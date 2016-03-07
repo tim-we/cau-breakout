@@ -11,8 +11,6 @@ import breakout.animations.Animation;
 
 public class Model extends Observable {
 	
-	//private ArrayList<View> views;
-	
 	private ArrayList<Ball> balls;
 	
 	private ArrayList<Brick> bricks;
@@ -23,18 +21,13 @@ public class Model extends Observable {
 	
 	private BarOfDeath bottomBar;
 	
-	private int score = 0;
+	private int score;
 	
 	private double worldWidth;
 	private double worldHeight;
 	
 	//constructor
 	public Model(double w, double h) {
-		//this.views = new ArrayList<View>();
-		this.balls = new ArrayList<Ball>();
-		this.bricks = new ArrayList<Brick>();
-		this.animations = new ArrayList<Animation>();
-
 		worldWidth = w;
 		worldHeight = h;
 		
@@ -42,6 +35,17 @@ public class Model extends Observable {
 		
 		bottomBar = new BarOfDeath((BreakoutConstants.WINDOW_ROWS-0.2) * BreakoutConstants.WINDOW_HEIGHT, worldWidth, 0.2 * BreakoutConstants.WINDOW_HEIGHT);
 		
+		reset();
+	}
+	
+	public void reset() {
+		this.balls = new ArrayList<Ball>();
+		this.bricks = new ArrayList<Brick>();
+		this.animations = new ArrayList<Animation>();
+		
+		score = 0;
+		
+		setChanged();
 	}
 	
 	//getter
