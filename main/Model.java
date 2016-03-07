@@ -44,7 +44,7 @@ public class Model extends Observable {
 		
 		paddle = new Paddle(worldWidth);
 		
-		setChanged();
+		notifyViews();
 	}
 	
 	//getter
