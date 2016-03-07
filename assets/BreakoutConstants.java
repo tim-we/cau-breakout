@@ -29,5 +29,8 @@ public class BreakoutConstants {
 	
 	public static final double normalPaddle = 5 * WINDOW_WIDTH;
 	
-	
+	/**
+	 * WARNING: only works with linux
+	 */
+	public static final boolean HIGHRISER_VIEW_ENABLED = false;
 }

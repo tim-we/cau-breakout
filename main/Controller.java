@@ -49,31 +49,34 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 		model = new Model(WORLDWIDTH, WORLDHEIGHT);	
 		
-		
 		//create views and register them with the model
-			//net = new LhNetwork();
-			//lhv = new LhView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, net);
-			//model.addObserver(lhv);
-			
+		
+			if(BreakoutConstants.HIGHRISER_VIEW_ENABLED) {
+				net = new LhNetwork();
+				lhv = new LhView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, net);
+				model.addObserver(lhv);
+			}
+		
 			view = new ACMView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, lhs);				
 			model.addObserver(view);
 		
-		
-		phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
-		phys.eventReceiver = this;
-
-		//LevelLoader.loadLevel(2, model);
+		//set up physics
+			phys = new PhysicsContext(WORLDWIDTH, WORLDHEIGHT);
+			phys.eventReceiver = this;
 		
 		int k;
 		int pause_time = (int)(1000d/FPS);
 		double time_remaining;
 		
-		/*	Start the network connection in a separate thread. That's important,
-		*	because our program should continue doing stuff instead of idling around
-		*	while it waits for the server to send the next request
-		*/
-				 
-		//new Thread(net).start();
+		
+		if(BreakoutConstants.HIGHRISER_VIEW_ENABLED) {
+			/*	Start the network connection in a separate thread. That's important,
+			*	because our program should continue doing stuff instead of idling around
+			*	while it waits for the server to send the next request
+			*/
+			
+			new Thread(net).start();
+		}
 		
 		while(true) {
 			
@@ -115,15 +118,24 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			}
 			
 			//temporary solution:
-			Animation death_anim = new DeathAnimation();
-			model.addAnimation(death_anim);
-			
-			for(int i=0; i<death_anim.numFrames(); i++) {
-				model.update();
-				pause(pause_time);
+			if(model.getBricks().size() > 0) {
+				Animation death_anim = new DeathAnimation();
+				model.addAnimation(death_anim);
+				
+				for(int i=0; i<death_anim.numFrames(); i++) {
+					model.update();
+					pause(pause_time);
+				}
 			}
 			
 			System.out.println("Game ended. Score: " + model.getScore());
+			
+			/*Animation score_anim = new ScoreAnimation(model.getScore());
+			System.out.println("numframes: "+score_anim.numFrames());
+			for(int i=0; i<score_anim.numFrames(); i++) {
+				model.update();
+				pause(pause_time);
+			}*/
 			
 			pause(1500);
 			
