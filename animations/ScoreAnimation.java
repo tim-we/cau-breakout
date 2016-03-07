@@ -25,6 +25,7 @@ public class ScoreAnimation extends Animation {
 		frames = 15;
 		
 		fr = new FontRenderer(new HighriserFont());
+		fr.setCharOffset(1);
 		
 		background = new PixelImage(width, height);
 		background.fill(new Color(0,0,0));
@@ -38,8 +39,8 @@ public class ScoreAnimation extends Animation {
 		
 		int displayScore = Math.max(0, score-frames+currentFrame);
 		
-		fr.render(frame, 3, 2, "SC0rE", textColor);
-		fr.render(frame, 3, 8, displayScore+"", textColor );
+		fr.render(frame, 2, 2, "SC0rE", textColor);
+		fr.render(frame, 5, 8, displayScore+"", textColor );
 		
 		return frame;
 	}

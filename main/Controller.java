@@ -17,9 +17,9 @@ public class Controller implements Observer, PhysicsEventReceiver {
 	public static final double WORLDWIDTH = BreakoutConstants.WINDOW_COLUMNS * BreakoutConstants.WINDOW_WIDTH;
 	public static final double WORLDHEIGHT = BreakoutConstants.WINDOW_ROWS * BreakoutConstants.WINDOW_HEIGHT;
 	
-	public static final int FPS = 25;
+	public static final int FPS = BreakoutConstants.FPS;
 	
-	public static final int MAX_PHYS_ITERATIONS = 5; //per frame
+	public static final int MAX_PHYS_ITERATIONS = 4; //per frame
 	
 	private BreakoutInput InputHandler;
 	
@@ -88,7 +88,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			model.spawnBall(
 					new Vector2D(WORLDWIDTH/2, WORLDHEIGHT/2), 
-					new Vector2D(3 * BreakoutConstants.WINDOW_HEIGHT, 7 * BreakoutConstants.WINDOW_HEIGHT),
+					new Vector2D(4 * BreakoutConstants.WINDOW_HEIGHT, 7 * BreakoutConstants.WINDOW_HEIGHT),
 					view
 				);
 			

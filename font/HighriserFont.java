@@ -9,7 +9,7 @@ public class HighriserFont implements Font {
     static {
     	charMap.put('a', new Letter(4, 5, "0000"+"0100"+"1010"+"1110"+"1010"));
     	charMap.put('A', new Letter(4, 5, "0100"+"1010"+"1110"+"1010"+"1010"));
-    	charMap.put('c', new Letter(5, 5, "00110"+"01000"+"10000"+"01000"+"00110"));
+    	charMap.put('c', new Letter(4, 5, "1110"+"1000"+"1000"+"1000"+"1110"));
         charMap.put('d', new Letter(4, 5, "0000"+"1100"+"1010"+"1010"+"1100"));
         charMap.put('D', new Letter(4, 5, "1100"+"1010"+"1010"+"1010"+"1100"));
         charMap.put('e', new Letter(3, 5, "110"+"100"+"110"+"100"+"110"));
@@ -32,7 +32,7 @@ public class HighriserFont implements Font {
         charMap.put('X', new Letter(4, 5, "1010"+"1010"+"0100"+"1010"+"1010"));
         
         //numbers:
-        charMap.put('0', new Letter(5, 5, "01100"+"10010"+"10010"+"10010"+"01100"));
+        charMap.put('0', new Letter(5, 5, "11110"+"10010"+"10010"+"10010"+"11110"));
         charMap.put('1', new Letter(2, 5, "10"+"10"+"10"+"10"+"10"));
         charMap.put('2', new Letter(5, 5, "11100"+"00010"+"00100"+"01000"+"11110"));
         charMap.put('3', new Letter(5, 5, "11100"+"00010"+"01100"+"00010"+"11100"));

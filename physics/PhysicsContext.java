@@ -41,7 +41,7 @@ public class PhysicsContext {
 		double x1 = detA1/detA;
 		double x2 = detA2/detA;
 		
-		if(0d<=x1 && x1<=1d && 0d<=x2 && x2<=1d) {
+		if(0d<x1 && x1<=1d && 0d<x2 && x2<=1d) {
 			//line segments intersect
 			return new Vector2D(x1, x2);
 		}

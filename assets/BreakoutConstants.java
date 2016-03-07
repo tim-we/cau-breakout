@@ -17,6 +17,8 @@ public class BreakoutConstants {
 	
 	public static final int BRICK_Y_OFFSET = WINDOW_HEIGHT;
 	
+	public static final int FPS = 25;
+	
 	//public static final double BALL_BOUNCE_SPEED_FACTOR = 1.03;
 	
 	public static final double BALL_MAX_SPEED = 400;
@@ -29,8 +31,5 @@ public class BreakoutConstants {
 	
 	public static final double normalPaddle = 5 * WINDOW_WIDTH;
 	
-	/**
-	 * WARNING: only works with linux
-	 */
-	public static final boolean HIGHRISER_VIEW_ENABLED = true;
+	public static final boolean HIGHRISER_VIEW_ENABLED = false;
 }

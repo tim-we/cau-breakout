@@ -21,7 +21,6 @@ public abstract class Animation {
 		
 		if(currentFrame > frames) {
 			finished = true;
-			currentFrame = 0;
 		}
 		
 		currentFrame++;

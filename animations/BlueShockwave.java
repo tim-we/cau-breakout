@@ -62,6 +62,6 @@ public class BlueShockwave extends Animation {
 		f = Math.max(0.0, Math.min(f, 0.5));
 		
 		int alpha = (int)Math.round(255 * f);
-		return new Color(0, 255 - (currentFrame*12), 255, alpha);
+		return new Color(0, Math.max(0, Math.min(255 - (currentFrame*12), 255)), 255, alpha);
 	}
 }

@@ -8,12 +8,18 @@ public class FontRenderer {
 	
 	private Font font;
 	
+	private int charOffset = 0;
+	
 	public FontRenderer(Font font) {
 		this.font = font;
 	}
 	
 	public void setFont(Font font) {
 		this.font = font;
+	}
+	
+	public void setCharOffset(int k) {
+		charOffset = k;
 	}
 	
 	/**
@@ -41,7 +47,7 @@ public class FontRenderer {
 				}
 			}
 			
-			x += l.getWidth();
+			x += l.getWidth() + charOffset;
 		}
 		
 	}
