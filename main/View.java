@@ -3,6 +3,7 @@ package breakout.main;
 import java.awt.Color;
 
 import breakout.animations.Animation;
+import breakout.assets.BreakoutConstants;
 import breakout.assets.PixelImage;
 import breakout.items.*;
 import breakout.physics.Vector2D;
@@ -12,15 +13,13 @@ import java.util.Observer;
 
 public abstract class View extends Observable implements Observer {
 	
-	private int ViewWidth;
-	private int ViewHeight;
+	private static final int ViewWidth = BreakoutConstants.WINDOW_COLUMNS;
+	private static final int ViewHeight = BreakoutConstants.WINDOW_ROWS;
 	protected PixelImage frame;
 	
 	//constructor
-	public View(int width, int height) {
-		frame = new PixelImage(width, height);
-		ViewWidth = width;
-		ViewHeight = height;
+	public View() {
+		frame = new PixelImage(ViewWidth, ViewHeight);
 	}
 	
 	@Override
@@ -68,7 +67,7 @@ public abstract class View extends Observable implements Observer {
 		frame = nextFrame;		
 	}
 	
-	public int[] getViewCoordinates(Vector2D v, Model m) {
+	public static int[] getViewCoordinates(Vector2D v, Model m) {
 		int[] o = new int[2];
 		
 		o[0] = (int) Math.round((v.getX()/m.getWidth()) * ViewWidth);

@@ -8,8 +8,8 @@ public class ACMView extends View {
 	
 	private LhSimulator display;
 	
-	public ACMView(int width, int height, LhSimulator lhs) {
-		super(width, height);
+	public ACMView(LhSimulator lhs) {
+		super();
 		
 		this.display = lhs;
 	}

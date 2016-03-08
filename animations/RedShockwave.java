@@ -5,7 +5,6 @@ import java.awt.Color;
 import breakout.assets.BreakoutConstants;
 import breakout.assets.PixelImage;
 import breakout.main.Model;
-import breakout.main.View;
 import breakout.physics.Vector2D;
 
 public class RedShockwave extends Animation {
@@ -15,8 +14,8 @@ public class RedShockwave extends Animation {
 	private int xpos;
 	private int ypos;
 	
-	public RedShockwave(Vector2D pos, Model m, View v) {
-		int[] tmp = v.getViewCoordinates(pos, m);
+	public RedShockwave(Vector2D pos, Model m) {
+		int[] tmp = breakout.main.View.getViewCoordinates(pos, m);
 		
 		xpos = tmp[0];
 		ypos = tmp[1];

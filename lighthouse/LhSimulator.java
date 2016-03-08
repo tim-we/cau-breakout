@@ -7,6 +7,7 @@ import breakout.assets.BreakoutConstants;
 import acm.graphics.*;
 import acm.program.GraphicsProgram;
 
+@SuppressWarnings("serial")
 public class LhSimulator extends GraphicsProgram {
 
 	private static final int WIDTH = 28;

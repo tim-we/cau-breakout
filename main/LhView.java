@@ -8,8 +8,8 @@ public class LhView extends View {
 	
 	private LhNetwork net;
 	
-	public LhView(int width, int height, LhNetwork net) {
-		super(width, height);
+	public LhView(LhNetwork net) {
+		super();
 		
 		this.net = net;
 		

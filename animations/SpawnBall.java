@@ -3,7 +3,6 @@ package breakout.animations;
 import breakout.assets.PixelImage;
 import breakout.items.Ball;
 import breakout.main.Model;
-import breakout.main.View;
 import breakout.physics.Vector2D;
 
 public class SpawnBall extends Animation {
@@ -17,11 +16,11 @@ public class SpawnBall extends Animation {
 	
 	private boolean spawnedBall = false;
 	
-	public SpawnBall(Vector2D pos, Vector2D vel, Model m, View v) {
+	public SpawnBall(Vector2D pos, Vector2D vel, Model m) {
 		Position = pos;
 		Velocity = vel;
 		
-		viewPos = v.getViewCoordinates(pos, m);
+		viewPos = breakout.main.View.getViewCoordinates(pos, m);
 		
 		frames = 20;
 		

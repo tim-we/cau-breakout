@@ -1,7 +1,6 @@
 package breakout.input;
 
 import breakout.items.Paddle;
-import breakout.main.*;
 
 public interface BreakoutInput {
 	

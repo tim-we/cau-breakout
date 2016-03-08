@@ -53,11 +53,11 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		
 			if(BreakoutConstants.HIGHRISER_VIEW_ENABLED) {
 				net = new LhNetwork();
-				lhv = new LhView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, net);
+				lhv = new LhView(net);
 				model.addObserver(lhv);
 			}
 			
-			view = new ACMView(BreakoutConstants.WINDOW_COLUMNS, BreakoutConstants.WINDOW_ROWS, lhs);				
+			view = new ACMView(lhs);			
 			model.addObserver(view);		
 		
 		//set up physics
@@ -85,12 +85,6 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			refreshStaticObjects();
 			
 			runLoop = true;
-			
-			model.spawnBall(
-					new Vector2D(WORLDWIDTH/2, WORLDHEIGHT/2), 
-					new Vector2D(4 * BreakoutConstants.WINDOW_HEIGHT, 7 * BreakoutConstants.WINDOW_HEIGHT),
-					view
-				);
 			
 			while(runLoop) {
 				
@@ -125,7 +119,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			System.out.println("Game ended. Score: " + model.getScore());
 			
-			playAnimation(new ScoreAnimation(7635 /*model.getScore()*/));
+			playAnimation(new ScoreAnimation(model.getScore()));
 			
 			pause(2500);
 			
@@ -172,10 +166,10 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				
 				Vector2D p = e.getCollisionPoint();
 				if (brick.getBrickType() == 3){
-					model.addAnimation(new RedShockwave(p, model, view));
+					model.addAnimation(new RedShockwave(p, model));
 				}
 				else if (brick.getBrickType() == 4){
-					model.addAnimation(new BlueShockwave(p, model, view));
+					model.addAnimation(new BlueShockwave(p, model));
 				}
 				else if (brick.getBrickType()==5){
 					model.getPaddle().toggleReverse();

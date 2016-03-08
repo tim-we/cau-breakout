@@ -2,11 +2,12 @@ package breakout.physics;
 
 import acm.program.ConsoleProgram;
 
+@SuppressWarnings("serial")
 public class PhysicsTests extends ConsoleProgram {
 	
 	public void run() {
 		
-		PhysicsContext phys = new PhysicsContext(200,100);
+		//PhysicsContext phys = new PhysicsContext(200,100);
 		
 		Vector2D a = new Vector2D(0,1);
 		Vector2D b = new Vector2D(4,0);

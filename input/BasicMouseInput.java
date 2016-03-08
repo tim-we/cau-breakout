@@ -2,7 +2,6 @@ package breakout.input;
 
 import java.awt.MouseInfo;
 
-import breakout.main.*;
 import breakout.items.Paddle;
 
 public class BasicMouseInput implements BreakoutInput {

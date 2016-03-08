@@ -3,6 +3,7 @@ package breakout.levels;
 import java.util.Random;
 
 import breakout.main.Model;
+import breakout.physics.Vector2D;
 import breakout.assets.BreakoutConstants;
 import breakout.items.Brick;
 
@@ -180,13 +181,26 @@ public class LevelLoader {
 		
 	}
 	
+	public static void setBall(Level lvl, Model m) {
+		
+		Vector2D pos = lvl.getBallSpawnPos() == null ? new Vector2D(m.getWidth()/2, m.getHeight()/2) : lvl.getBallSpawnPos();
+		Vector2D vel = lvl.getBallSpawnVel() == null ? new Vector2D(4 * BreakoutConstants.WINDOW_HEIGHT, 7 * BreakoutConstants.WINDOW_HEIGHT) : lvl.getBallSpawnVel();
+		
+		m.spawnBall(pos, vel);
+	}
+	
+	public static void loadLevel(Level lvl, Model m) {
+		LevelLoader.setBricks(lvl, m);
+		LevelLoader.setBall(lvl, m);
+	}
+	
 	public static void loadLevel(int i, Model m) {
 		Level level = LevelLoader.getLevelByIndex(i);
-		LevelLoader.setBricks(level, m);
+		LevelLoader.loadLevel(level, m);
 	}
 	
 	public static void loadLevel(Model m) {
 		Level level = LevelLoader.randomLevel();
-		LevelLoader.setBricks(level, m);
+		LevelLoader.loadLevel(level, m);
 	}
 }
