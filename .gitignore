@@ -45,3 +45,9 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Eclipse & Java stuff
+bin
+.settings
+.classpath
+.project
