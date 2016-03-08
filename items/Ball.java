@@ -3,7 +3,6 @@ package breakout.items;
 import breakout.assets.BreakoutConstants;
 import breakout.physics.*;
 import java.awt.Color;
-import breakout.assets.*;
 
 public class Ball extends MovingObject {
   

@@ -30,9 +30,9 @@ public class DeathAnimation extends Animation {
 		//last frame as background
 		if(currentFrame == 0) {
 			background = new PixelImage(frame); //clone image
-		} else {
-			frame = new PixelImage(background);
 		}
+		
+		frame = new PixelImage(background);
 		
 		int alpha = Math.min(50 * currentFrame, 200);
 		frame.fill( new Color(0,0,0,alpha) );

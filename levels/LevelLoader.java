@@ -1,12 +1,10 @@
 package breakout.levels;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import breakout.main.Model;
 import breakout.assets.BreakoutConstants;
 import breakout.items.Brick;
-import breakout.levels.*;
 
 public class LevelLoader {
 	

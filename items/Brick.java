@@ -43,7 +43,11 @@ public class Brick extends PhysicsObject {
 	}
 	
 	public int getHitPoints() {
-		return 42;
+		return getHitPoints(1d);
+	}
+	
+	public int getHitPoints(double multiplier) {
+		return (int)Math.round(42 * multiplier);
 	}
 
 	@Override

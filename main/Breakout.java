@@ -1,7 +1,6 @@
 package breakout.main;
 
 import breakout.input.*;
-import breakout.lighthouse.LhSimulator;
 
 public class Breakout {
 	

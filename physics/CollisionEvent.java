@@ -26,5 +26,7 @@ public class CollisionEvent {
 		return (a instanceof Ball || b instanceof Ball) && (a == null || b == null);
 	}
 	
+	public boolean isHorizontal() { return horizontal; }
+	
 	public Vector2D getCollisionPoint() { return point; }
 }

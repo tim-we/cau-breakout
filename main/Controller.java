@@ -119,26 +119,13 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			//temporary solution:
 			if(model.getBricks().size() > 0) {
-				Animation death_anim = new DeathAnimation();
-				model.addAnimation(death_anim);
-				
-				for(int i=0; i<death_anim.numFrames(); i++) {
-					model.update();
-					pause(pause_time);
-				}
+				playAnimation(new DeathAnimation());
+				pause(1000);
 			}
 			
 			System.out.println("Game ended. Score: " + model.getScore());
 			
-			pause(1000);
-			
-			Animation score_anim =  new ScoreAnimation(model.getScore());
-			model.addAnimation(score_anim);
-			
-			for(int i=0; i<score_anim.numFrames(); i++) {
-				model.update();
-				pause(pause_time);
-			}
+			playAnimation(new ScoreAnimation(7635 /*model.getScore()*/));
 			
 			pause(2500);
 			
@@ -153,6 +140,17 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		} catch(InterruptedException ex) {
 			ex.printStackTrace();
 		   // Thread.currentThread().interrupt();
+		}
+	}
+	
+	public void playAnimation(Animation anim) {
+		int pause_time = (int)(1000d/FPS);
+		
+		model.addAnimation(anim);
+		
+		for(int i=0; i<anim.numFrames(); i++) {
+			model.update();
+			pause(pause_time);
 		}
 	}
 	
@@ -204,7 +202,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			if(e.getObjectA() instanceof Ball) { 
 				
-				((Ball)e.getObjectA()).scaleVelocity(0); 
+				((Ball)e.getObjectA()).scaleVelocity(0);
+				
 			}
 			
 			runLoop = false;
