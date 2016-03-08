@@ -8,6 +8,9 @@ import breakout.assets.PixelImage;
 import breakout.font.HighriserFont;
 import breakout.font.FontRenderer;
 
+/*
+ * WARNING DEPRECATED
+ */
 public class DeathAnimation extends Animation {
 	
 	private FontRenderer fr;

@@ -10,8 +10,18 @@ public class FontRenderer {
 	
 	private int charOffset = 0;
 	
+	private int scale;
+	
+	//constructor
 	public FontRenderer(Font font) {
 		this.font = font;
+		this.scale = 1;
+	}
+	
+	//constructor
+	public FontRenderer(Font font, int scale) {
+		this.font = font;
+		this.scale = scale;
 	}
 	
 	public void setFont(Font font) {
@@ -22,14 +32,18 @@ public class FontRenderer {
 		charOffset = k;
 	}
 	
+	public void setScale(int f) {
+		scale = Math.min(1, f);
+	}
+	
 	public void renderLetter(PixelImage img, int x, int y, Letter l, Color color) {
 		if(img == null) { System.out.println("Error: PixelImage was null (FontRenderer.renderLetter"); return; }
 		
 		if(l==null) { return; }
 		
-		for(int j=0; j<l.getHeight(); j++) {
-			for(int k=0; k<l.getWidth(); k++) {
-				if(l.isPixelAt(k,j)) {
+		for(int j=0; j<l.getHeight()*scale; j++) {
+			for(int k=0; k<l.getWidth()*scale; k++) {
+				if(l.isPixelAt(k/scale, j/scale)) {
 					img.setPixel(x+k, y+j, color);
 				}
 			}
@@ -56,7 +70,7 @@ public class FontRenderer {
 			
 			renderLetter(img, x, y, l, colors[i % colors.length]);
 			
-			x += l.getWidth() + charOffset;
+			x += l.getWidth()*scale + charOffset;
 		}
 		
 	}
@@ -76,7 +90,7 @@ public class FontRenderer {
 			if(l==null) { continue; }
 			else { n++; }
 			
-			length += l.getWidth() + charOffset;
+			length += l.getWidth() * scale + charOffset;
 		}
 		
 		if(n>0) { length -= 1 + charOffset; }

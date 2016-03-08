@@ -113,7 +113,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			//temporary solution:
 			if(model.getBricks().size() > 0) {
-				playAnimation(new DeathAnimation());
+				//playAnimation(new DeathAnimation());
+				playAnimation(new WastedAnimation());
 				pause(1000);
 			}
 			

@@ -7,7 +7,20 @@ public class HighriserFontBig implements Font {
 	
 	private static final Map<Character, Letter> charMap = new HashMap<Character, Letter>();
     static {
-    	//TODO: implement this
+    	charMap.put('w', new Letter(22, 9, 
+			 "1110000001110000001110"
+			+"0111000011111000011100"
+			+"0111000011011100011100"
+			+"0011100111011100011100"
+			+"0011100111001110111000"
+			+"0001110110001110111000"
+			+"0001111110000111110000"
+			+"0000111100000011110000"
+			+"0000111100000011100000"));
+    	/*charMap.put('a', new Letter(20, 9, 
+   			 "000000011100000000"
+    		+"000000111110000000"
+   			+"000001110111000000"));*/
     }
     
     public Letter getLetter(char c) {
