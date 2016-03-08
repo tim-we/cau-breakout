@@ -165,6 +165,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				
 				refreshStaticObjects();
 				
+				if(model.getBricks().size() == 0) { runLoop = false; }
+				
 				Vector2D p = e.getCollisionPoint();
 				if (brick.getBrickType() == 3){
 					model.addAnimation(new RedShockwave(p, model));
