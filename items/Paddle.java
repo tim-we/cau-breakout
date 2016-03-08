@@ -85,7 +85,7 @@ public class Paddle extends PhysicsObject{
 			
 			vel = vel.scale(f);
 			
-			double minYvel = BreakoutConstants.WINDOW_HEIGHT * 2d;
+			double minYvel = BreakoutConstants.WINDOW_HEIGHT * 3d;
 			
 			if(Math.abs(vel.getY()) < minYvel) {
 				double sgn = vel.getY() < 0 ? -1.0 : 1.0;
