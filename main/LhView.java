@@ -26,15 +26,23 @@ public class LhView extends View {
 			Model m = (Model) o;
 			renderFrame(m);
 		} else if (o instanceof LhNetwork) {
+			String line = arg.toString();
 			// The lighthouse sends a request. Send the current image
-			sendBuffer();
+			//sendBuffer();
 			
-			System.out.println(arg);
+			System.out.println(line);
 			
 			// The lighthouse always tells us how many images it still has in its buffer of
 			// images to be displayed. If the buffer is empty, send the current image again
 			// to prevent the buffer from running empty
+			if (arg.toString().equals("bufLen=-1")) {
+				sendBuffer();
+				sendBuffer();
+			}
 			if (arg.toString().equals("bufLen=0")) {
+				sendBuffer();
+			}
+			if (arg.toString().equals("bufLen=1")) {
 				sendBuffer();
 			}
 
