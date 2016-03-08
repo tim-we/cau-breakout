@@ -1,11 +1,12 @@
 package breakout.main;
 
+import breakout.assets.BreakoutConstants;
 import breakout.input.*;
 
 public class Breakout {
 	
 	public static void main(String[] args) {
-		BreakoutInput userinput = new BasicMouseInput();
+		BreakoutInput userinput = BreakoutConstants.ENABLE_BOT ? new BreakoutBot() :new BasicMouseInput();
 		
 		Controller c = new Controller(userinput);	
 

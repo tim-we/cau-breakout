@@ -49,6 +49,10 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 		model = new Model(WORLDWIDTH, WORLDHEIGHT);	
 		
+		if(InputHandler instanceof breakout.input.BreakoutBot) {
+			((breakout.input.BreakoutBot)InputHandler).init(model);
+		}
+		
 		//create views and register them with the model
 		
 			if(BreakoutConstants.HIGHRISER_VIEW_ENABLED) {
@@ -165,7 +169,11 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				
 				refreshStaticObjects();
 				
-				if(model.getBricks().size() == 0) { runLoop = false; }
+				if(model.getBricks().size() == 0) {
+					runLoop = false;
+					playAnimation(new GreenShockwave(e.getCollisionPoint(), model));
+					model.clearBalls();
+				}
 				
 				Vector2D p = e.getCollisionPoint();
 				if (brick.getBrickType() == 3){
@@ -176,16 +184,19 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				}
 				else if (brick.getBrickType()==5){
 					model.getPaddle().toggleReverse();
+					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
 				}
 				else if (brick.getBrickType()==6){
 					if(model.getPaddle().getWidth()<=BreakoutConstants.normalPaddle){
 						model.getPaddle().changePaddleWidth(BreakoutConstants.changeSizePaddle);
 					}
+					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
 				}
 				else if (brick.getBrickType()==7){
 					if(model.getPaddle().getWidth()>=BreakoutConstants.normalPaddle){
-					model.getPaddle().changePaddleWidth(-BreakoutConstants.changeSizePaddle);
+						model.getPaddle().changePaddleWidth(-BreakoutConstants.changeSizePaddle);
 					}
+					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
 				}
 				else {
 					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));

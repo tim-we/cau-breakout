@@ -2,17 +2,18 @@ package breakout.levels;
 
 import java.util.Random;
 
+import acm.util.RandomGenerator;
 import breakout.main.Model;
 import breakout.physics.Vector2D;
 import breakout.assets.BreakoutConstants;
 import breakout.items.Brick;
-
+//import 
 public class LevelLoader {
 	
 	private static final Level[] levels = { 
 			new Level("-222-222-11-111-11-0004000-"), 
 			new Level("000353000434000647000363000"),
-			new Level("101213141516171011121314151"), 
+			new Level("101213141516171011121314161"), 
 			new	Level("000141000646222737111000111"), 
 			new Level("012012012012012012012012012"),
 			new Level("010141010101030101010171010"), 
@@ -150,6 +151,11 @@ public class LevelLoader {
 				brickType = 7;
 				destroyed = false;
 				break;
+	/*		case '8':
+				RandomGenerator rgen = new RandomGenerator();
+				brickType= rgen.nextInt(9);
+				destroyed =false;
+				break; */
 			case '.': // forced line break
 				//xk = bricksPerRow - 1;
 				break;

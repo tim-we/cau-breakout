@@ -9,7 +9,7 @@ import java.awt.Color;
 public class Brick extends PhysicsObject {
 	
 	private Color[] color = {new Color(255,0,80), new Color(90,255,0), new Color(0,90,255), new Color(255,0,255),new Color(0,255,255), new Color(255,255,0), 
-			new Color(255,137,2), new Color(63,255,146)};
+			new Color(255,137,2), new Color(63,255,146), new Color(0,225,255)};
 	private byte brickType;
 	private boolean destroyed;
 	
@@ -99,13 +99,18 @@ public class Brick extends PhysicsObject {
 			
 			destroyed = true;
 			break;
+		case 8:
+			
+			destroyed =true;
+			break;
+			
 		}
 		
 	}
 	
 	@Override
 	public String toString() {
-		return destroyed ? "[destroyed Brick]":"[Brick Type: "+brickType+" @ "+Position+"]";
+		return destroyed ? "[destroyed Brick]":"[Brick Type: "+brickType+"]";
 	}
 	
 }

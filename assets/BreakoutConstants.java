@@ -32,4 +32,6 @@ public class BreakoutConstants {
 	public static final double normalPaddle = 5 * WINDOW_WIDTH;
 	
 	public static final boolean HIGHRISER_VIEW_ENABLED = false;
+	
+	public static final boolean ENABLE_BOT = false;
 }

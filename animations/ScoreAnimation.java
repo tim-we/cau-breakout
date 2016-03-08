@@ -46,8 +46,8 @@ public class ScoreAnimation extends Animation {
 		//align right
 		int xPos = BreakoutConstants.WINDOW_COLUMNS - 2 - scoreTextLength;
 		
-		fr.render(frame, 2, 2, "SC0rE", titleColor);
-		fr.render(frame, xPos, 8, displayScore+"", digitColors );
+		fr.render(frame, 2, 1, "SC0rE", titleColor);
+		fr.render(frame, xPos, 7, displayScore+"", digitColors );
 		
 		return frame;
 	}

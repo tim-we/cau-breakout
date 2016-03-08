@@ -61,7 +61,7 @@ public class Paddle extends PhysicsObject{
 	}
 
 	public Color getColor(){
-	  return this.color;
+	  return this.reverse ? new Color(255,182,0) : this.color;
 	}
 	
 	@Override

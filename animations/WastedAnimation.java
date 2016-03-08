@@ -42,7 +42,7 @@ private FontRenderer fr;
 		//render Text on frame
 			if(currentFrame >= 2) {
 				int pos = 5 - currentFrame/2;
-				pos = Math.max(pos, 20 - textLength);
+				pos = Math.max(pos, 23 - textLength);
 				fr.render(frame, pos, 2, "WASTeD!", textColor);
 			}
 		
