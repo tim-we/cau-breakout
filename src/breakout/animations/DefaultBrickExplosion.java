@@ -14,6 +14,8 @@ public class DefaultBrickExplosion extends Animation {
 	private int xpos;
 	private int ypos;
 	
+	private double ratio = (double)height/(double)width;
+	
 	public DefaultBrickExplosion(double x, double y, Model m) {
 		int[] tmp = breakout.main.View.getViewCoordinates(new Vector2D(x,y), m);
 		
@@ -25,26 +27,25 @@ public class DefaultBrickExplosion extends Animation {
 	
 	@Override
 	public PixelImage renderFrame(PixelImage frame) {
-		double radius = Math.min(1d+currentFrame/2d, 5d);
-		double ratio = (double)height/(double)width;
+		double radius2 = 0.15*(double)Math.min(1+currentFrame*currentFrame, 42d);		
 		
 		double s = 1.0;
 		if(currentFrame>=6) { s = 1.0 - 0.15*(currentFrame-6); }
 		
-		double d,f;
+		double d2,f;
 		
 		for(int row= -(height/2); row<height; row++) {
 			for(int col= -(width/2); col<width; col++) {
 				
-				d = row*row + col*col*ratio;
+				d2 = row*row + col*col*ratio;
 				
-				if(d < radius) {
-					f = (radius - d)/radius; //relative diff.
+				if(d2 < radius2) {
+					f = (radius2 - d2)/radius2; //relative diff.
 
 					Color c = frame.getPixel(xpos+col,  ypos+row);			
 					c = PixelImage.blendColors(c, getColor(s * (1.0 - f)));
 					
-					frame.setPixel(xpos+col, ypos+row, getColor(s * (1.0 - f)));
+					frame.setPixel(xpos+col, ypos+row, c);
 				}
 				
 			}
@@ -54,7 +55,7 @@ public class DefaultBrickExplosion extends Animation {
 	}
 	
 	private Color getColor(double f) {
-		f = Math.max(0, Math.min(f, 0.3));
+		f = Math.max(0d, Math.min(f, 0.8));
 		
 		int alpha = (int)Math.round(255 * f);
 		return new Color(255,255 - (currentFrame*15),0,alpha);

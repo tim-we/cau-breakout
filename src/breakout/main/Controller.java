@@ -53,7 +53,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		if(InputHandler instanceof breakout.input.BreakoutBot) {
 			((breakout.input.BreakoutBot)InputHandler).init(model);
 		}
-		else if(InputHandler instanceof breakout.input.KeyboardInput){
+		else if(InputHandler instanceof breakout.input.KeyboardInput) {
 			((breakout.input.KeyboardInput)InputHandler).init(lhs);
 		}
 		
@@ -88,6 +88,13 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		
 		playAnimation(new IntroAnimation());
 		pause(1000);
+		
+		if(InputHandler instanceof breakout.input.KeyboardInput) {
+			if(!lhs.isFocused()) {
+				System.out.println("WARNING: Game is not focused. Keyboard input won't work!");
+				pause(1000);
+			}
+		}
 		
 		while(true) {
 			
