@@ -62,6 +62,14 @@ public abstract class View extends Observable implements Observer {
 				int[] ballPos = getViewCoordinates(ball.getPosition(), model);
 				
 				nextFrame.setPixel(ballPos[0], ballPos[1], Ball.color);
+				
+				//draw tail
+				for(int i=0; i<ball.getTail().length; i++) {
+					if(ball.getTail()[i] == null) { break; }
+					
+					int[] tpos = getViewCoordinates(ball.getTail()[i], model);
+					nextFrame.setPixel(tpos[0], tpos[1], new Color(255,42,0,200/(i+1)));
+				}
 			}	
 			
 		frame = nextFrame;		
