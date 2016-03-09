@@ -6,10 +6,24 @@ import breakout.physics.PhysicsObject;
 import breakout.physics.CollisionEvent;
 import java.awt.Color;
 
+/**
+ * TODO: comment about brick types
+ */
 public class Brick extends PhysicsObject {
 	
-	private Color[] color = {new Color(255,0,80), new Color(90,255,0), new Color(0,90,255), new Color(255,0,255),new Color(0,255,255), new Color(255,255,0), 
-			new Color(255,137,2), new Color(63,255,146), new Color(0,225,255),new Color(100,100,100)};
+	private Color[] color = {
+			new Color(255,0,80),
+			new Color(90,255,0),
+			new Color(0,90,255),
+			new Color(255,0,255),
+			new Color(0,255,255),
+			new Color(255,255,0), 
+			new Color(255,137,2),
+			new Color(63,255,146),
+			new Color(0,225,255),
+			new Color(100,100,100)
+		};
+	
 	private byte brickType;
 	private boolean destroyed;
 	
@@ -58,60 +72,24 @@ public class Brick extends PhysicsObject {
 
 	@Override
 	public void onCollision(CollisionEvent e){
-	  
-		switch (brickType){
-		//Normal Brick Red
-		case 0:
-			destroyed = true;
-			break;
-		//Normal Brick Green	
-		case 1:
-			destroyed = true;
-			break;
-		//Normal Brick Blue
-		case 2:	
-			destroyed = true;
-			break;
-		//FastBrick, makes the Ball faster	
-		case 3:
+		
+		destroyed = true;
+		
+		switch (brickType){	
+		case 3: //FastBrick, makes the Ball faster
 			PhysicsObject x = e.getObjectA() instanceof Ball ? e.getObjectA() : e.getObjectB();
 			if(x instanceof Ball){
 				Ball ball = (Ball)x;
 				ball.changeVelocity(BreakoutConstants.BALL_VELOCITY_CHANGE);
 			}
-			destroyed = true;
 			break;
-		//SlowBrick, makes the Ball slower
-		case 4:
+		
+		case 4: //SlowBrick, makes the Ball slower
 			PhysicsObject y = e.getObjectA() instanceof Ball ? e.getObjectA() : e.getObjectB();
 			if(y instanceof Ball){
 				Ball ball = (Ball)y;
 				ball.changeVelocity(-0.7*BreakoutConstants.BALL_VELOCITY_CHANGE);
 			}
-			destroyed = true;
-			break;
-		//ReversePaddleBrick	
-		case 5:
-			
-			destroyed = true;
-			break;
-		//EnlargePaddle	
-		case 6:
-			
-			destroyed = true;
-			break;
-		//MinimizePaddle	
-		case 7:
-			
-			destroyed = true;
-			break;
-		case 8:
-			
-			destroyed = true;
-			break;
-		case 9:
-			
-			destroyed = true;
 			break;
 		}
 		

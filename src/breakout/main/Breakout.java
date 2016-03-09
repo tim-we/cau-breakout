@@ -1,6 +1,5 @@
 package breakout.main;
 
-import breakout.assets.BreakoutConstants;
 import breakout.input.*;
 
 public class Breakout {

@@ -12,7 +12,7 @@ public class HighriserFont implements Font {
     	charMap.put('b', new Letter(5, 5, "11100"+"10010"+"11100"+"10010"+"11100"));
     	charMap.put('c', new Letter(4, 5, "1110"+"1000"+"1000"+"1000"+"1110"));
         charMap.put('d', new Letter(4, 5, "0000"+"1100"+"1010"+"1010"+"1100"));
-        charMap.put('D', new Letter(4, 5, "1100"+"1010"+"1010"+"1010"+"1100"));
+        charMap.put('D', new Letter(5, 5, "11100"+"10010"+"10010"+"10010"+"11100"));
         charMap.put('e', new Letter(3, 5, "110"+"100"+"110"+"100"+"110"));
         charMap.put('E', new Letter(4, 5, "1110"+"1000"+"1110"+"1000"+"1110"));
         charMap.put('g', new Letter(5, 5, "01110"+"10000"+"10110"+"10010"+"01100"));

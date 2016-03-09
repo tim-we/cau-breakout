@@ -2,7 +2,6 @@ package breakout.levels;
 
 import java.util.Random;
 
-import acm.util.RandomGenerator;
 import breakout.main.Model;
 import breakout.physics.Vector2D;
 import breakout.assets.BreakoutConstants;
@@ -11,15 +10,17 @@ import breakout.items.Brick;
 public class LevelLoader {
 	
 	private static final Level[] levels = { 
-			new Level("-222-222-11-111-11-0004000-"), 
+			new Level("-222-222-"+"11-111-11"+"-0004000-"),
+			new Level("-242-242-"+"33-191-33"+"-0081800-"),
+			new Level("-0129210-"+"--13831--"+"---010---"+"----1----"),
 			new Level("000353000434000647000363000"),
-			new Level("101213141516171011121314161"), 
-			new	Level("000141000646222737111000111"), 
+			new Level("101213141516171011121314161"),
+			new	Level("000141000646222737111000111"),
 			new Level("012012012012012012012012012"),
-			new Level("010141010101030101010171010"), 
-			new	Level("121212121213746512121252121"), 
+			new Level("010141010101030101010171010"),
+			new	Level("121212121213746512121252121"),
 			new Level("01234567--7654321001234567-"),
-			new	Level("-1-1-1-1-1-1-5-1-1-3-1-1-4-"), 
+			new	Level("-1-1-1-1-1-1-5-1-1-3-1-1-4-"),
 			new	Level("-0--1--2--3--4--5--6--7--0-"),
 			
 		//CAU Level:
