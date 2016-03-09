@@ -12,7 +12,6 @@ public class LevelLoader {
 	private static final Level[] levels = { 
 			new Level("-222-222-"+"11-111-11"+"-0004000-"),
 			new Level("-242-242-"+"33-191-33"+"-0081800-"),
-			new Level("-0129210-"+"--13831--"+"---010---"+"----1----"),
 			new Level("000353000434000647000363000"),
 			new Level("101213141516171011121314161"),
 			new	Level("000141000646222737111000111"),
@@ -72,6 +71,12 @@ public class LevelLoader {
 				+ "?2-21-$$110--"
 				+ "?2-21-$1$10--"
 				+ "?-$2$2-$1--$$10--"),
+		//triangle
+		new Level("-0129210-"
+				 +"--13831--"
+				 +"---010---"
+				 +"----1----",
+				 new Vector2D(1 * BreakoutConstants.WINDOW_HEIGHT, 2 * BreakoutConstants.WINDOW_HEIGHT))
 		/*
 		new Level(""
 				+ ""

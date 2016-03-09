@@ -92,7 +92,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		while(true) {
 			
 			LevelLoader.loadLevel(model);
-			//LevelLoader.loadLevel(0,model);
+			//LevelLoader.loadLevel(18,model);
 			
 			refreshStaticObjects();
 			
@@ -221,9 +221,6 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			}
 		} else if(x instanceof BarOfDeath) {
-			//TODO: remove ball, if no balls left trigger game over
-			
-			//model.clearBalls();
 			
 			if(e.getObjectA() instanceof Ball) { 
 				Ball ball = (Ball) e.getObjectA();

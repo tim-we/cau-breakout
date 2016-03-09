@@ -35,5 +35,8 @@ public class BreakoutConstants {
 	
 	public static final boolean HIGHRISER_VIEW_ENABLED = false;
 	
-	public static final String INPUT_SOURCE = "Keyboard";
+	/*
+	 * choose from: Keyboard, Bot, Mouse
+	 */
+	public static final String INPUT_SOURCE = "Bot";
 }
