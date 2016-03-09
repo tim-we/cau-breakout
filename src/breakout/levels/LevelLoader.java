@@ -11,7 +11,7 @@ import breakout.items.Brick;
 public class LevelLoader {
 	
 	private static final Level[] levels = { 
-			new Level("-222-222-11-111-11-8884888-"), 
+			new Level("-222-222-11-111-11-0004000-"), 
 			new Level("000353000434000647000363000"),
 			new Level("101213141516171011121314161"), 
 			new	Level("000141000646222737111000111"), 

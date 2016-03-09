@@ -1,6 +1,7 @@
 package breakout.lighthouse;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
 import breakout.assets.PixelImage;
 import breakout.assets.BreakoutConstants;
@@ -22,6 +23,9 @@ public class LhSimulator extends GraphicsProgram {
 	private static final Color WIN_OFF_CLR = new Color(0,0,0);
 	
 	private static final int WTF_OFFSET = 62; //no further explanation needed. DEAL WITH IT
+	
+	private boolean leftArrowKeyPressed = false;
+	private boolean rightArrowKeyPressed = false;
 	
 	public void run() {		
 		setSize(BORDER_X + WIDTH*(WINDOW_WIDTH + BORDER_X) + WTF_OFFSET - 42 -3, BORDER_Y + HEIGHT*(WINDOW_HEIGHT + BORDER_Y) + WTF_OFFSET);
@@ -56,6 +60,40 @@ public class LhSimulator extends GraphicsProgram {
 			
 		removeAll();
 		add(bb);
+	}
+	
+	public boolean isLeftArrowKeyPressed(){
+		return this.leftArrowKeyPressed;
+	}
+	
+	public boolean isRightArrowKeyPressed(){
+		return this.rightArrowKeyPressed;
+	}
+	
+	public void init(){
+		addKeyListeners();
+	}
+	
+	public void keyPressed(KeyEvent e){
+		switch (e.getKeyCode()){
+		case KeyEvent.VK_LEFT:
+			leftArrowKeyPressed = true;
+			break;
+		case KeyEvent.VK_RIGHT:
+			rightArrowKeyPressed = true;
+			break;
+		}
+	}
+	
+	public void keyReleased(KeyEvent e){
+		switch (e.getKeyCode()){
+		case KeyEvent.VK_LEFT:
+			leftArrowKeyPressed = false;
+			break;
+		case KeyEvent.VK_RIGHT:
+			rightArrowKeyPressed = false;
+			break;
+		}
 	}
 	
 }

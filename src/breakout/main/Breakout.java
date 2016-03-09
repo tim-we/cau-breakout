@@ -6,8 +6,21 @@ import breakout.input.*;
 public class Breakout {
 	
 	public static void main(String[] args) {
-		BreakoutInput userinput = BreakoutConstants.ENABLE_BOT ? new BreakoutBot() : new BasicMouseInput();
 		
+		System.out.println("Actual user input set on: "+ breakout.assets.BreakoutConstants.INPUT_SOURCE + 
+				"default is Keyboard.");
+		BreakoutInput userinput;
+		if (breakout.assets.BreakoutConstants.INPUT_SOURCE.equals("Bot")){
+			userinput = new BreakoutBot();
+		}
+		else if (breakout.assets.BreakoutConstants.INPUT_SOURCE.equals("Mouse")){
+			userinput = new BasicMouseInput();
+		}
+		else {
+			userinput = new KeyboardInput();
+		}
+		
+				
 		Controller c = new Controller(userinput);	
 
 		System.out.println("Game starting...");

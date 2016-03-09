@@ -53,6 +53,9 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		if(InputHandler instanceof breakout.input.BreakoutBot) {
 			((breakout.input.BreakoutBot)InputHandler).init(model);
 		}
+		else if(InputHandler instanceof breakout.input.KeyboardInput){
+			((breakout.input.KeyboardInput)InputHandler).init(lhs);
+		}
 		
 		//create views and register them with the model
 		
