@@ -32,6 +32,10 @@ public class LhSimulator extends GraphicsProgram {
 		validate();
 	}
 	
+	public boolean isFocused() {
+		return false;
+	}
+	
 	public void draw(PixelImage frame) {
 	
 		GCompound bb = new GCompound();

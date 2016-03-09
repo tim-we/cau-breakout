@@ -16,8 +16,6 @@ public class ScoreAnimation extends Animation {
 	
 	private int score;
 	
-	private int scoreTextLength;
-	
 	private static final Color titleColor = new Color(255,255,255);
 	private static final Color[] digitColors = {new Color(255,0,80), new Color(90,255,0), new Color(0,90,255)};
 	
@@ -30,8 +28,6 @@ public class ScoreAnimation extends Animation {
 		fr = new FontRenderer(new HighriserFont());
 		fr.setCharOffset(1);
 		
-		scoreTextLength = fr.getTextWidth(score+"");
-		
 		background = new PixelImage(width, height);
 		background.fill(new Color(0,0,0));
 		
@@ -43,7 +39,9 @@ public class ScoreAnimation extends Animation {
 		frame = new PixelImage(background);
 		
 		int displayScore = Math.max(0, score-frames+currentFrame);
+		
 		//align right
+		int scoreTextLength = fr.getTextWidth(displayScore+"");
 		int xPos = BreakoutConstants.WINDOW_COLUMNS - 2 - scoreTextLength;
 		
 		fr.render(frame, 2, 1, "SC0rE", titleColor);

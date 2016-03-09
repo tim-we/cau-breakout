@@ -7,7 +7,7 @@ public class BreakoutBot implements BreakoutInput {
 	
 	private breakout.main.Model model;
 	
-	private double max_speed = 7;
+	private double max_speed = 6d;
 	
 	private double last_speed = 0;
 	
@@ -26,6 +26,8 @@ public class BreakoutBot implements BreakoutInput {
 			double d = xpos - paddle_pos;
 
 			double max = max_speed;
+			if(ball.getVelocity().sqlength() > 20000d) { max += 1d; }
+			if(ball.getVelocity().sqlength() > 20000d) { max += 1d; }
 			
 			if(paddle.getReverse()) { 
 				d = -d;
@@ -36,7 +38,7 @@ public class BreakoutBot implements BreakoutInput {
 			
 			d = Math.max(-max, Math.min(d, max));
 			
-			d = 0.8 * last_speed + 0.2 * d;
+			d = 0.75 * last_speed + 0.25 * d;
 			
 			paddle.move(d);
 			last_speed = d;

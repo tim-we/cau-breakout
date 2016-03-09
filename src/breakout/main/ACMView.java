@@ -22,15 +22,5 @@ public class ACMView extends View {
 		
 		display.draw(frame);
 	}
-	
-	public void update(Model m) {
-		/*deprecated*/
-		
-		renderFrame(m);
-		
-		display.draw(frame);
-		
-		System.out.println("deprecated method 1");
-	}
 
 }

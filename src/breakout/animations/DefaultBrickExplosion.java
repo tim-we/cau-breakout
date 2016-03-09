@@ -2,21 +2,24 @@ package breakout.animations;
 
 import java.awt.Color;
 
-import breakout.assets.BreakoutConstants;
 import breakout.assets.PixelImage;
 import breakout.main.Model;
+import breakout.physics.Vector2D;
 
 public class DefaultBrickExplosion extends Animation {
 	
-	private static final int width = 8;
+	private static final int width = 10;
 	private static final int height = 4;
 	
 	private int xpos;
 	private int ypos;
 	
 	public DefaultBrickExplosion(double x, double y, Model m) {
-		xpos = (int)Math.round(BreakoutConstants.WINDOW_COLUMNS * x/m.getWidth());
-		ypos = (int)Math.round(BreakoutConstants.WINDOW_ROWS * y/m.getHeight());
+		int[] tmp = breakout.main.View.getViewCoordinates(new Vector2D(x,y), m);
+		
+		xpos = tmp[0];
+		ypos = tmp[1];
+		
 		frames = 12;
 	}
 	
@@ -51,7 +54,7 @@ public class DefaultBrickExplosion extends Animation {
 	}
 	
 	private Color getColor(double f) {
-		f = Math.max(0, Math.min(f, 0.7));
+		f = Math.max(0, Math.min(f, 0.3));
 		
 		int alpha = (int)Math.round(255 * f);
 		return new Color(255,255 - (currentFrame*15),0,alpha);
