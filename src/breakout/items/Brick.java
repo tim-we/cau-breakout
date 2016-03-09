@@ -37,8 +37,14 @@ public class Brick extends PhysicsObject {
 	  return this.brickType;
 	}
 
+	private float hue=0.1F;
+	
 	public Color getColor() {
-		if(brickType<0) { return new Color(0,0,0,0); }
+		if(brickType == 8){
+			hue += 0.05F;
+			return Color.getHSBColor(hue, 1, 1);
+		}
+		else if(brickType<0) { return new Color(0,0,0,0); }
 		return this.color[brickType % color.length];
 	}
 	
