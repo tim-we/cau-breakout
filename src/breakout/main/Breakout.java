@@ -6,7 +6,7 @@ import breakout.input.*;
 public class Breakout {
 	
 	public static void main(String[] args) {
-		BreakoutInput userinput = BreakoutConstants.ENABLE_BOT ? new BreakoutBot() :new BasicMouseInput();
+		BreakoutInput userinput = BreakoutConstants.ENABLE_BOT ? new BreakoutBot() : new BasicMouseInput();
 		
 		Controller c = new Controller(userinput);	
 

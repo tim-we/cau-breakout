@@ -8,7 +8,8 @@ import breakout.font.FontRenderer;
 import breakout.font.HighriserFont;
 
 public class WastedAnimation extends Animation {
-private FontRenderer fr;
+	
+	private FontRenderer fr;
 	
 	private PixelImage background;
 	
