@@ -8,7 +8,7 @@ public class Ball extends MovingObject {
   
 	private double width = BreakoutConstants.WINDOW_WIDTH; 
 	private double height = BreakoutConstants.WINDOW_HEIGHT;
-	
+	private boolean dead = false;
 	public static final double MAX_SPEED_2 = BreakoutConstants.BALL_MAX_SPEED*BreakoutConstants.BALL_MAX_SPEED;
   
 	public static final Color color = new Color(255,255,255);
@@ -22,6 +22,14 @@ public class Ball extends MovingObject {
 		this.Position = position;
 		setBBox(width,height);
 		this.Velocity = velocity;
+	}
+	
+	public void setDead(){
+		this.dead = true;
+	}
+	
+	public boolean isDead(){
+		return this.dead;
 	}
 	
 	public void scaleVelocity(double f) {

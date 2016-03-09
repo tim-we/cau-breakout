@@ -96,6 +96,14 @@ public class Model extends Observable {
 				anim.nextFrame();
 			}
 		}
+		for (int i=0;i<balls.size();i++){
+			Ball ball = balls.get(i);
+			
+			if(ball != null && ball.isDead()){
+				balls.remove(ball);
+				i--;
+			}
+		}
 		
 		//update views
 		notifyViews();

@@ -3,6 +3,7 @@ package breakout.main;
 import java.util.Observable;
 import java.util.Observer;
 
+import acm.util.RandomGenerator;
 import breakout.items.*;
 import breakout.lighthouse.*;
 import breakout.physics.*;
@@ -87,8 +88,9 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		
 		while(true) {
 			
-			LevelLoader.loadLevel(model);
-
+			//LevelLoader.loadLevel(model);
+			LevelLoader.loadLevel(0,model);
+			
 			refreshStaticObjects();
 			
 			runLoop = true;
@@ -178,28 +180,38 @@ public class Controller implements Observer, PhysicsEventReceiver {
 					model.clearBalls();
 				}
 				
+				byte typeOfBrick = brick.getBrickType();
 				Vector2D p = e.getCollisionPoint();
-				if (brick.getBrickType() == 3){
+				
+				if (typeOfBrick == 9){
+					RandomGenerator rgen = new RandomGenerator();
+					typeOfBrick = (byte) (1+rgen.nextInt(8));
+				}
+				
+				if (typeOfBrick == 3){
 					model.addAnimation(new RedShockwave(p, model));
 				}
-				else if (brick.getBrickType() == 4){
+				else if (typeOfBrick == 4){
 					model.addAnimation(new BlueShockwave(p, model));
 				}
-				else if (brick.getBrickType()==5){
+				else if (typeOfBrick == 5){
 					model.getPaddle().toggleReverse();
 					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
 				}
-				else if (brick.getBrickType()==6){
+				else if (typeOfBrick == 6){
 					if(model.getPaddle().getWidth()<=BreakoutConstants.normalPaddle){
 						model.getPaddle().changePaddleWidth(BreakoutConstants.changeSizePaddle);
 					}
 					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
 				}
-				else if (brick.getBrickType()==7){
+				else if (typeOfBrick == 7){
 					if(model.getPaddle().getWidth()>=BreakoutConstants.normalPaddle){
 						model.getPaddle().changePaddleWidth(-BreakoutConstants.changeSizePaddle);
 					}
 					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
+				}
+				else if (typeOfBrick == 8){
+					model.spawnBall(new Vector2D(model.getWidth()/2, model.getHeight()/2),new Vector2D(4 * BreakoutConstants.WINDOW_HEIGHT, 7 * BreakoutConstants.WINDOW_HEIGHT));
 				}
 				else {
 					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
@@ -209,15 +221,17 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		} else if(x instanceof BarOfDeath) {
 			//TODO: remove ball, if no balls left trigger game over
 			
-			model.clearBalls();
+			//model.clearBalls();
 			
 			if(e.getObjectA() instanceof Ball) { 
-				
-				((Ball)e.getObjectA()).scaleVelocity(0);
-				
+				Ball ball = (Ball) e.getObjectA();
+				ball.scaleVelocity(0);
+				ball.setDead();
+			}
+			if (model.getBalls().size() == 1){
+				runLoop = false;
 			}
 			
-			runLoop = false;
 		}
 	}
 	

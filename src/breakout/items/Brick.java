@@ -9,7 +9,7 @@ import java.awt.Color;
 public class Brick extends PhysicsObject {
 	
 	private Color[] color = {new Color(255,0,80), new Color(90,255,0), new Color(0,90,255), new Color(255,0,255),new Color(0,255,255), new Color(255,255,0), 
-			new Color(255,137,2), new Color(63,255,146), new Color(0,225,255)};
+			new Color(255,137,2), new Color(63,255,146), new Color(0,225,255),new Color(100,100,100)};
 	private byte brickType;
 	private boolean destroyed;
 	
@@ -40,7 +40,7 @@ public class Brick extends PhysicsObject {
 	private float hue=0.1F;
 	
 	public Color getColor() {
-		if(brickType == 8){
+		if(brickType == 9){
 			hue += 0.05F;
 			return Color.getHSBColor(hue, 1, 1);
 		}
@@ -107,9 +107,12 @@ public class Brick extends PhysicsObject {
 			break;
 		case 8:
 			
-			destroyed =true;
+			destroyed = true;
 			break;
+		case 9:
 			
+			destroyed = true;
+			break;
 		}
 		
 	}
