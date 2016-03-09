@@ -33,6 +33,7 @@ public class Model extends Observable {
 		bottomBar = new BarOfDeath((BreakoutConstants.WINDOW_ROWS-0.2) * BreakoutConstants.WINDOW_HEIGHT, worldWidth, 0.2 * BreakoutConstants.WINDOW_HEIGHT);
 		
 		reset();
+		resetScore();
 	}
 	
 	public void reset() {
@@ -40,12 +41,14 @@ public class Model extends Observable {
 		this.bricks = new ArrayList<Brick>();
 		this.animations = new ArrayList<Animation>();
 		
-		score = 0;
-		
 		paddle = new Paddle(worldWidth);
 		
 		notifyViews();
 	}
+	
+	public void resetScore() {
+		score = 0;
+	};
 	
 	//getter
 	public ArrayList<Ball> getBalls() {	return balls; }

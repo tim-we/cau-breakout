@@ -120,9 +120,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				pause(pause_time);
 			}
 			
-			//temporary solution:
-			if(model.getBricks().size() > 0) {
-				//playAnimation(new DeathAnimation());
+			if(model.getBricks().size() > 0) {			
 				playAnimation(new WastedAnimation());
 				pause(1000);
 			}
@@ -133,7 +131,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			pause(2500);
 			
-			model.reset();
+			if(model.getBricks().size() > 0) { model.resetScore(); }
+			model.reset();	
 		}
 		
 	}

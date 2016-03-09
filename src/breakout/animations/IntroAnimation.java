@@ -2,6 +2,7 @@ package breakout.animations;
 
 import java.awt.Color;
 
+import breakout.assets.BreakoutConstants;
 import breakout.assets.PixelImage;
 import breakout.font.FontRenderer;
 import breakout.font.HighriserFont;
@@ -13,6 +14,8 @@ public class IntroAnimation extends Animation {
 	private int titleLength;
 	
 	private static final String title = "BREAK0UT!";
+	
+	private PixelImage background;
 	
 	private static final Color[] titleColors = {
 			new Color(100,0,255),
@@ -29,13 +32,19 @@ public class IntroAnimation extends Animation {
 		
 		titleLength = fr.getTextWidth(title);
 		
-		frames = (titleLength-20) * 3;	
+		frames = (titleLength-20) * 3;
+		
+		width = BreakoutConstants.WINDOW_COLUMNS;
+		height = BreakoutConstants.WINDOW_ROWS;
+		
+		background = new PixelImage(width, height);
+		background.fill(Color.BLACK);
 	}
 	
 	@Override
 	public PixelImage renderFrame(PixelImage frame) {
 		
-		frame = new PixelImage(frame);
+		frame = new PixelImage(background);
 		
 		fr.render(frame, getXPos(), 2, title, titleColors);
 		
