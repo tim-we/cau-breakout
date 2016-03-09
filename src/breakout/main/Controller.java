@@ -88,8 +88,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		
 		while(true) {
 			
-			//LevelLoader.loadLevel(model);
-			LevelLoader.loadLevel(0,model);
+			LevelLoader.loadLevel(model);
+			//LevelLoader.loadLevel(0,model);
 			
 			refreshStaticObjects();
 			
