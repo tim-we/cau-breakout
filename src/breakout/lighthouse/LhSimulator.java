@@ -33,7 +33,7 @@ public class LhSimulator extends GraphicsProgram {
 	}
 	
 	public boolean isFocused() {
-		return false;
+		return this.isFocusOwner();
 	}
 	
 	public void draw(PixelImage frame) {
