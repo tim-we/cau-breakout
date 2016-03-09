@@ -61,7 +61,7 @@ public abstract class View extends Observable implements Observer {
 			for(Ball ball : model.getBalls()) {
 				int[] ballPos = getViewCoordinates(ball.getPosition(), model);
 				
-				boolean speedy = ball.getVelocity().sqlength() > 16900;
+				boolean speedy = ball.getVelocity().sqlength() > 20000d;
 				
 				//draw tail
 				for(int i=0; i<ball.getTail().length; i++) {

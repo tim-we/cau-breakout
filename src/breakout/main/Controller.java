@@ -123,18 +123,18 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				pause(pause_time);
 			}
 			
+			System.out.println("Level ended. Score: " + model.getScore());
+			
 			if(model.getBricks().size() > 0) {			
 				playAnimation(new WastedAnimation());
 				pause(1000);
+				
+				playAnimation(new ScoreAnimation(model.getScore()));
+				pause(3000);
+				
+				model.resetScore();
 			}
 			
-			System.out.println("Game ended. Score: " + model.getScore());
-			
-			playAnimation(new ScoreAnimation(model.getScore()));
-			
-			pause(2500);
-			
-			if(model.getBricks().size() > 0) { model.resetScore(); }
 			model.reset();	
 		}
 		
