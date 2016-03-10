@@ -11,8 +11,10 @@ public class BasicMouseInput implements BreakoutInput {
 	
 	private double mouseSpeed = 0.8;
 	
+	@Override
 	public void update(Paddle paddle, int ms) {
-
+		/* Saves the new Mouse Position and moves the Paddle 
+		 * with the difference to the last Mouse Position */
 		int newPosition = MouseInfo.getPointerInfo().getLocation().x;
 		
 		double d = mouseSpeed * (newPosition-lastMouseXPos);

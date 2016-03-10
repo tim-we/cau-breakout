@@ -22,6 +22,7 @@ public class KeyboardInput implements BreakoutInput{
 		
 		double speed = 0;
 		
+		/* Moves the Paddle left or right as long as the Key is pressed */
 		if (lhs.isLeftArrowKeyPressed() == true){
 			paddle.move(-maxSpeed);
 			speed -= maxSpeed;
@@ -32,6 +33,7 @@ public class KeyboardInput implements BreakoutInput{
 			speed += maxSpeed;
 		}
 		
+		/* Moves the paddle depending on the paddle's speed after the user released the key already */
 		speed = Math.max(-maxSpeed , Math.min(speed, maxSpeed));
 		speed = 0.4*speed+0.6*lastspeed;
 		

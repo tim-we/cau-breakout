@@ -15,6 +15,12 @@ public class BreakoutBot implements BreakoutInput {
 		this.model = model;
 	}
 	
+	/**
+	 * this method gets called in the game's main loop and should
+	 * update the Paddle's x coordinate according to the Bot
+	 * @param paddle
+	 * @param ms - time in milliseconds since last frame (for more advanced implementations)
+	 * 	 */
 	public void update(Paddle paddle, int ms) {
 		Ball ball = getBallOfInterest();
 		
@@ -26,18 +32,22 @@ public class BreakoutBot implements BreakoutInput {
 			double d = xpos - paddle_pos;
 
 			double max = max_speed;
+			/* If the ball is fast enough the Bot can move faster */
 			if(ball.getVelocity().sqlength() > 20000d) { max += 1d; }
 			if(ball.getVelocity().sqlength() > 20000d) { max += 1d; }
 			
+			/* If reverse Mode is activated the bot can't play as fast as normal */
 			if(paddle.getReverse()) { 
 				d = -d;
 				d *= 0.8;
 			}
 			
+			/* If the Ball moves up the Bot shall not follow the BallPosition as fast as normal */
 			if(yvel < 0) { d = d * 0.02; }
 			
 			d = Math.max(-max, Math.min(d, max));
 			
+			/* The bot needs to accelerate the paddle first */
 			d = 0.75 * last_speed + 0.25 * d;
 			
 			paddle.move(d * ms/40d);
@@ -45,6 +55,11 @@ public class BreakoutBot implements BreakoutInput {
 		}
 	}
 	
+	/**
+	 * If there is a Ball the bot will focus to follow this one, 
+	 * if this ball is moving up he will focus another ball moving down at the moment
+	 * @return the ball of Interest
+	 */
 	public Ball getBallOfInterest() {
 		Ball ball = null;
 		if(model.getBalls().size() > 0) {		
