@@ -40,12 +40,12 @@ public class LevelLoader {
 				+ "?2-$1---$0-$0$0-"
 				+ "?2-$1---$0--$$0-"),
 		//Math Level
-		new Level("?$2-2-1-$$0$0$0$2-$$2"
-				+ "?$2$2$2$2-$1$1-$0-$$2-$$2"
-				+ "?$222-$$1-$$1-$$0-$$2$2$2"
-				+ "?$2-2-$$1$1$1-$$0-$$2-$$2"
-				+ "?$2-21-10-$$2-$$2"
-				+ "?$2-21-10-$$2-$$2"),
+		new Level("!?$2-2-1-$$0$0$0$2-$$2."
+				+ "?$2$2$2$2-$1$1-$0-$$2-$$2."
+				+ "?$222-$$1-$$1-$$0-$$2$2$2."
+				+ "?$2-2-$$1$1$1-$$0-$$2-$$2."
+				+ "?$2-21-10-$$2-$$2."
+				+ "?$2-21-10-$$2-$$2."),
 		//Info Level
 		new Level("?21--$$10$0$0-$$$2$2-"
 				+ "?21$1-$10--$$$2-$$2-"
@@ -124,7 +124,7 @@ public class LevelLoader {
 	
 	/* supported/functional characters of the level parser */
 	public static final String brickChars = "0123456789";
-	public static final String controlChars = ".$?;";
+	public static final String controlChars = ".$?;!";
 	
 	/**
 	 * A method which adds the bricks of a given Level to a Model.
@@ -140,6 +140,8 @@ public class LevelLoader {
 		double yPos = BreakoutConstants.BRICK_Y_OFFSET;
 		xPos = BreakoutConstants.BRICK_X_OFFSET;
 		
+		boolean autoLineBreak = true;
+		
 		/* This loop parses the level data of the given level */
 		for (int i = 0; i < brickData.getString().length(); i++) {
 			
@@ -151,7 +153,8 @@ public class LevelLoader {
 				 * '.' => forced line break
 				 * '$' => changes the X-Position of the next Brick
 				 * '?' => changes the Y-Position of the next Brick one Window-Row up
-				 * ';' => changes the Y-Position of the next Brick one Window-Row down			
+				 * ';' => changes the Y-Position of the next Brick one Window-Row down
+				 * '!' => toggels auto line break	
 				 */
 				 
 				switch (ci) {
@@ -168,6 +171,9 @@ public class LevelLoader {
 					case ';':
 						yPos += BreakoutConstants.BRICK_Y_OFFSET;
 						break;
+					case '!': {
+						autoLineBreak = !autoLineBreak;
+					}
 				}
 				
 			} else {
@@ -182,7 +188,7 @@ public class LevelLoader {
 				/* unrecognized characters like '-' or ' ' will create a "whitespace" between blocks */
 				xPos += Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET;
 				
-				if (xPos >= m.getWidth()) {
+				if (autoLineBreak && xPos >= m.getWidth()) {
 					xPos = BreakoutConstants.BRICK_X_OFFSET;
 					yPos += Brick.brickHeight + BreakoutConstants.BRICK_Y_OFFSET;
 				}
