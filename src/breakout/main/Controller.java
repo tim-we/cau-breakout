@@ -1,13 +1,14 @@
 package breakout.main;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-
 import acm.util.RandomGenerator;
+
 import breakout.items.*;
 import breakout.lighthouse.*;
 import breakout.physics.*;
-import breakout.input.BreakoutInput;
+import breakout.input.*;
 import breakout.animations.*;
 import breakout.assets.BreakoutConstants;
 import breakout.levels.*;
@@ -22,7 +23,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 	
 	public static final int MAX_PHYS_ITERATIONS = 4; //per frame
 	
-	private BreakoutInput InputHandler;
+	private ArrayList<BreakoutInput> InputHandler = new ArrayList<BreakoutInput>();
 	
 	private Model model;
 	
@@ -39,23 +40,27 @@ public class Controller implements Observer, PhysicsEventReceiver {
 	private boolean runLoop = false;
 	
 	//constructor
-	public Controller(BreakoutInput input) {
-		InputHandler = input;
-		
+	public Controller() {
 		lhs = new LhSimulator();
 		lhs.start();
+	}
+	
+	public void addInputHandler(BreakoutInput input) {
+		InputHandler.add(input);
+		
+		if(input instanceof KeyboardInput) {
+			((KeyboardInput)input).setLHS(lhs);
+		}
 	}
 	
 	public void runController() {
 			
 		model = new Model(WORLDWIDTH, WORLDHEIGHT);	
 		
-		if(InputHandler instanceof breakout.input.BreakoutBot) {
-			((breakout.input.BreakoutBot)InputHandler).init(model);
-		}
-		else if(InputHandler instanceof breakout.input.KeyboardInput) {
-			((breakout.input.KeyboardInput)InputHandler).init(lhs);
-		}
+		//init input handlers
+			for(BreakoutInput input : InputHandler) {
+				input.init(model);
+			}
 		
 		//create views and register them with the model
 		
@@ -89,13 +94,6 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		playAnimation(new IntroAnimation());
 		pause(1000);
 		
-		if(InputHandler instanceof breakout.input.KeyboardInput) {
-			if(!lhs.isFocused()) {
-				System.out.println("WARNING: Game is not focused. Keyboard input won't work!");
-				pause(1000);
-			}
-		}
-		
 		while(true) {
 			
 			LevelLoader.loadLevel(model);
@@ -107,7 +105,9 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			while(runLoop) {
 				
-				InputHandler.update(model.getPaddle(), pause_time);
+				for(BreakoutInput input : InputHandler) {
+					input.update(model.getPaddle(), pause_time);
+				}
 				
 				int n = model.getBalls().size();
 				for(int i=0; i<n; i++) {

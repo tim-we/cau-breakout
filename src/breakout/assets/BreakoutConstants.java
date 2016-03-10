@@ -38,5 +38,5 @@ public class BreakoutConstants {
 	/*
 	 * choose from: Keyboard, Bot, Mouse
 	 */
-	public static final String INPUT_SOURCE = "Bot";
+	public static final String INPUT_SOURCE = "Mouse,Keyboard";
 }

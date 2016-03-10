@@ -6,23 +6,16 @@ public class Breakout {
 	
 	public static void main(String[] args) {
 		
-		//set up (user-)input 
-			System.out.println("Input set to: "+ breakout.assets.BreakoutConstants.INPUT_SOURCE);
+		Controller c = new Controller();
+		
+		//set up (user-)input
+			String input = breakout.assets.BreakoutConstants.INPUT_SOURCE;
+			System.out.println("Input set to: " + input);
 			
-			BreakoutInput userinput;
-			
-			if (breakout.assets.BreakoutConstants.INPUT_SOURCE.equals("Bot")){
-				userinput = new BreakoutBot();
-			}
-			else if (breakout.assets.BreakoutConstants.INPUT_SOURCE.equals("Mouse")){
-				userinput = new BasicMouseInput();
-			}
-			else {
-				userinput = new KeyboardInput();
-			}		
-				
-		Controller c = new Controller(userinput);	
-
+			if(input.indexOf("Mouse") >= 0)		{ c.addInputHandler(new BasicMouseInput()); }
+			if(input.indexOf("Keyboard") >= 0)	{ c.addInputHandler(new KeyboardInput()); }
+			if(input.indexOf("Bot") >= 0)		{ c.addInputHandler(new BreakoutBot()); }
+		
 		System.out.println("Game starting...");
 		
 		c.runController();

@@ -30,6 +30,9 @@ public class LhSimulator extends GraphicsProgram {
 	public void run() {		
 		setSize(BORDER_X + WIDTH*(WINDOW_WIDTH + BORDER_X) + WTF_OFFSET - 42 -3, BORDER_Y + HEIGHT*(WINDOW_HEIGHT + BORDER_Y) + WTF_OFFSET);
 		validate();
+		
+		requestFocus();
+		requestFocusInWindow();
 	}
 	
 	public boolean isFocused() {
@@ -76,6 +79,7 @@ public class LhSimulator extends GraphicsProgram {
 	
 	public void init(){
 		addKeyListeners();
+		requestFocus();
 	}
 	
 	public void keyPressed(KeyEvent e){

@@ -1,8 +1,11 @@
 package breakout.input;
 
 import breakout.items.Paddle;
+import breakout.main.Model;
 
 public interface BreakoutInput {
+	
+	public void init(Model m);
 	
 	/**
 	 * this method gets called in the game's main loop and should

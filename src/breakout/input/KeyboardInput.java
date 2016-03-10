@@ -1,15 +1,18 @@
 package breakout.input;
 
 import breakout.lighthouse.LhSimulator;
+import breakout.main.Model;
 import breakout.items.Paddle;
 
 public class KeyboardInput implements BreakoutInput{
 
 	private LhSimulator lhs; 
-	private static final double maxSpeed = 5.0;
+	private static final double maxSpeed = 5.5;
 	private double lastspeed = 0;
 	
-	public void init(LhSimulator lhs){
+	public void init(Model m) {}
+	
+	public void setLHS(LhSimulator lhs) {
 		this.lhs = lhs;
 	}
 	

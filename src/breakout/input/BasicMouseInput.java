@@ -3,6 +3,7 @@ package breakout.input;
 import java.awt.MouseInfo;
 
 import breakout.items.Paddle;
+import breakout.main.Model;
 
 public class BasicMouseInput implements BreakoutInput {
 	
@@ -20,5 +21,7 @@ public class BasicMouseInput implements BreakoutInput {
 		lastMouseXPos = newPosition;
 		
 	}
+
+	public void init(Model m) {}
 	
 }
