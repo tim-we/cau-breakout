@@ -35,7 +35,7 @@ public class KeyboardInput implements BreakoutInput{
 		speed = Math.max(-maxSpeed , Math.min(speed, maxSpeed));
 		speed = 0.4*speed+0.6*lastspeed;
 		
-		paddle.move(speed);
+		paddle.move(speed * ms/40d);
 		
 		lastspeed = speed;
 	}

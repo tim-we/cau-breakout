@@ -40,7 +40,7 @@ public class BreakoutBot implements BreakoutInput {
 			
 			d = 0.75 * last_speed + 0.25 * d;
 			
-			paddle.move(d);
+			paddle.move(d * ms/40d);
 			last_speed = d;
 		}
 	}
