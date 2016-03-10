@@ -41,12 +41,10 @@ public class Brick extends PhysicsObject {
 	public static final double brickWidth = 2 * BreakoutConstants.WINDOW_WIDTH;
 	public static final double brickHeight = BreakoutConstants.WINDOW_HEIGHT;
 	
-	//why spawn a destroyed brick?!
-	public Brick(double x, double y, byte brickType, boolean destroy){
+	public Brick(double x, double y, byte brickType){
 		this.Position = new Vector2D(x,y);
-		if (!destroy) {setBBox(brickWidth, brickHeight);}
+		setBBox(brickWidth, brickHeight);
 		this.brickType = brickType;
-		this.destroyed = destroy;
 	}
 
 	public boolean isDestroyed(){

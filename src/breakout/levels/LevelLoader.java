@@ -94,9 +94,9 @@ public class LevelLoader {
 				+ ""
 				+ ""),*/
 	};
-
-	private LevelLoader(double w) {
-	}
+	
+	/* constructor */
+	private LevelLoader() {}
 	
 	/**
 	 * 
@@ -121,7 +121,10 @@ public class LevelLoader {
 		
 		return levels[i];
 	}
-
+	
+	/* these characters will be parsed as bricks */
+	public static final String brickChars = "0123456789";
+	
 	/**
 	 * A method which adds the bricks of a given Level to a Model.
 	 * @param brickData The Level which should be displayed
@@ -131,93 +134,53 @@ public class LevelLoader {
 		/* remove all existing bricks */
 		m.clearBricks();
 		
-		//for debugging:
-		//System.out.println("loading level: " + brickData);
-		
 		/* Positions of the bricks */
 		double xPos;
 		double yPos = BreakoutConstants.BRICK_Y_OFFSET;
 		xPos = BreakoutConstants.BRICK_X_OFFSET;
 		
-		/* This loop runs through the String of the given Level	*/
+		/* This loop parses the level data of the given level */
 		for (int i = 0; i < brickData.getString().length(); i++) {
-			/* Default of brickType is -1 and of destroyed is true */
-			byte brickType = -1;
-			boolean destroyed = true;
-			/* switch for different types at actual String-Position 
-			 * case 0-9 are bricks
-			 * case $ changes the X-Position of the next Brick
-			 * case ? changes the Y-Position of the next Brick one Window-Row up
-			 * case ; changes the Y-Position of the next Brick one Window-Row down	*/
-			switch (brickData.getString().charAt(i)) {
-			case '0':
-				brickType = 0;
-				destroyed=false;
-				break;
-			case '1':
-				brickType = 1;
-				destroyed=false;
-				break;
-			case '2':
-				brickType = 2;
-				destroyed=false;
-				break;
-			case '3':
-				brickType = 3;
-				destroyed=false;
-				break;
-			case '4':
-				brickType = 4;
-				destroyed=false;
-				break;
-			case '5':
-				brickType = 5;
-				destroyed=false;
-				break;
-			case '6':
-				brickType = 6;
-				destroyed = false;
-				break;
-			case '7':
-				brickType = 7;
-				destroyed = false;
-				break;
-			case '8':
-				brickType = 8;
-				destroyed = false;
-				break; 
-			case '9':
-				brickType = 9;
-				destroyed = false;
-				break;
-			case '.': // forced line break
-				//xk = bricksPerRow - 1;
-				break;
-			case '$':
-				xPos -= BreakoutConstants.BRICK_X_OFFSET;
-				break;
-			case '?':
-				yPos -= BreakoutConstants.BRICK_Y_OFFSET;
-				break;
-			case ';':
-				yPos += BreakoutConstants.BRICK_Y_OFFSET;
-				break;
+			
+			char ci = brickData.getString().charAt(i);
+			
+			if(brickChars.indexOf(ci) >= 0) {			
+				/* current char represents a brick and can be parsed as an integer */
+				int brickType = (byte) Character.getNumericValue(ci);
+				
+				m.addBrick(new Brick(xPos, yPos, (byte) brickType));
+				
+				xPos += Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET;
+			} else {
+				/* current char is control character
+				 * '.' => forced line break
+				 * '$' => changes the X-Position of the next Brick
+				 * '?' => changes the Y-Position of the next Brick one Window-Row up
+				 * ';' => changes the Y-Position of the next Brick one Window-Row down			
+				 */
+				 
+				switch (ci) {
+					case '.': // forced line break
+						xPos = BreakoutConstants.BRICK_X_OFFSET;
+						yPos += Brick.brickHeight + BreakoutConstants.BRICK_Y_OFFSET;
+						break;
+					case '$':
+						xPos -= BreakoutConstants.BRICK_X_OFFSET;
+						break;
+					case '?':
+						yPos -= BreakoutConstants.BRICK_Y_OFFSET;
+						break;
+					case ';':
+						yPos += BreakoutConstants.BRICK_Y_OFFSET;
+						break;
+				}
+				
 			}
 			
 			/* If the X-Position is too high we go to the next line	*/
 			if (xPos >= m.getWidth()) {
 				xPos = BreakoutConstants.BRICK_X_OFFSET;
 				yPos += Brick.brickHeight + BreakoutConstants.BRICK_Y_OFFSET;
-			}
-			
-			/* in case 0-9 the brick will be added	*/
-			if (!destroyed) {
-				m.addBrick(new Brick(xPos, yPos, (byte) brickType, destroyed));
-			}
-			
-			/* After we added the brick we change the X-Position	*/
-			if (brickData.getString().charAt(i) != '$' && brickData.getString().charAt(i) != '?' && brickData.getString().charAt(i) != ';') {
-				xPos += Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET;
 			}
 
 		}
