@@ -11,7 +11,16 @@ import java.awt.Color;
  */
 public class Brick extends PhysicsObject {
 	
-	/* Color Array for the different BrickTypes */
+	/* Color Array for the different BrickTypes 
+	 * BrickType 0,1,2 are 'normal' bricks
+	 * BrickType 3 is a FastBrick, which makes the ball faster
+	 * BrickType 4 is a SlowBrick, which makes the ball slower
+	 * BrickType 5 is a ReverseBrick, which reverses the paddle control
+	 * BrickType 6 is a EnlargeBrick, which makes the paddle larger
+	 * BrickType 7 is a ReduceBrick, which makes the paddle smaller
+	 * BrickType 8 is a BallBrick, which adds another Ball
+	 * BrickType 9 is a RandomBrick, which performs a random action
+	 * */
 	private Color[] color = {
 			new Color(255,0,80),
 			new Color(90,255,0),
