@@ -6,9 +6,12 @@ import breakout.main.Model;
 import breakout.physics.Vector2D;
 import breakout.assets.BreakoutConstants;
 import breakout.items.Brick;
-//import 
+
 public class LevelLoader {
 	
+	/**
+	 * Contains all Levels
+	 */
 	private static final Level[] levels = { 
 			new Level("-222-222-"+"11-111-11"+"-0004000-"),
 			new Level("-242-242-"+"33-191-33"+"-0081800-"),
@@ -95,6 +98,10 @@ public class LevelLoader {
 	private LevelLoader(double w) {
 	}
 	
+	/**
+	 * 
+	 * @return a random level
+	 */
 	public static Level randomLevel() {
 		Random rgen = new Random();
 		int lvl = rgen.nextInt(levels.length);
@@ -103,27 +110,45 @@ public class LevelLoader {
 		
 		return levels[lvl];
 	}
-
+	
+	/**
+	 * 
+	 * @param i index of the level in levels-Array
+	 * @return the Level at i
+	 */
 	public static Level getLevelByIndex(int i) {
 		if(i<0 || i>=levels.length) { return new Level(""); }
 		
 		return levels[i];
 	}
 
+	/**
+	 * A method which adds the bricks of a given Level to a Model.
+	 * @param brickData The Level which should be displayed
+	 * @param m The Model which gets the Bricks
+	 */
 	public static void setBricks(Level brickData, Model m) {
-		// remove all existing bricks
+		/* remove all existing bricks */
 		m.clearBricks();
 		
 		//for debugging:
 		//System.out.println("loading level: " + brickData);
-
+		
+		/* Positions of the bricks */
 		double xPos;
 		double yPos = BreakoutConstants.BRICK_Y_OFFSET;
 		xPos = BreakoutConstants.BRICK_X_OFFSET;
-
+		
+		/* This loop runs through the String of the given Level	*/
 		for (int i = 0; i < brickData.getString().length(); i++) {
+			/* Default of brickType is -1 and of destroyed is true */
 			byte brickType = -1;
-			boolean destroyed=true;
+			boolean destroyed = true;
+			/* switch for different types at actual String-Position 
+			 * case 0-9 are bricks
+			 * case $ changes the X-Position of the next Brick
+			 * case ? changes the Y-Position of the next Brick one Window-Row up
+			 * case ; changes the Y-Position of the next Brick one Window-Row down	*/
 			switch (brickData.getString().charAt(i)) {
 			case '0':
 				brickType = 0;
@@ -178,16 +203,19 @@ public class LevelLoader {
 				yPos += BreakoutConstants.BRICK_Y_OFFSET;
 				break;
 			}
-
+			
+			/* If the X-Position is too high we go to the next line	*/
 			if (xPos >= m.getWidth()) {
 				xPos = BreakoutConstants.BRICK_X_OFFSET;
 				yPos += Brick.brickHeight + BreakoutConstants.BRICK_Y_OFFSET;
 			}
-
+			
+			/* in case 0-9 the brick will be added	*/
 			if (!destroyed) {
 				m.addBrick(new Brick(xPos, yPos, (byte) brickType, destroyed));
 			}
-
+			
+			/* After we added the brick we change the X-Position	*/
 			if (brickData.getString().charAt(i) != '$' && brickData.getString().charAt(i) != '?' && brickData.getString().charAt(i) != ';') {
 				xPos += Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET;
 			}
@@ -196,6 +224,12 @@ public class LevelLoader {
 		
 	}
 	
+	/**
+	 * Spawns a Ball at default Position and with default Velocity
+	 * or at Position and Velocity saved in the Level
+	 * @param lvl The level in which the Ball should get added
+	 * @param m The Model which gets the Ball
+	 */
 	public static void setBall(Level lvl, Model m) {
 		
 		Vector2D pos = lvl.getBallSpawnPos() == null ? new Vector2D(m.getWidth()/2, m.getHeight()/2) : lvl.getBallSpawnPos();
@@ -204,16 +238,30 @@ public class LevelLoader {
 		m.spawnBall(pos, vel);
 	}
 	
+	/**
+	 * Loads the given Level to the Model and adds the Ball
+	 * @param lvl The level to load
+	 * @param m the Model which gets the Level
+	 */
 	public static void loadLevel(Level lvl, Model m) {
 		LevelLoader.setBricks(lvl, m);
 		LevelLoader.setBall(lvl, m);
 	}
 	
+	/**
+	 * Loads the Level at given index to the Model and adds the Ball
+	 * @param i index of the level in levels-Array
+	 * @param m the Model which gets the Level
+	 */
 	public static void loadLevel(int i, Model m) {
 		Level level = LevelLoader.getLevelByIndex(i);
 		LevelLoader.loadLevel(level, m);
 	}
 	
+	/**
+	 * Loads a random Level to the given Model 
+	 * @param m the Model which gets the Level
+	 */
 	public static void loadLevel(Model m) {
 		Level level = LevelLoader.randomLevel();
 		LevelLoader.loadLevel(level, m);
