@@ -5,7 +5,7 @@ import breakout.physics.*;
 import java.awt.Color;
 
 public class Ball extends MovingObject {
-  
+	
 	private double width = BreakoutConstants.WINDOW_WIDTH; 
 	private double height = BreakoutConstants.WINDOW_HEIGHT;
 	
@@ -21,12 +21,21 @@ public class Ball extends MovingObject {
 	
 	public static final Color color = new Color(255,255,255);
 	
+	/**
+	 * Creates a new Ball with given Position
+	 * @param position the Position of the Ball
+	 */
 	public Ball(Vector2D position) {
 		this.Position = position;
 		lastPos = position;
 		setBBox(width,height);
 	}
 	
+	/**
+	 * Creates a new Ball with given Position and Velocity
+	 * @param position the Position of the Ball
+	 * @param velocity the Velocity of the Ball
+	 */
 	public Ball(Vector2D position, Vector2D velocity) {
 		this.Position = position;
 		lastPos = position;
@@ -42,6 +51,10 @@ public class Ball extends MovingObject {
 		return this.dead;
 	}
 	
+	/**
+	 * Scales the Velocity of the Ball with a given value
+	 * @param f the value to scale the velocity with
+	 */
 	public void scaleVelocity(double f) {
 		double max_f = Math.sqrt(MAX_SPEED_2 / Velocity.sqlength());
 		
@@ -50,6 +63,10 @@ public class Ball extends MovingObject {
 		Velocity = Velocity.scale(f);
 	}
 	
+	/**
+	 * Changes the Velocity with a given amount
+	 * @param amount the value to add to the actual velocity
+	 */
 	public void changeVelocity(double amount){
 		double speed = Velocity.length();
 		double f = (speed + amount) / speed;
@@ -57,6 +74,9 @@ public class Ball extends MovingObject {
 		scaleVelocity(f);
 	}
 	
+	/**
+	 * Moves the Ball
+	 */
 	@Override
 	public void move(double factor) {
 		moved_f += factor;
@@ -64,6 +84,7 @@ public class Ball extends MovingObject {
 		double h = 1.0/BreakoutConstants.FPS;
 		
 		if(moved_f >= h) {
+			/* The tail of the Ball gets a new startposition and the rest of the tail gets moved */
 			for(int i=Tail.length-1; i>0; i--) {
 				Tail[i] = Tail[i-1];
 			}

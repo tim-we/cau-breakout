@@ -11,6 +11,7 @@ import java.awt.Color;
  */
 public class Brick extends PhysicsObject {
 	
+	/* Color Array for the different BrickTypes */
 	private Color[] color = {
 			new Color(255,0,80),
 			new Color(90,255,0),
@@ -53,6 +54,10 @@ public class Brick extends PhysicsObject {
 
 	private float hue=0.1F;
 	
+	/**
+	 * Returns the Color of the Brick, in case of RandomBrick it changes the color.
+	 * @return the Color of the Brick at the moment
+	 */
 	public Color getColor() {
 		if(brickType == 9){
 			hue += 0.05F;
@@ -69,10 +74,14 @@ public class Brick extends PhysicsObject {
 	public int getHitPoints(double multiplier) {
 		return (int)Math.round(42 * multiplier);
 	}
-
+	
+	
+	/**
+	 * Override of onCollision, if the ball collides with a brick
+	 */
 	@Override
 	public void onCollision(CollisionEvent e){
-		
+		/* brick gets destroyed */
 		destroyed = true;
 		
 		switch (brickType){	
@@ -95,6 +104,9 @@ public class Brick extends PhysicsObject {
 		
 	}
 	
+	/**
+	 * Returns the BrickType if not destroyed as a String
+	 */
 	@Override
 	public String toString() {
 		return destroyed ? "[destroyed Brick]":"[Brick Type: "+brickType+"]";
