@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class HighriserFontBig implements Font {
 	
+	/* New big Font for the Highriser */
 	private static final Map<Character, Letter> charMap = new HashMap<Character, Letter>();
     static {
     	charMap.put('w', new Letter(22, 9, 
@@ -22,7 +23,9 @@ public class HighriserFontBig implements Font {
     		+"000000111110000000"
    			+"000001110111000000"));*/
     }
-    
+     /**
+      * Returns the Letter as Letter for the Highriser
+      */
     public Letter getLetter(char c) {
     	Letter res = charMap.get(c);
     	
