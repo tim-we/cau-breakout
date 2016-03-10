@@ -36,6 +36,14 @@ public class FontRenderer {
 		scale = Math.min(1, f);
 	}
 	
+	/**
+	 * Renders a letter
+	 * @param img the PixelImage, the letter gets added
+	 * @param x X-Position (top-left) of the letter
+	 * @param y Y-Position (top-left) of the letter
+	 * @param l The letter that should be displayed
+	 * @param color the color for the letter
+	 */
 	public void renderLetter(PixelImage img, int x, int y, Letter l, Color color) {
 		if(img == null) { System.out.println("Error: PixelImage was null (FontRenderer.renderLetter"); return; }
 		
@@ -75,11 +83,25 @@ public class FontRenderer {
 		
 	}
 	
+	/**
+	 * Renders a given string on a given instance of PixelImage
+	 * 
+	 * @param img - the {PixelImage} canvas to draw on
+	 * @param x - x coordinate of top-left corner of text
+	 * @param y - y coordinate of top-left corner of text
+	 * @param text - the text to render (no automatic line break!)
+	 * @param color - the color for the whole text
+	 */
 	public void render(PixelImage img, int x, int y, String text, Color color) {
 		Color[] colors = {color};
 		render(img, x, y, text, colors);
 	}
 	
+	/**
+	 * Calculates the length of a given text
+	 * @param text The text, which length should be calculated
+	 * @return the length of the text
+	 */
 	public int getTextWidth(String text) {
 		int length = 0;
 		int n = 0;

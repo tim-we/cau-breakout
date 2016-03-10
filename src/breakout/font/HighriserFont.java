@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class HighriserFont implements Font {
 	
+	/* Letters and Numbers for the highriser */
 	private static final Map<Character, Letter> charMap = new HashMap<Character, Letter>();
     static {
     	charMap.put('a', new Letter(4, 5, "0000"+"0100"+"1010"+"1110"+"1010"));
