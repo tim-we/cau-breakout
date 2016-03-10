@@ -139,18 +139,25 @@ public class PixelImage {
 		
 		/* normal color-blending */
 		if(mode == BlendingMode.NORMAL) {
-			r = (int)Math.round(a*fg.getRed() + (1-a)*bg.getRed());
-			g = (int)Math.round(a*fg.getGreen() + (1-a)*bg.getGreen());
-			b = (int)Math.round(a*fg.getBlue() + (1-a)*bg.getBlue());
+			r = (int)Math.round(a*fg.getRed() + (1d-a)*bg.getRed());
+			g = (int)Math.round(a*fg.getGreen() + (1d-a)*bg.getGreen());
+			b = (int)Math.round(a*fg.getBlue() + (1d-a)*bg.getBlue());
 		} 
 		/* additive color-blending */
 		else if(mode == BlendingMode.ADDITIVE) {
-			r = Math.min( (int)Math.round(a*fg.getRed() + bg.getRed()), 255);
-			g = Math.min( (int)Math.round(a*fg.getGreen() + bg.getGreen()), 255);
-			b = Math.min( (int)Math.round(a*fg.getBlue() + bg.getBlue()), 255);
+			r = (int)Math.round(a*fg.getRed() + bg.getRed());
+			g = (int)Math.round(a*fg.getGreen() + bg.getGreen());
+			b = (int)Math.round(a*fg.getBlue() + bg.getBlue());
 		}
 		
-		return new Color(r,g,b);
+		double new_alpha = a + (1d-a)*(bg.getAlpha()/255d);
+		
+		return new Color(
+				Math.max(0, Math.min(r, 255)),
+				Math.max(0, Math.min(g, 255)),
+				Math.max(0, Math.min(b, 255)),
+				Math.max(0, Math.min((int)Math.round(255*new_alpha), 255))
+		);
 		
 	}
 	

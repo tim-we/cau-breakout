@@ -3,6 +3,7 @@ package breakout.main;
 import java.awt.Color;
 
 import breakout.animations.Animation;
+import breakout.assets.BlendingMode;
 import breakout.assets.BreakoutConstants;
 import breakout.assets.PixelImage;
 import breakout.items.*;
@@ -20,14 +21,6 @@ public abstract class View extends Observable implements Observer {
 	//constructor
 	public View() {
 		frame = new PixelImage(ViewWidth, ViewHeight);
-	}
-	
-	@Override
-	public void update(Observable o, Object arg) {
-		assert o instanceof Model;
-		
-		// Simply print the current score to the console
-		System.out.println("Score: " + ((Model) o).getScore());
 	}
 	
 	public void renderFrame(Model model) {
@@ -71,7 +64,7 @@ public abstract class View extends Observable implements Observer {
 					
 					Color c = speedy ? new Color(255,42,0,220/(i+1)) : new Color(42,255,0,220/(i+1));
 					
-					nextFrame.setPixel(tpos[0], tpos[1], c);
+					nextFrame.blendPixel(tpos[0], tpos[1], c, BlendingMode.ADDITIVE);
 				}
 				
 				//draw ball
