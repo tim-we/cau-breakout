@@ -5,17 +5,17 @@ import java.util.Arrays;
 
 public class PixelImage {
 	
-	/* Farbe des Hintergrunds */
+	/* default background color / color of empty pixels */
 	public static final Color BGCOLOR = Color.BLACK;
 	
 	private int width = 0;
 	private int height = 0;
 	
-	/* Color-Array contains the Colors for the Windows */
+	/* this 1dim-array of colors contains the color of each pixel going from top-left to bottom-right */
 	private Color[] imageData;
 	
 	/**
-	 * Creates a new PixelImage with given width and height
+	 * Constructor: Creates a new PixelImage with given width and height
 	 * @param width The width of the PixelImage
 	 * @param height the height of the PixelImage
 	 */
@@ -27,9 +27,7 @@ public class PixelImage {
 		this.imageData = new Color[width*height];
 	}
 	
-	/**
-	 * PixelImage for lighthouse
-	 */
+	/* Constructor: creates empty PixelImage */
 	public PixelImage() {
 		this.width = 28;
 		this.height = 14;
@@ -37,7 +35,7 @@ public class PixelImage {
 	}
 	
 	/**
-	 * Duplicates a given PixelImage
+	 * Constructor: Duplicates a given PixelImage
 	 * @param img the PixelImage to duplicate
 	 */
 	public PixelImage(PixelImage img) {
@@ -86,23 +84,11 @@ public class PixelImage {
 	}
 	
 	/**
-	 * Sets the column, row position on a color
-	 * @param column the requested column
-	 * @param row the requested row
-	 * @param color the color for this position
-	 */
-	public void setPixel(int column, int row, Color color) {
-		int i = getArrayIndex(column, row);
-			
-		if(i>=0) { this.imageData[i] = color; }
-	}
-	
-	/**
 	 * Gives the Color of a column, row position
 	 * @param column the requested column
 	 * @param row the requested row
 	 * @param emptyColor the color to return if the position in the array is null
-	 * @return the color at requested position or emptyColor if null
+	 * @return {Color} of selected pixel or emptyColor if null or {null} if out of bounds
 	 */
 	public Color getPixel(int column, int row, Color emptyColor) {
 		int i = getArrayIndex(column, row);
@@ -116,10 +102,22 @@ public class PixelImage {
 	 * Returns the color of the requested position
 	 * @param x the column
 	 * @param y the row
-	 * @return the color at x,y position or Backgroundcolor if none there yet
+	 * @return the color at x,y position or background-color if none there yet
 	 */
 	public Color getPixel(int x, int y) {
 		return getPixel(x, y, BGCOLOR);
+	}
+	
+	/**
+	 * Sets the column, row position on a color
+	 * @param column the requested column
+	 * @param row the requested row
+	 * @param color the color for this position
+	 */
+	public void setPixel(int column, int row, Color color) {
+		int i = getArrayIndex(column, row);
+			
+		if(i>=0) { this.imageData[i] = color; }
 	}
 	
 	/**
@@ -134,34 +132,42 @@ public class PixelImage {
 		if(fg==null) { return bg; }
 		if(bg==null) { return fg; }
 		
-		/* a has to be within 0 and 1 */
-		double a = Math.min(1, Math.max(alpha, 0));
+		/* clamp a */
+		double a = Math.max(0d, Math.min(alpha, 1d));
 		
 		int r = 0, g = 0, b = 0;
 		
-		/* Adds the Red,Green and Blue values of Foreground and Background with given weight a */
+		/* normal color-blending */
 		if(mode == BlendingMode.NORMAL) {
 			r = (int)Math.round(a*fg.getRed() + (1-a)*bg.getRed());
 			g = (int)Math.round(a*fg.getGreen() + (1-a)*bg.getGreen());
 			b = (int)Math.round(a*fg.getBlue() + (1-a)*bg.getBlue());
 		} 
-		/* Adds the Red,Green and Blue values of the Foreground multiplied with a to the background values, max 255 */
+		/* additive color-blending */
 		else if(mode == BlendingMode.ADDITIVE) {
 			r = Math.min( (int)Math.round(a*fg.getRed() + bg.getRed()), 255);
 			g = Math.min( (int)Math.round(a*fg.getGreen() + bg.getGreen()), 255);
 			b = Math.min( (int)Math.round(a*fg.getBlue() + bg.getBlue()), 255);
 		}
-		/* Multiplies the Background and Foreground Colorvalues */
-		else if(mode == BlendingMode.MULTIPLY) {
-			//implement alpha!
-			r = (int)Math.round( 255d * ((bg.getRed()/255d) * (fg.getRed()/255d)) );
-			g = (int)Math.round( 255d * ((bg.getGreen()/255d) * (fg.getGreen()/255d)) );
-			b = (int)Math.round( 255d * ((bg.getBlue()/255d) * (fg.getBlue()/255d)) );
-		}
 		
 		return new Color(r,g,b);
 		
 	}
+	
+	/**
+	 * same as setPixel but blends colors with the selected blending mode
+	 */
+	public void blendPixel(int column, int row, Color color, BlendingMode mode) {
+		if(color == null) { return; }
+		
+		int i = getArrayIndex(column, row);
+		
+		if(i>=0) {
+			Color c = imageData[i];
+			
+			this.imageData[i] = blendColors(c, color, mode);
+		}
+	}	
 	
 	/**
 	 * Blends two given Colors with given BlendingMode, alpha taken from foreground Color
