@@ -10,10 +10,12 @@ import acm.program.GraphicsProgram;
 
 @SuppressWarnings("serial")
 public class LhSimulator extends GraphicsProgram {
-
+	
+	/* Number of Windows per row and column */
 	private static final int WIDTH = 28;
 	private static final int HEIGHT = 14;
 	
+	/*Height and Width of each Window and the distance between those */
 	private static final int WINDOW_WIDTH = BreakoutConstants.WINDOW_WIDTH;
 	private static final int WINDOW_HEIGHT = BreakoutConstants.WINDOW_HEIGHT;
 	private static final int BORDER_X = BreakoutConstants.WINDOW_X_OFFSET;
@@ -27,6 +29,9 @@ public class LhSimulator extends GraphicsProgram {
 	private boolean leftArrowKeyPressed = false;
 	private boolean rightArrowKeyPressed = false;
 	
+	/**
+	 * Sets the size and sets the Focus on the Window
+	 */
 	public void run() {		
 		setSize(BORDER_X + WIDTH*(WINDOW_WIDTH + BORDER_X) + WTF_OFFSET - 42 -3, BORDER_Y + HEIGHT*(WINDOW_HEIGHT + BORDER_Y) + WTF_OFFSET);
 		validate();
@@ -35,20 +40,28 @@ public class LhSimulator extends GraphicsProgram {
 		requestFocusInWindow();
 	}
 	
+	/**
+	 * Checks if the Window is Focused 
+	 * @return true if the Window has the focus, else false
+	 */
 	public boolean isFocused() {
 		return this.isFocusOwner();
 	}
 	
+	/**
+	 * Draws the given PixelImage to a GCompound
+	 * @param frame the PixelImage to draw 
+	 */
 	public void draw(PixelImage frame) {
 	
 		GCompound bb = new GCompound();
 		
-		//background
+		/* Creates the background */
 			GRect bg = new GRect(0, 0, BORDER_X + WIDTH*(WINDOW_WIDTH + BORDER_X), BORDER_Y + HEIGHT*(WINDOW_HEIGHT + BORDER_Y));
 			bg.setFilled(true);
 			bg.setColor(BGCOLOR);
 			bb.add(bg);
-		
+		/* Draws the rectangles for each row and column */
 		for(int row=0; row<HEIGHT; row++) {
 			for(int column=0; column<WIDTH; column++) {
 				int x = BORDER_X + column * (WINDOW_WIDTH + BORDER_X);
@@ -56,6 +69,7 @@ public class LhSimulator extends GraphicsProgram {
 				GRect wind = new GRect(x, y, WINDOW_WIDTH, WINDOW_HEIGHT);
 				wind.setFilled(true);
 				
+				/* The rectangle gets the Color from the PixelImage */
 				Color c = frame.getPixel(column, row, WIN_OFF_CLR);
 				if(c.getAlpha() < 255) { c = PixelImage.blendColors(Color.BLACK, c); }
 				
@@ -64,7 +78,7 @@ public class LhSimulator extends GraphicsProgram {
 				bb.add(wind);
 			}		
 		}	
-			
+		/* Removes everything and adds the new GCompound */	
 		removeAll();
 		add(bb);
 	}
@@ -77,11 +91,18 @@ public class LhSimulator extends GraphicsProgram {
 		return this.rightArrowKeyPressed;
 	}
 	
+	/**
+	 * Adds a new KeyListener and requests Focus
+	 */
 	public void init(){
 		addKeyListeners();
 		requestFocus();
 	}
 	
+	/**
+	 * Checks if LeftArrowKey and RightArrowKey are Pressed and 
+	 * sets the boolean leftArrowKeyPressed and rightArrowKeyPressed on true
+	 */
 	public void keyPressed(KeyEvent e){
 		switch (e.getKeyCode()){
 		case KeyEvent.VK_LEFT:
@@ -93,6 +114,10 @@ public class LhSimulator extends GraphicsProgram {
 		}
 	}
 	
+	/**
+	 * Checks if LeftArrowKey and RightArrowKey are released and sets 
+	 * the boolean leftArrowKeyPressed and rightArrowKeyPressed on false
+	 */
 	public void keyReleased(KeyEvent e){
 		switch (e.getKeyCode()){
 		case KeyEvent.VK_LEFT:

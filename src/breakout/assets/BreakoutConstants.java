@@ -1,5 +1,8 @@
 package breakout.assets;
 
+/**
+ * Contains all Constants
+ */
 public class BreakoutConstants {
 	public static final int WINDOW_WIDTH = 10;
 	
