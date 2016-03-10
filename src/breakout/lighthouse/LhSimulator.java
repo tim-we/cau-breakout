@@ -41,14 +41,6 @@ public class LhSimulator extends GraphicsProgram {
 	}
 	
 	/**
-	 * Checks if the Window is Focused 
-	 * @return true if the Window has the focus, else false
-	 */
-	public boolean isFocused() {
-		return this.isFocusOwner();
-	}
-	
-	/**
 	 * Draws the given PixelImage to a GCompound
 	 * @param frame the PixelImage to draw 
 	 */
@@ -61,7 +53,8 @@ public class LhSimulator extends GraphicsProgram {
 			bg.setFilled(true);
 			bg.setColor(BGCOLOR);
 			bb.add(bg);
-		/* Draws the rectangles for each row and column */
+			
+		/* Draws the windows (rectangles) for each row and column */
 		for(int row=0; row<HEIGHT; row++) {
 			for(int column=0; column<WIDTH; column++) {
 				int x = BORDER_X + column * (WINDOW_WIDTH + BORDER_X);
@@ -77,8 +70,9 @@ public class LhSimulator extends GraphicsProgram {
 				
 				bb.add(wind);
 			}		
-		}	
-		/* Removes everything and adds the new GCompound */	
+		}
+		
+		/* make acm paint our generated gcompound */
 		removeAll();
 		add(bb);
 	}
@@ -105,12 +99,12 @@ public class LhSimulator extends GraphicsProgram {
 	 */
 	public void keyPressed(KeyEvent e){
 		switch (e.getKeyCode()){
-		case KeyEvent.VK_LEFT:
-			leftArrowKeyPressed = true;
-			break;
-		case KeyEvent.VK_RIGHT:
-			rightArrowKeyPressed = true;
-			break;
+			case KeyEvent.VK_LEFT:
+				leftArrowKeyPressed = true;
+				break;
+			case KeyEvent.VK_RIGHT:
+				rightArrowKeyPressed = true;
+				break;
 		}
 	}
 	
@@ -120,12 +114,12 @@ public class LhSimulator extends GraphicsProgram {
 	 */
 	public void keyReleased(KeyEvent e){
 		switch (e.getKeyCode()){
-		case KeyEvent.VK_LEFT:
-			leftArrowKeyPressed = false;
-			break;
-		case KeyEvent.VK_RIGHT:
-			rightArrowKeyPressed = false;
-			break;
+			case KeyEvent.VK_LEFT:
+				leftArrowKeyPressed = false;
+				break;
+			case KeyEvent.VK_RIGHT:
+				rightArrowKeyPressed = false;
+				break;
 		}
 	}
 	

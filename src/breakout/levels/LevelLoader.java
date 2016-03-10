@@ -122,8 +122,9 @@ public class LevelLoader {
 		return levels[i];
 	}
 	
-	/* these characters will be parsed as bricks */
+	/* supported/functional characters of the level parser */
 	public static final String brickChars = "0123456789";
+	public static final String controlChars = ".$?;";
 	
 	/**
 	 * A method which adds the bricks of a given Level to a Model.
@@ -144,14 +145,8 @@ public class LevelLoader {
 			
 			char ci = brickData.getString().charAt(i);
 			
-			if(brickChars.indexOf(ci) >= 0) {			
-				/* current char represents a brick and can be parsed as an integer */
-				int brickType = (byte) Character.getNumericValue(ci);
+			if(controlChars.indexOf(ci) >= 0) {
 				
-				m.addBrick(new Brick(xPos, yPos, (byte) brickType));
-				
-				xPos += Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET;
-			} else {
 				/* current char is control character
 				 * '.' => forced line break
 				 * '$' => changes the X-Position of the next Brick
@@ -175,12 +170,23 @@ public class LevelLoader {
 						break;
 				}
 				
-			}
-			
-			/* If the X-Position is too high we go to the next line	*/
-			if (xPos >= m.getWidth()) {
-				xPos = BreakoutConstants.BRICK_X_OFFSET;
-				yPos += Brick.brickHeight + BreakoutConstants.BRICK_Y_OFFSET;
+			} else {
+				
+				if(brickChars.indexOf(ci) >= 0) {
+					/* current char represents a brick and can be parsed as an integer */
+					int brickType = (byte) Character.getNumericValue(ci);
+					
+					m.addBrick(new Brick(xPos, yPos, (byte) brickType));
+				}		
+				
+				/* unrecognized characters like '-' or ' ' will create a "whitespace" between blocks */
+				xPos += Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET;
+				
+				if (xPos >= m.getWidth()) {
+					xPos = BreakoutConstants.BRICK_X_OFFSET;
+					yPos += Brick.brickHeight + BreakoutConstants.BRICK_Y_OFFSET;
+				}
+				
 			}
 
 		}
