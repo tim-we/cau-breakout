@@ -8,6 +8,12 @@ public abstract class PhysicsObject {
 	//(bounding box) bottom-right corner (relative position)
 	protected Vector2D BBoxPoint = new Vector2D();
 	
+	/**
+	 * Sets the bounding box of the object to a vector which contains x and y
+	 * @param x - the x value of the vector 
+	 * @param y - the y value of the vector
+	 * @return true if the bounding box was set, false if x or y are out of range (<0)
+	 */
 	protected boolean setBBox(double x, double y) { //public or protected?
 		if(x>=0 && y>=0) {
 			BBoxPoint = new Vector2D(x,y);
@@ -22,6 +28,10 @@ public abstract class PhysicsObject {
 	
 	public Vector2D getBBoxPoint() { return BBoxPoint; }
 	
+	/**
+	 * Gives the coordinates of the corners of the bounding box
+	 * @return a Vector Array which contains the corners
+	 */
 	public Vector2D[] getBoundingBox() {
 		Vector2D[] bbox = new Vector2D[4];
 		
@@ -33,6 +43,10 @@ public abstract class PhysicsObject {
 		return bbox;
 	}
 	
+	/**
+	 * Sets the position
+	 * @param pos - the new Position
+	 */
 	public void updatePosition(Vector2D pos) {
 		Position = pos;
 	}
