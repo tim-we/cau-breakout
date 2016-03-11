@@ -11,6 +11,9 @@ public class PhysicsContext {
 	
 	public ArrayList<PhysicsObject> staticObjects;
 	
+	/**
+	 * Constructor with given width and height
+	 */
 	public PhysicsContext(double width, double height) {
 		lowerBound = height;
 		rightBound = width;
@@ -52,7 +55,8 @@ public class PhysicsContext {
 	}
 	
 	/**
-	 * @param obj
+	 * Update Method
+	 * @param obj - the moving Object
 	 * @param deltaTime (1 = 1 second)
 	 * @return
 	 */
