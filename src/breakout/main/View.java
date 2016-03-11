@@ -18,6 +18,21 @@ public abstract class View extends Observable implements Observer {
 	private static final int ViewHeight = BreakoutConstants.WINDOW_ROWS;
 	protected PixelImage frame;
 	
+	private Color[] brickColors = {
+			new Color(255,0,80),
+			new Color(90,255,0),
+			new Color(0,90,255),
+			new Color(255,0,255),
+			new Color(0,255,255),
+			new Color(255,255,0), 
+			new Color(255,137,2),
+			new Color(63,255,146),
+			new Color(0,225,255),
+			new Color(100,100,100)
+		};
+	
+	private float brickHue = 0f;
+	
 	//constructor
 	public View() {
 		frame = new PixelImage(ViewWidth, ViewHeight);
@@ -36,7 +51,7 @@ public abstract class View extends Observable implements Observer {
 			for(Brick brick : model.getBricks()) {
 				int[] brickPos = getViewCoordinates(brick.getPosition(), model);
 				
-				paintRect(nextFrame, brickPos[0], brickPos[1], brickWidth, brickHeight, brick.getColor());
+				paintRect(nextFrame, brickPos[0], brickPos[1], brickWidth, brickHeight, getBrickColor(brick.getBrickType()));
 			}
 		
 		//draw paddle
@@ -74,6 +89,7 @@ public abstract class View extends Observable implements Observer {
 		frame = nextFrame;		
 	}
 	
+	/* converts model coordinates to view coordinates */
 	public static int[] getViewCoordinates(Vector2D v, Model m) {
 		int[] o = new int[2];
 		
@@ -91,5 +107,21 @@ public abstract class View extends Observable implements Observer {
 				pic.setPixel(x + i, y + k, color);
 			}
 		}		
+	}
+	
+	/**
+	 * Returns the Color of the Brick, in case of RandomBrick it changes the color.
+	 * @return the Color of the Brick at the moment
+	 */
+	public Color getBrickColor(byte brickType) {
+		if(brickType == 9){
+			brickHue += 0.042F;
+			return Color.getHSBColor(brickHue, 1f, 1f);
+		}
+		else if(brickType<0) {
+			return new Color(0,0,0,0);
+		}
+		
+		return brickColors[brickType % brickColors.length];
 	}
 }
