@@ -3,6 +3,8 @@ package breakout.main;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Random;
+
 import acm.util.RandomGenerator;
 
 import breakout.items.*;
@@ -143,6 +145,20 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			if(model.getBricks().size() == 0) {
 				/* Level complete bonus */
 				model.addPoints(350);
+				
+				Random rgen = new Random();
+				int nextParticle = 0;
+				
+				for(int i=0; i<200; i++) {
+					if(nextParticle <= 0) {
+						model.addAnimation(new FireworksParticle());
+						nextParticle = 5 + rgen.nextInt(10);
+					}
+					
+					nextParticle--;
+					model.update();
+					pause(pause_time);
+				}
 			}
 			
 			System.out.println("Level ended. Score: " + model.getScore());

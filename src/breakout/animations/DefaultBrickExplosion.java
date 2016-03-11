@@ -59,11 +59,6 @@ public class DefaultBrickExplosion extends Animation {
 				if(d2 < radius2) {
 					f = (radius2 - d2)/radius2; //relative diff.
 
-					/*Color c = frame.getPixel(xpos+col,  ypos+row);			
-					c = PixelImage.blendColors(c, getColor(s * (1.0 - f)));*/
-					
-					//frame.setPixel(xpos+col, ypos+row, c);
-					
 					frame.blendPixel(xpos+col, ypos+row, getColor(s * (1.0 - f)), BlendingMode.NORMAL);
 				}
 				
