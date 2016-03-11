@@ -8,11 +8,16 @@ public class ACMView extends View {
 	
 	private LhSimulator display;
 	
+	/**
+	 * Constructor: Creates a new ACMView with given LhSimulator
+	 * @param lhs - the LhSimulator for the ACMView
+	 */
 	public ACMView(LhSimulator lhs) {
 		super();
 		
 		this.display = lhs;
 	}
+	
 	
 	@Override
 	public void update(Observable o, Object arg) {

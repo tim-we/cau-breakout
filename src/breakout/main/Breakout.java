@@ -4,6 +4,11 @@ import breakout.input.*;
 
 public class Breakout {
 	
+	/**
+	 * Main Method to run Breakout. Creates a new Controller and sets the input source
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		Controller c = new Controller();
@@ -21,6 +26,10 @@ public class Breakout {
 		c.runController();
 	}
 	
+	/**
+	 * Pauses the game
+	 * @param ms how long to pause
+	 */
 	public static void pause(int ms) {
 		try {
 		    Thread.sleep(ms);
