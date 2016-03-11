@@ -2,7 +2,6 @@ package breakout.items;
 
 import breakout.main.Config;
 import breakout.physics.*;
-import java.awt.Color;
 
 public class Ball extends MovingObject {
 	
@@ -18,8 +17,6 @@ public class Ball extends MovingObject {
 	private double moved_f = 0;
 	
 	private Vector2D lastPos;
-	
-	public static final Color color = new Color(255,255,255);
 	
 	/**
 	 * Creates a new Ball with given Position
@@ -43,11 +40,11 @@ public class Ball extends MovingObject {
 		this.Velocity = velocity;
 	}
 	
-	public void setDead(){
+	public void setDead() {
 		this.dead = true;
 	}
 	
-	public boolean isDead(){
+	public boolean isDead() {
 		return this.dead;
 	}
 	

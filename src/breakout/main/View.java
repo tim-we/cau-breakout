@@ -17,7 +17,12 @@ public abstract class View extends Observable implements Observer {
 	private static final int ViewHeight = Config.WINDOW_ROWS;
 	protected PixelImage frame;
 	
-	private Color[] brickColors = {
+	/*
+	 * these variables will not be changed during runtime
+	 * and are same for every instance, thus the 
+	 * 'private static final' access modifier
+	 * */
+	private static final Color[] brickColors = {
 			new Color(255,0,80),
 			new Color(90,255,0),
 			new Color(0,90,255),
@@ -30,12 +35,16 @@ public abstract class View extends Observable implements Observer {
 			new Color(100,100,100)
 		};
 	
-	private Color[] paddleColors = {
+	private static final Color[] paddleColors = {
 			new Color(229,55,203),
 			new Color(255,182,0)
 		};
 	
-	private float brickHue = 0f;
+	/* used for the color shift of the flashing brick */
+	private float brickColorHue = 0f;
+	
+	/* public bc accessed by SpawnBall animation */
+	public static final Color ballColor = new Color(255,255,255);
 	
 	//constructor
 	public View() {
@@ -87,7 +96,7 @@ public abstract class View extends Observable implements Observer {
 				}
 				
 				//draw ball
-				nextFrame.setPixel(ballPos[0], ballPos[1], Ball.color);
+				nextFrame.setPixel(ballPos[0], ballPos[1], ballColor);
 			}	
 			
 		frame = nextFrame;		
@@ -119,8 +128,8 @@ public abstract class View extends Observable implements Observer {
 	 */
 	public Color getBrickColor(byte brickType) {
 		if(brickType == 9){
-			brickHue += 0.042F;
-			return Color.getHSBColor(brickHue, 1f, 1f);
+			brickColorHue += 0.042F;
+			return Color.getHSBColor(brickColorHue, 1f, 1f);
 		}
 		else if(brickType<0) {
 			return new Color(0,0,0,0);

@@ -3,6 +3,7 @@ package breakout.animations;
 import breakout.assets.PixelImage;
 import breakout.items.Ball;
 import breakout.main.Model;
+import breakout.main.View;
 import breakout.physics.Vector2D;
 
 public class SpawnBall extends Animation {
@@ -33,7 +34,7 @@ public class SpawnBall extends Animation {
 	public PixelImage renderFrame(PixelImage frame) {
 		
 		if((currentFrame/2) % 2 == 0) {
-			frame.setPixel(viewPos[0], viewPos[1], Ball.color);
+			frame.setPixel(viewPos[0], viewPos[1], View.ballColor);
 		}
 		
 		if(currentFrame >= frames) {		
