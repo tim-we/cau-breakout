@@ -2,15 +2,12 @@ package breakout.items;
 
 import breakout.main.Config;
 import breakout.physics.*;
-import java.awt.Color;
 
 public class Paddle extends PhysicsObject{
 
 	private double paddleWidth = Config.normalPaddle;
 	
 	private double availableWidth = 0;
-	
-	private Color color = new Color (229,55,203);
 	
 	private double speed = 0;
 	
@@ -32,8 +29,15 @@ public class Paddle extends PhysicsObject{
 		availableWidth = width;
 	}
 	
-	public boolean getReverse(){
+	public boolean isReversed() {
 		return this.reverse;
+	}
+	
+	/**
+	 * changes the value of the reverse-constant
+	 */
+	public void toggleReverse(){
+		this.reverse = !reverse;
 	}
 	
 	/**
@@ -46,14 +50,9 @@ public class Paddle extends PhysicsObject{
 	}
 	
 	/**
-	 * changes the value of the reverse-constant
-	 */
-	public void toggleReverse(){
-		this.reverse=!reverse;
-	}
-	
-	/**
-	 * Moves the paddle
+	 * Moves the paddle on the x-axis
+	 * 	This code should probably be in the Controller
+	 * 	but to us that seemed counter-intuitive.
 	 * @param d the distance the Paddle shall get moved
 	 */
 	public void move(double d){
@@ -72,12 +71,8 @@ public class Paddle extends PhysicsObject{
 		Position.setX(x);
 	}
 
-	public double getWidth(){
+	public double getWidth() {
 	  return this.paddleWidth;
-	}
-
-	public Color getColor(){
-	  return this.reverse ? new Color(255,182,0) : this.color;
 	}
 	
 	/**

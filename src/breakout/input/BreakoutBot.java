@@ -33,11 +33,11 @@ public class BreakoutBot implements BreakoutInput {
 
 			double max = max_speed;
 			/* If the ball is fast enough the Bot can move faster */
-			if(ball.getVelocity().sqlength() > 20000d) { max += 1d; }
-			if(ball.getVelocity().sqlength() > 20000d) { max += 1d; }
+			if(ball.getVelocity().sqlength() > 20000d) { max += 2d; }
+			//if(ball.getVelocity().sqlength() > 20000d) { max += 1d; }
 			
-			/* If reverse Mode is activated the bot can't play as fast as normal */
-			if(paddle.getReverse()) { 
+			/* If reverse-mode is activated the bot can't play as fast as normal */
+			if(paddle.isReversed()) { 
 				d = -d;
 				d *= 0.8;
 			}

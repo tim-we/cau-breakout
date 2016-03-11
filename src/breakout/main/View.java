@@ -30,6 +30,11 @@ public abstract class View extends Observable implements Observer {
 			new Color(100,100,100)
 		};
 	
+	private Color[] paddleColors = {
+			new Color(229,55,203),
+			new Color(255,182,0)
+		};
+	
 	private float brickHue = 0f;
 	
 	//constructor
@@ -57,7 +62,7 @@ public abstract class View extends Observable implements Observer {
 			int paddleWidth = (int) Math.round(model.getPaddle().getWidth() * widthScale);			
 			int[] paddlePos = getViewCoordinates(model.getPaddle().getPosition(), model);
 			
-			paintRect(nextFrame, paddlePos[0], paddlePos[1], paddleWidth, 1, model.getPaddle().getColor());
+			paintRect(nextFrame, paddlePos[0], paddlePos[1], paddleWidth, 1, getPaddleColor(model.getPaddle()));
 		
 		//render animations
 			for(Animation anim : model.getAnimations()) {
@@ -122,5 +127,9 @@ public abstract class View extends Observable implements Observer {
 		}
 		
 		return brickColors[brickType % brickColors.length];
+	}
+	
+	public Color getPaddleColor(Paddle p) {
+	  return p.isReversed() ? paddleColors[1] : paddleColors[0];
 	}
 }
