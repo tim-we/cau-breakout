@@ -2,7 +2,6 @@ package breakout.main;
 
 import java.util.ArrayList;
 
-import breakout.assets.BreakoutConstants;
 import breakout.items.*;
 import breakout.physics.Vector2D;
 import java.util.Observable;
@@ -30,7 +29,7 @@ public class Model extends Observable {
 		worldWidth = w;
 		worldHeight = h;
 		
-		bottomBar = new BarOfDeath((BreakoutConstants.WINDOW_ROWS-0.2) * BreakoutConstants.WINDOW_HEIGHT, worldWidth, 0.2 * BreakoutConstants.WINDOW_HEIGHT);
+		bottomBar = new BarOfDeath((Config.WINDOW_ROWS-0.2) * Config.WINDOW_HEIGHT, worldWidth, 0.2 * Config.WINDOW_HEIGHT);
 		
 		reset();
 		resetScore();

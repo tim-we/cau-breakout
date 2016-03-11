@@ -9,7 +9,7 @@ public class Breakout {
 		Controller c = new Controller();
 		
 		//set up (user-)input
-			String input = breakout.assets.BreakoutConstants.INPUT_SOURCE;
+			String input = Config.INPUT_SOURCE;
 			System.out.println("Input set to: " + input);
 			
 			if(input.indexOf("Mouse") >= 0)		{ c.addInputHandler(new BasicMouseInput()); }

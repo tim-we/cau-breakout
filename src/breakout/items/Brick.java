@@ -1,6 +1,6 @@
 package breakout.items;
 
-import breakout.assets.BreakoutConstants;
+import breakout.main.Config;
 import breakout.physics.Vector2D;
 import breakout.physics.PhysicsObject;
 import breakout.physics.CollisionEvent;
@@ -22,8 +22,8 @@ public class Brick extends PhysicsObject {
 	private boolean destroyed;
 	
 	//avoid getter & setter functions:
-	public static final double brickWidth = 2 * BreakoutConstants.WINDOW_WIDTH;
-	public static final double brickHeight = BreakoutConstants.WINDOW_HEIGHT;
+	public static final double brickWidth = 2 * Config.WINDOW_WIDTH;
+	public static final double brickHeight = Config.WINDOW_HEIGHT;
 	
 	public Brick(double x, double y, byte brickType){
 		this.Position = new Vector2D(x,y);
@@ -64,7 +64,7 @@ public class Brick extends PhysicsObject {
 				PhysicsObject x = e.getObjectA() instanceof Ball ? e.getObjectA() : e.getObjectB();
 				if(x instanceof Ball){
 					Ball ball = (Ball)x;
-					ball.changeVelocity(BreakoutConstants.BALL_VELOCITY_CHANGE);
+					ball.changeVelocity(Config.BALL_VELOCITY_CHANGE);
 				}
 				break;
 			
@@ -72,7 +72,7 @@ public class Brick extends PhysicsObject {
 				PhysicsObject y = e.getObjectA() instanceof Ball ? e.getObjectA() : e.getObjectB();
 				if(y instanceof Ball){
 					Ball ball = (Ball)y;
-					ball.changeVelocity(-0.7*BreakoutConstants.BALL_VELOCITY_CHANGE);
+					ball.changeVelocity(-0.7*Config.BALL_VELOCITY_CHANGE);
 				}
 				break;
 		}		

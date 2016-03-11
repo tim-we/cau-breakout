@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 
 import breakout.assets.PixelImage;
-import breakout.assets.BreakoutConstants;
+import breakout.main.Config;
 import acm.graphics.*;
 import acm.program.GraphicsProgram;
 
@@ -16,10 +16,10 @@ public class LhSimulator extends GraphicsProgram {
 	private static final int HEIGHT = 14;
 	
 	/*Height and Width of each Window and the distance between those */
-	private static final int WINDOW_WIDTH = BreakoutConstants.WINDOW_WIDTH;
-	private static final int WINDOW_HEIGHT = BreakoutConstants.WINDOW_HEIGHT;
-	private static final int BORDER_X = BreakoutConstants.WINDOW_X_OFFSET;
-	private static final int BORDER_Y = BreakoutConstants.WINDOW_Y_OFFSET;
+	private static final int WINDOW_WIDTH = Config.WINDOW_WIDTH;
+	private static final int WINDOW_HEIGHT = Config.WINDOW_HEIGHT;
+	private static final int BORDER_X = Config.WINDOW_X_OFFSET;
+	private static final int BORDER_Y = Config.WINDOW_Y_OFFSET;
 	
 	private static final Color BGCOLOR = new Color(32,32,32);
 	private static final Color WIN_OFF_CLR = new Color(0,0,0);

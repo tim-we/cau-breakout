@@ -1,19 +1,19 @@
 package breakout.items;
 
-import breakout.assets.BreakoutConstants;
+import breakout.main.Config;
 import breakout.physics.*;
 import java.awt.Color;
 
 public class Ball extends MovingObject {
 	
-	private double width = BreakoutConstants.WINDOW_WIDTH; 
-	private double height = BreakoutConstants.WINDOW_HEIGHT;
+	private double width = Config.WINDOW_WIDTH; 
+	private double height = Config.WINDOW_HEIGHT;
 	
 	private boolean dead = false;
 	
-	public static final double MAX_SPEED_2 = BreakoutConstants.BALL_MAX_SPEED*BreakoutConstants.BALL_MAX_SPEED;
+	public static final double MAX_SPEED_2 = Config.BALL_MAX_SPEED*Config.BALL_MAX_SPEED;
 	
-	private  Vector2D[] Tail = new Vector2D[BreakoutConstants.TAIL_LENGTH];
+	private  Vector2D[] Tail = new Vector2D[Config.TAIL_LENGTH];
 	
 	private double moved_f = 0;
 	
@@ -81,10 +81,10 @@ public class Ball extends MovingObject {
 	public void move(double factor) {
 		moved_f += factor;
 		
-		double h = 1.0/BreakoutConstants.FPS;
+		double h = 1.0/Config.FPS;
 		
 		if(moved_f >= h) {
-			/* The tail of the Ball gets a new startposition and the rest of the tail gets moved */
+			/* The tail of the Ball gets a new start position and the rest of the tail gets shifted */
 			for(int i=Tail.length-1; i>0; i--) {
 				Tail[i] = Tail[i-1];
 			}

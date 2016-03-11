@@ -2,10 +2,10 @@ package breakout.animations;
 
 import java.awt.Color;
 
-import breakout.assets.BreakoutConstants;
 import breakout.assets.PixelImage;
 import breakout.font.FontRenderer;
 import breakout.font.HighriserFont;
+import breakout.main.Config;
 
 public class IntroAnimation extends Animation {
 	
@@ -34,8 +34,8 @@ public class IntroAnimation extends Animation {
 		
 		frames = (titleLength-20) * 3;
 		
-		width = BreakoutConstants.WINDOW_COLUMNS;
-		height = BreakoutConstants.WINDOW_ROWS;
+		width = Config.WINDOW_COLUMNS;
+		height = Config.WINDOW_ROWS;
 		
 		background = new PixelImage(width, height);
 		background.fill(Color.BLACK);

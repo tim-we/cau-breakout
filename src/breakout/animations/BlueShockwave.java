@@ -2,14 +2,14 @@ package breakout.animations;
 
 import java.awt.Color;
 
-import breakout.assets.BreakoutConstants;
+import breakout.main.Config;
 import breakout.assets.PixelImage;
 import breakout.main.Model;
 import breakout.physics.Vector2D;
 
 public class BlueShockwave extends Animation {
-	private static final int width = BreakoutConstants.WINDOW_COLUMNS;
-	private static final int height = BreakoutConstants.WINDOW_ROWS;
+	private static final int width = Config.WINDOW_COLUMNS;
+	private static final int height = Config.WINDOW_ROWS;
 	
 	/* shockwave center */
 	private int xpos;
@@ -28,7 +28,7 @@ public class BlueShockwave extends Animation {
 	@Override
 	public PixelImage renderFrame(PixelImage frame) {
 		double radius2 = 0.8*(double)Math.min(1+currentFrame*currentFrame, 10000);
-		double ratio = (double)BreakoutConstants.WINDOW_HEIGHT/(double)BreakoutConstants.WINDOW_WIDTH;
+		double ratio = (double)Config.WINDOW_HEIGHT/(double)Config.WINDOW_WIDTH;
 		
 		double s = 1.0;
 		if(currentFrame>=10) { s = 1.0 - 0.1*(currentFrame-10); }

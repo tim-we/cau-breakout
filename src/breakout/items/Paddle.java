@@ -1,12 +1,12 @@
 package breakout.items;
 
-import breakout.assets.*;
+import breakout.main.Config;
 import breakout.physics.*;
 import java.awt.Color;
 
 public class Paddle extends PhysicsObject{
 
-	private double paddleWidth = BreakoutConstants.normalPaddle;
+	private double paddleWidth = Config.normalPaddle;
 	
 	private double availableWidth = 0;
 	
@@ -21,13 +21,13 @@ public class Paddle extends PhysicsObject{
 	 * @param width Width of the paddle
 	 */
 	public Paddle(double width) {
-		/* Sets the Position of the Paddle on the middle of the last row */
+		/* Sets the Position of the Paddle on the middle of the bottom row */
 		this.Position = new Vector2D(
-			((BreakoutConstants.WINDOW_COLUMNS/2d)-2) * BreakoutConstants.WINDOW_WIDTH,
-			(BreakoutConstants.WINDOW_ROWS-1) * BreakoutConstants.WINDOW_HEIGHT
+			((Config.WINDOW_COLUMNS/2d)-2) * Config.WINDOW_WIDTH,
+			(Config.WINDOW_ROWS-1) * Config.WINDOW_HEIGHT
 		);
-		/* Creates a BoundingBox for the paddle */
-		this.setBBox(paddleWidth, BreakoutConstants.WINDOW_HEIGHT);
+		/* sets up the BoundingBox for the paddle */
+		this.setBBox(paddleWidth, Config.WINDOW_HEIGHT);
 		
 		availableWidth = width;
 	}
@@ -42,7 +42,7 @@ public class Paddle extends PhysicsObject{
 	 */
 	public void changePaddleWidth(double size){
 		this.paddleWidth += size;
-		this.setBBox(paddleWidth,BreakoutConstants.WINDOW_HEIGHT);
+		this.setBBox(paddleWidth, Config.WINDOW_HEIGHT);
 	}
 	
 	/**
@@ -99,7 +99,7 @@ public class Paddle extends PhysicsObject{
 		/* If the Advanced Mechanics are activated the angle in 
 		 * which the Ball bounces off depends on the actual paddle-speed
 		 */
-		if(BreakoutConstants.BALL_BOUNCE_ADVANCED_MECHANICS) {
+		if(Config.BALL_BOUNCE_ADVANCED_MECHANICS) {
 			/* takes the actual ball speed and depending on the actual paddle-speed calculates the new Ball speed and angle */
 			Vector2D vel = new Vector2D(ball.getVelocity());
 			double ballspeed2 = vel.sqlength();
@@ -111,7 +111,7 @@ public class Paddle extends PhysicsObject{
 			vel = vel.scale(f);
 			
 			/* Minimum vertical speed */
-			double minYvel = BreakoutConstants.WINDOW_HEIGHT * 3d;
+			double minYvel = Config.WINDOW_HEIGHT * 3d;
 			
 			if(Math.abs(vel.getY()) < minYvel) {
 				double sgn = vel.getY() < 0 ? -1.0 : 1.0;

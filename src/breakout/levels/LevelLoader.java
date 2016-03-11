@@ -4,7 +4,7 @@ import java.util.Random;
 
 import breakout.main.Model;
 import breakout.physics.Vector2D;
-import breakout.assets.BreakoutConstants;
+import breakout.main.Config;
 import breakout.items.Brick;
 
 public class LevelLoader {
@@ -79,7 +79,7 @@ public class LevelLoader {
 				 +"--13831."
 				 +"---010."
 				 +"----1",
-				 new Vector2D(1 * BreakoutConstants.WINDOW_HEIGHT, 2 * BreakoutConstants.WINDOW_HEIGHT))
+				 new Vector2D(1 * Config.WINDOW_HEIGHT, 2 * Config.WINDOW_HEIGHT))
 		/*
 		new Level(""
 				+ ""
@@ -137,8 +137,8 @@ public class LevelLoader {
 		
 		/* Positions of the bricks */
 		double xPos;
-		double yPos = BreakoutConstants.BRICK_Y_OFFSET;
-		xPos = BreakoutConstants.BRICK_X_OFFSET;
+		double yPos = Config.BRICK_Y_OFFSET;
+		xPos = Config.BRICK_X_OFFSET;
 		
 		boolean autoLineBreak = true;
 		
@@ -159,17 +159,17 @@ public class LevelLoader {
 				 
 				switch (ci) {
 					case '.': // forced line break
-						xPos = BreakoutConstants.BRICK_X_OFFSET;
-						yPos += Brick.brickHeight + BreakoutConstants.BRICK_Y_OFFSET;
+						xPos = Config.BRICK_X_OFFSET;
+						yPos += Brick.brickHeight + Config.BRICK_Y_OFFSET;
 						break;
 					case '$':
-						xPos -= BreakoutConstants.BRICK_X_OFFSET;
+						xPos -= Config.BRICK_X_OFFSET;
 						break;
 					case '?':
-						yPos -= BreakoutConstants.BRICK_Y_OFFSET;
+						yPos -= Config.BRICK_Y_OFFSET;
 						break;
 					case ';':
-						yPos += BreakoutConstants.BRICK_Y_OFFSET;
+						yPos += Config.BRICK_Y_OFFSET;
 						break;
 					case '!': {
 						autoLineBreak = !autoLineBreak;
@@ -186,11 +186,11 @@ public class LevelLoader {
 				}		
 				
 				/* unrecognized characters like '-' or ' ' will create a "whitespace" between blocks */
-				xPos += Brick.brickWidth + BreakoutConstants.BRICK_X_OFFSET;
+				xPos += Brick.brickWidth + Config.BRICK_X_OFFSET;
 				
 				if (autoLineBreak && xPos >= m.getWidth()) {
-					xPos = BreakoutConstants.BRICK_X_OFFSET;
-					yPos += Brick.brickHeight + BreakoutConstants.BRICK_Y_OFFSET;
+					xPos = Config.BRICK_X_OFFSET;
+					yPos += Brick.brickHeight + Config.BRICK_Y_OFFSET;
 				}
 				
 			}
@@ -208,7 +208,7 @@ public class LevelLoader {
 	public static void setBall(Level lvl, Model m) {
 		
 		Vector2D pos = lvl.getBallSpawnPos() == null ? new Vector2D(m.getWidth()/2, m.getHeight()/2) : lvl.getBallSpawnPos();
-		Vector2D vel = lvl.getBallSpawnVel() == null ? new Vector2D(4 * BreakoutConstants.WINDOW_HEIGHT, 7 * BreakoutConstants.WINDOW_HEIGHT) : lvl.getBallSpawnVel();
+		Vector2D vel = lvl.getBallSpawnVel() == null ? new Vector2D(4 * Config.WINDOW_HEIGHT, 7 * Config.WINDOW_HEIGHT) : lvl.getBallSpawnVel();
 		
 		m.spawnBall(pos, vel);
 	}

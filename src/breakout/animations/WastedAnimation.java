@@ -2,10 +2,10 @@ package breakout.animations;
 
 import java.awt.Color;
 
-import breakout.assets.BreakoutConstants;
 import breakout.assets.PixelImage;
 import breakout.font.FontRenderer;
 import breakout.font.HighriserFont;
+import breakout.main.Config;
 
 public class WastedAnimation extends Animation {
 	
@@ -19,8 +19,8 @@ public class WastedAnimation extends Animation {
 	
 	/* constructor */
 	public WastedAnimation() {
-		width = BreakoutConstants.WINDOW_COLUMNS;
-		height = BreakoutConstants.WINDOW_ROWS;
+		width = Config.WINDOW_COLUMNS;
+		height = Config.WINDOW_ROWS;
 		
 		frames = 90;
 		

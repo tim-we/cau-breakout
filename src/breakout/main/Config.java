@@ -1,9 +1,9 @@
-package breakout.assets;
+package breakout.main;
 
 /**
  * Contains all Constants
  */
-public class BreakoutConstants {
+public class Config {
 	public static final int WINDOW_WIDTH = 10;
 	
 	public static final int WINDOW_HEIGHT = 16;

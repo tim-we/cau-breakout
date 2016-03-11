@@ -2,7 +2,7 @@ package breakout.animations;
 
 import java.awt.Color;
 
-import breakout.assets.BreakoutConstants;
+import breakout.main.Config;
 import breakout.assets.PixelImage;
 
 import breakout.font.HighriserFont;
@@ -21,8 +21,8 @@ public class ScoreAnimation extends Animation {
 	
 	/* constructor */
 	public ScoreAnimation(int score) {
-		width = BreakoutConstants.WINDOW_COLUMNS;
-		height = BreakoutConstants.WINDOW_ROWS;
+		width = Config.WINDOW_COLUMNS;
+		height = Config.WINDOW_ROWS;
 		
 		frames = 15;
 		
@@ -44,7 +44,7 @@ public class ScoreAnimation extends Animation {
 		
 		/* align right */
 		int scoreTextLength = fr.getTextWidth(displayScore+"");
-		int xPos = BreakoutConstants.WINDOW_COLUMNS - 2 - scoreTextLength;
+		int xPos = Config.WINDOW_COLUMNS - 2 - scoreTextLength;
 		
 		fr.render(frame, 2, 1, "SC0rE", titleColor);
 		fr.render(frame, xPos, 7, displayScore+"", digitColors );

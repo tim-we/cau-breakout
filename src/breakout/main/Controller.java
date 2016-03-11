@@ -10,16 +10,15 @@ import breakout.lighthouse.*;
 import breakout.physics.*;
 import breakout.input.*;
 import breakout.animations.*;
-import breakout.assets.BreakoutConstants;
 import breakout.levels.*;
 
 
 public class Controller implements Observer, PhysicsEventReceiver {
 	
-	public static final double WORLDWIDTH = BreakoutConstants.WINDOW_COLUMNS * BreakoutConstants.WINDOW_WIDTH;
-	public static final double WORLDHEIGHT = BreakoutConstants.WINDOW_ROWS * BreakoutConstants.WINDOW_HEIGHT;
+	public static final double WORLDWIDTH = Config.WINDOW_COLUMNS * Config.WINDOW_WIDTH;
+	public static final double WORLDHEIGHT = Config.WINDOW_ROWS * Config.WINDOW_HEIGHT;
 	
-	public static final int FPS = BreakoutConstants.FPS;
+	public static final int FPS = Config.FPS;
 	
 	public static final int MAX_PHYS_ITERATIONS = 4; //per frame
 	
@@ -64,7 +63,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		
 		//create views and register them with the model
 		
-			if(BreakoutConstants.HIGHRISER_VIEW_ENABLED) {
+			if(Config.HIGHRISER_VIEW_ENABLED) {
 				net = new LhNetwork();
 				lhv = new LhView(net);
 				model.addObserver(lhv);
@@ -82,7 +81,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		double time_remaining;
 		
 		
-		if(BreakoutConstants.HIGHRISER_VIEW_ENABLED) {
+		if(Config.HIGHRISER_VIEW_ENABLED) {
 			/*	Start the network connection in a separate thread. That's important,
 			*	because our program should continue doing stuff instead of idling around
 			*	while it waits for the server to send the next request
@@ -208,19 +207,19 @@ public class Controller implements Observer, PhysicsEventReceiver {
 					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
 				}
 				else if (typeOfBrick == 6){
-					if(model.getPaddle().getWidth()<=BreakoutConstants.normalPaddle){
-						model.getPaddle().changePaddleWidth(BreakoutConstants.changeSizePaddle);
+					if(model.getPaddle().getWidth()<=Config.normalPaddle){
+						model.getPaddle().changePaddleWidth(Config.changeSizePaddle);
 					}
 					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
 				}
 				else if (typeOfBrick == 7){
-					if(model.getPaddle().getWidth()>=BreakoutConstants.normalPaddle){
-						model.getPaddle().changePaddleWidth(-BreakoutConstants.changeSizePaddle);
+					if(model.getPaddle().getWidth()>=Config.normalPaddle){
+						model.getPaddle().changePaddleWidth(-Config.changeSizePaddle);
 					}
 					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
 				}
 				else if (typeOfBrick == 8){
-					model.spawnBall(new Vector2D(model.getWidth()/2, model.getHeight()/2),new Vector2D(4 * BreakoutConstants.WINDOW_HEIGHT, 7 * BreakoutConstants.WINDOW_HEIGHT));
+					model.spawnBall(new Vector2D(model.getWidth()/2, model.getHeight()/2),new Vector2D(4 * Config.WINDOW_HEIGHT, 7 * Config.WINDOW_HEIGHT));
 				}
 				else {
 					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));

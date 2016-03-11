@@ -4,7 +4,6 @@ import java.awt.Color;
 
 import breakout.animations.Animation;
 import breakout.assets.BlendingMode;
-import breakout.assets.BreakoutConstants;
 import breakout.assets.PixelImage;
 import breakout.items.*;
 import breakout.physics.Vector2D;
@@ -14,8 +13,8 @@ import java.util.Observer;
 
 public abstract class View extends Observable implements Observer {
 	
-	private static final int ViewWidth = BreakoutConstants.WINDOW_COLUMNS;
-	private static final int ViewHeight = BreakoutConstants.WINDOW_ROWS;
+	private static final int ViewWidth = Config.WINDOW_COLUMNS;
+	private static final int ViewHeight = Config.WINDOW_ROWS;
 	protected PixelImage frame;
 	
 	private Color[] brickColors = {
