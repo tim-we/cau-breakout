@@ -16,10 +16,12 @@ public class SpawnBall extends Animation {
 	
 	private boolean spawnedBall = false;
 	
+	/* constructor */
 	public SpawnBall(Vector2D pos, Vector2D vel, Model m) {
 		Position = pos;
 		Velocity = vel;
 		
+		/* coordinate conversion */
 		viewPos = breakout.main.View.getViewCoordinates(pos, m);
 		
 		frames = 20;

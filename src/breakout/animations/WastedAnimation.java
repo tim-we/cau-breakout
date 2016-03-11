@@ -17,6 +17,7 @@ public class WastedAnimation extends Animation {
 	
 	private Color textColor = new Color(255,255,255);
 	
+	/* constructor */
 	public WastedAnimation() {
 		width = BreakoutConstants.WINDOW_COLUMNS;
 		height = BreakoutConstants.WINDOW_ROWS;
@@ -29,6 +30,7 @@ public class WastedAnimation extends Animation {
 		fr = new FontRenderer(new HighriserFont(), 2);
 		fr.setCharOffset(1);
 		
+		/* text length in pixels */
 		textLength = fr.getTextWidth("WASTeD");
 	}
 	
@@ -36,11 +38,11 @@ public class WastedAnimation extends Animation {
 	public PixelImage renderFrame(PixelImage frame) {		
 		frame = new PixelImage(background);
 		
-		//red fill
+		/* red fill */
 			int red_alpha = (int)(Math.sin(currentFrame/3d) * 100);
 			frame.fill( new Color(255, 0, 0, Math.max(0, Math.min(red_alpha, 255))));
 		
-		//render Text on frame
+		/* render Text on frame */
 			if(currentFrame >= 2) {
 				int pos = 5 - currentFrame/2;
 				pos = Math.max(pos, 20 - textLength);

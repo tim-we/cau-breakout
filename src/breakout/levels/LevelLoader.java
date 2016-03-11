@@ -75,10 +75,10 @@ public class LevelLoader {
 				+ "?2-21-$1$10--"
 				+ "?-$2$2-$1--$$10--"),
 		//triangle
-		new Level("-0129210-"
-				 +"--13831--"
-				 +"---010---"
-				 +"----1----",
+		new Level("-0129210."
+				 +"--13831."
+				 +"---010."
+				 +"----1",
 				 new Vector2D(1 * BreakoutConstants.WINDOW_HEIGHT, 2 * BreakoutConstants.WINDOW_HEIGHT))
 		/*
 		new Level(""

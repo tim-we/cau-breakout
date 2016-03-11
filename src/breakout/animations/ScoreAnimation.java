@@ -19,6 +19,7 @@ public class ScoreAnimation extends Animation {
 	private static final Color titleColor = new Color(255,255,255);
 	private static final Color[] digitColors = {new Color(255,0,80), new Color(90,255,0), new Color(0,90,255)};
 	
+	/* constructor */
 	public ScoreAnimation(int score) {
 		width = BreakoutConstants.WINDOW_COLUMNS;
 		height = BreakoutConstants.WINDOW_ROWS;
@@ -38,9 +39,10 @@ public class ScoreAnimation extends Animation {
 	public PixelImage renderFrame(PixelImage frame) {
 		frame = new PixelImage(background);
 		
+		/* counting animation */
 		int displayScore = Math.max(0, score-frames+currentFrame);
 		
-		//align right
+		/* align right */
 		int scoreTextLength = fr.getTextWidth(displayScore+"");
 		int xPos = BreakoutConstants.WINDOW_COLUMNS - 2 - scoreTextLength;
 		

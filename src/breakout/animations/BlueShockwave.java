@@ -11,9 +11,11 @@ public class BlueShockwave extends Animation {
 	private static final int width = BreakoutConstants.WINDOW_COLUMNS;
 	private static final int height = BreakoutConstants.WINDOW_ROWS;
 	
+	/* shockwave center */
 	private int xpos;
 	private int ypos;
 	
+	/* constructor */
 	public BlueShockwave(Vector2D pos, Model m) {
 		int[] tmp = breakout.main.View.getViewCoordinates(pos, m);
 		
@@ -57,6 +59,7 @@ public class BlueShockwave extends Animation {
 		return frame;
 	}
 	
+	/* create color based on {currentFrame} and alpha factor */
 	private Color getColor(double f) {
 		f = Math.max(0.0, Math.min(f, 0.5));
 		

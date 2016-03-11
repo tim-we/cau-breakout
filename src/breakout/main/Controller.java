@@ -91,8 +91,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			new Thread(net).start();
 		}
 		
-		playAnimation(new IntroAnimation());
-		pause(1000);
+		//playAnimation(new IntroAnimation());
+		//pause(1000);
 		
 		while(true) {
 			
