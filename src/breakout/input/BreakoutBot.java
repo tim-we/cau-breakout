@@ -1,5 +1,7 @@
 package breakout.input;
 
+import java.util.Random;
+
 import breakout.items.Ball;
 import breakout.items.Paddle;
 
@@ -13,6 +15,12 @@ public class BreakoutBot implements BreakoutInput {
 	
 	public void init(breakout.main.Model model) {
 		this.model = model;
+		
+		/* random start position */
+		Random rgen = new Random();
+		
+		model.getPaddle().move(-model.getWidth());
+		model.getPaddle().move(rgen.nextDouble() * model.getWidth());
 	}
 	
 	/**
@@ -34,7 +42,6 @@ public class BreakoutBot implements BreakoutInput {
 			double max = max_speed;
 			/* If the ball is fast enough the Bot can move faster */
 			if(ball.getVelocity().sqlength() > 20000d) { max += 2d; }
-			//if(ball.getVelocity().sqlength() > 20000d) { max += 1d; }
 			
 			/* If reverse-mode is activated the bot can't play as fast as normal */
 			if(paddle.isReversed()) { 

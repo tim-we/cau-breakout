@@ -96,7 +96,7 @@ public abstract class View extends Observable implements Observer {
 					
 					int[] tpos = getViewCoordinates(ball.getTail()[i], model);
 					
-					Color c = speedy ? new Color(255,42,0,220/(i+1)) : new Color(42,255,0,220/(i+1));
+					Color c = speedy ? new Color(255,42,0,220/(i+1)) : new Color(42,255,0,160/(i+1));
 					
 					nextFrame.blendPixel(tpos[0], tpos[1], c, BlendingMode.ADDITIVE);
 				}
@@ -107,7 +107,7 @@ public abstract class View extends Observable implements Observer {
 			
 		frame = nextFrame;	
 		
-		brickColorHue += 0.042F;
+		brickColorHue += 0.05F;
 		if(brickColorHue >= 2f*Math.PI) { brickColorHue = 0f; }
 	}
 	

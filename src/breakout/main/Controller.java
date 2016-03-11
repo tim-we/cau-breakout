@@ -103,7 +103,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		/* Loop which gets executed while the game is running */
 		while(true) {
 			
-			/* Loads a level */
+			/* Loads a random level */
 			LevelLoader.loadLevel(model);
 			//LevelLoader.loadLevel(25,model);
 			
@@ -140,6 +140,11 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				pause(pause_time);
 			}
 			
+			if(model.getBricks().size() == 0) {
+				/* Level complete bonus */
+				model.addPoints(350);
+			}
+			
 			System.out.println("Level ended. Score: " + model.getScore());
 			
 			/* if there were still bricks left we will show a loose animation and then the score*/
@@ -147,7 +152,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				playAnimation(new WastedAnimation());
 				pause(1000);
 				
-				playAnimation(new ScoreAnimation(model.getScore()));
+				Animation anim = model.getScore() > 9000 ? new Over9K() : new ScoreAnimation(model.getScore());
+				playAnimation(anim);
 				pause(3000);
 				
 				model.resetScore();

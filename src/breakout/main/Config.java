@@ -41,5 +41,5 @@ public class Config {
 	/*
 	 * choose from: Keyboard, Bot, Mouse
 	 */
-	public static final String INPUT_SOURCE = "Mouse,Keyboard";
+	public static final String INPUT_SOURCE = "Bot"; //"Mouse,Keyboard";
 }

@@ -25,6 +25,8 @@ public class Brick extends PhysicsObject {
 	public static final double brickWidth = 2 * Config.WINDOW_WIDTH;
 	public static final double brickHeight = Config.WINDOW_HEIGHT;
 	
+	private static final int[] hitPoints = {42,42,42,100,50,200,42,150,42,100};
+	
 	public Brick(double x, double y, byte brickType){
 		this.Position = new Vector2D(x,y);
 		setBBox(brickWidth, brickHeight);
@@ -43,13 +45,9 @@ public class Brick extends PhysicsObject {
 	  return this.brickType;
 	}
 	
-	public int getHitPoints() {
-		return getHitPoints(1d);
+	public int getHitPoints() {		
+		return hitPoints[brickType % hitPoints.length];
 	}
-	
-	public int getHitPoints(double multiplier) {
-		return (int)Math.round(42 * multiplier);
-	}	
 	
 	/**
 	 * collision event listener
