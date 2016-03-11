@@ -72,7 +72,10 @@ public class Ball extends MovingObject {
 	}
 	
 	/**
-	 * Moves the Ball
+	 * Moves the ball by {factor} times the ball velocity.
+	 * This might be controller-logic but in our opinion it 
+	 * would not make sense to put it anywhere but here
+	 * because of the underlying MovingObject class. 
 	 */
 	@Override
 	public void move(double factor) {
