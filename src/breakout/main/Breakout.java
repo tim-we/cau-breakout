@@ -5,7 +5,7 @@ import breakout.input.*;
 public class Breakout {
 	
 	/**
-	 * Main Method to run Breakout. Creates a new Controller and sets the input source
+	 * Main Method to run Breakout. Creates a new Controller and sets the input source(s)
 	 * 
 	 * @param args
 	 */

@@ -24,7 +24,7 @@ public class ScoreAnimation extends Animation {
 		width = Config.WINDOW_COLUMNS;
 		height = Config.WINDOW_ROWS;
 		
-		frames = 15;
+		frames = score>0 ? 15 : 1;
 		
 		fr = new FontRenderer(new HighriserFont());
 		fr.setCharOffset(1);

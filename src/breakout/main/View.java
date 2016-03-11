@@ -105,7 +105,10 @@ public abstract class View extends Observable implements Observer {
 				nextFrame.setPixel(ballPos[0], ballPos[1], ballColor);
 			}	
 			
-		frame = nextFrame;		
+		frame = nextFrame;	
+		
+		brickColorHue += 0.042F;
+		if(brickColorHue >= 2f*Math.PI) { brickColorHue = 0f; }
 	}
 	
 	/**
@@ -148,7 +151,6 @@ public abstract class View extends Observable implements Observer {
 	 */
 	public Color getBrickColor(byte brickType) {
 		if(brickType == 9){
-			brickColorHue += 0.042F;
 			return Color.getHSBColor(brickColorHue, 1f, 1f);
 		}
 		else if(brickType<0) {

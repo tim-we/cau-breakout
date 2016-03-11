@@ -79,7 +79,10 @@ public class LevelLoader {
 				 +"--13831."
 				 +"---010."
 				 +"----1",
-				 new Vector2D(1 * Config.WINDOW_HEIGHT, 2 * Config.WINDOW_HEIGHT))
+				 new Vector2D(1 * Config.WINDOW_HEIGHT, 2 * Config.WINDOW_HEIGHT)
+				),
+		
+		new Level("999999999"+"0---8---0"+"1--888--1"+"2-------2")
 		/*
 		new Level(""
 				+ ""
