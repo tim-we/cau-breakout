@@ -30,7 +30,7 @@ public class BreakoutBot implements BreakoutInput {
 	 * @param ms - time in milliseconds since last frame (for more advanced implementations)
 	 * 	 */
 	public void update(Paddle paddle, int ms) {
-		Ball ball = getBallOfInterest();
+		Ball ball = getBallOfInterest(paddle);
 		
 		if(ball != null) {
 			double xpos = ball.getPosition().getX();
@@ -41,12 +41,12 @@ public class BreakoutBot implements BreakoutInput {
 
 			double max = max_speed;
 			/* If the ball is fast enough the Bot can move faster */
-			if(ball.getVelocity().sqlength() > 20000d) { max += 2d; }
+			if(ball.getVelocity().sqlength() > 20000d) { max += 3d; }
 			
 			/* If reverse-mode is activated the bot can't play as fast as normal */
 			if(paddle.isReversed()) { 
 				d = -d;
-				d *= 0.8;
+				d *= 0.9;
 			}
 			
 			/* If the Ball moves up the Bot shall not follow the BallPosition as fast as normal */
@@ -67,18 +67,29 @@ public class BreakoutBot implements BreakoutInput {
 	 * if this ball is moving up he will focus another ball moving down at the moment
 	 * @return the ball of Interest
 	 */
-	public Ball getBallOfInterest() {
+	public Ball getBallOfInterest(Paddle paddle) {
 		Ball ball = null;
-		if(model.getBalls().size() > 0) {		
-			ball = model.getBalls().get(0);
-			
-			if(ball.getVelocity().getY() < 0d) {
-				for(int i=1; i<model.getBalls().size(); i++) {
-					if(model.getBalls().get(i).getVelocity().getY() > 0.0) {
-						ball = model.getBalls().get(i);
-					}
+		
+		double min_dist2 = 900000000;
+		double d2, dx, dy;
+		
+		for(int i=0; i<model.getBalls().size(); i++) {
+			if(model.getBalls().get(i).getVelocity().getY() > 0.0) {
+				
+				dx = paddle.getPosition().getX() + 0.5*paddle.getWidth() - model.getBalls().get(i).getPosition().getX();
+				dy = paddle.getPosition().getY() - model.getBalls().get(i).getPosition().getY();
+				
+				d2 = dx * dx + dy * dy;
+				
+				if(d2 < min_dist2) {
+					ball = model.getBalls().get(i);
+					min_dist2 = d2;
 				}
 			}
+		}
+		
+		if(ball == null && model.getBalls().size() > 0) {
+			ball = model.getBalls().get(0);
 		}
 		
 		return ball;

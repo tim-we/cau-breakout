@@ -25,8 +25,8 @@ public class FireworksParticle extends Animation {
 		
 		color = Color.getHSBColor((float) (2 * Math.PI * rgen.nextDouble()), 1f, 1f);
 		
-		xpos = (int) Math.round(Config.WINDOW_COLUMNS * rgen.nextDouble());
-		ypos = (int) Math.round(Config.WINDOW_ROWS * rgen.nextDouble());
+		xpos = 2 + (int) Math.round((Config.WINDOW_COLUMNS-4) * rgen.nextDouble());
+		ypos = 2 + (int) Math.round((Config.WINDOW_ROWS-4) * rgen.nextDouble());
 		
 		frames = 12;
 	}
@@ -58,7 +58,7 @@ public class FireworksParticle extends Animation {
 	}
 	
 	private Color getColor(double f) {
-		f = Math.max(0d, Math.min(f, 0.8));
+		f = Math.max(0d, Math.min(f, 0.5));
 		
 		int alpha = (int)Math.round(255 * f);
 		

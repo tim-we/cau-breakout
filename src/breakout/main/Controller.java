@@ -120,8 +120,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 					input.update(model.getPaddle(), pause_time);
 				}
 				
-				int n = model.getBalls().size();
-				for(int i=0; i<n; i++) {
+				for(int i=0; i<model.getBalls().size(); i++) {
 					Ball ball = model.getBalls().get(i);
 					/* if there is no Ball left we want to end the level */
 					if(ball==null) { continue; }
@@ -149,10 +148,10 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				Random rgen = new Random();
 				int nextParticle = 0;
 				
-				for(int i=0; i<200; i++) {
+				for(int i=0; i<100; i++) {
 					if(nextParticle <= 0) {
 						model.addAnimation(new FireworksParticle());
-						nextParticle = 5 + rgen.nextInt(10);
+						nextParticle = 1 + rgen.nextInt(5);
 					}
 					
 					nextParticle--;
