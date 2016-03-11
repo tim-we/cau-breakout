@@ -9,6 +9,9 @@ import breakout.animations.Animation;
 
 public class Model extends Observable {
 	
+	/*
+	 * All Components that define our actual game-state 
+	 */
 	private ArrayList<Ball> balls;
 	
 	private ArrayList<Brick> bricks;
@@ -24,7 +27,11 @@ public class Model extends Observable {
 	private double worldWidth;
 	private double worldHeight;
 	
-	//constructor
+	/**
+	 * Constructor: Creates a new Model with given Width and Height
+	 * @param w - the width of the Model
+	 * @param h - the height of the Model
+	 */
 	public Model(double w, double h) {
 		worldWidth = w;
 		worldHeight = h;
@@ -35,6 +42,9 @@ public class Model extends Observable {
 		resetScore();
 	}
 	
+	/**
+	 * Resets the Model
+	 */
 	public void reset() {
 		this.balls = new ArrayList<Ball>();
 		this.bricks = new ArrayList<Brick>();
@@ -45,11 +55,14 @@ public class Model extends Observable {
 		notifyViews();
 	}
 	
+	/**
+	 * Resets the score
+	 */
 	public void resetScore() {
 		score = 0;
 	};
 	
-	//getter
+	/* Getter for the Instance Variables */
 	public ArrayList<Ball> getBalls() {	return balls; }
 	
 	public ArrayList<Brick> getBricks() { return bricks; }
@@ -70,7 +83,7 @@ public class Model extends Observable {
 	
 	public double getHeight() {	return this.worldHeight; }
 	
-	//"adder"
+	/* adder for the Components */
 	public void addBrick(Brick brick) {	if(brick != null) { bricks.add(brick); } }
 	
 	public void addBall(Ball ball) { if(ball != null) { balls.add(ball); } }
@@ -81,11 +94,18 @@ public class Model extends Observable {
 	
 	public void addPoints(int points) {	score += points; }
 	
+	/**
+	 * Spawns a Ball at given Position and Velocity
+ 	 * @param pos - the Position where the Ball should spawn
+	 * @param vel - the Velocity of the Ball at spawn
+	 */
 	public void spawnBall(Vector2D pos, Vector2D vel) {
 		addAnimation(new breakout.animations.SpawnBall(pos, vel, this));
 	}
 	
-	//other
+	/**
+	 * Updates the Model
+	 */
 	public void update() {		
 		//animations:
 		for(int i=0; i<animations.size(); i++) {
@@ -100,7 +120,8 @@ public class Model extends Observable {
 		}
 		for (int i=0;i<balls.size();i++){
 			Ball ball = balls.get(i);
-			
+			/* If there are more than one Ball, the balls get removed 
+			 * when hitting the BarOFDeath instead of ending the game */
 			if(ball != null && ball.isDead()){
 				balls.remove(ball);
 				i--;
