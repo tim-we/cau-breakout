@@ -44,6 +44,10 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		lhs.start();
 	}
 	
+	/**
+	 * Adds a InputHandler
+	 * @param input - the sort of InputHandler to add
+	 */
 	public void addInputHandler(BreakoutInput input) {
 		InputHandler.add(input);
 		
@@ -52,6 +56,9 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		}
 	}
 	
+	/**
+	 * Method to execute the Controller
+	 */
 	public void runController() {
 			
 		model = new Model(WORLDWIDTH, WORLDHEIGHT);	
@@ -93,8 +100,10 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		playAnimation(new IntroAnimation());
 		pause(1000);
 		
+		/* Loop which gets executed while the game is running */
 		while(true) {
 			
+			/* Loads a level */
 			LevelLoader.loadLevel(model);
 			//LevelLoader.loadLevel(13,model);
 			
@@ -104,6 +113,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			while(runLoop) {
 				
+				/* Updates the Paddle, depending on Input */
 				for(BreakoutInput input : InputHandler) {
 					input.update(model.getPaddle(), pause_time);
 				}
@@ -111,6 +121,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				int n = model.getBalls().size();
 				for(int i=0; i<n; i++) {
 					Ball ball = model.getBalls().get(i);
+					/* if there is no Ball left we want to end the level */
 					if(ball==null) { continue; }
 					
 					time_remaining = (double)pause_time/1000d;
@@ -131,6 +142,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			System.out.println("Level ended. Score: " + model.getScore());
 			
+			/* if there were still bricks left we will show a loose animation and then the score*/
 			if(model.getBricks().size() > 0) {			
 				playAnimation(new WastedAnimation());
 				pause(1000);
@@ -146,6 +158,10 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		
 	}
 	
+	/**
+	 * Pauses the controller
+	 * @param ms - how long the controller should be paused
+	 */
 	public void pause(int ms) {
 		try {
 		    Thread.sleep(ms);
@@ -155,6 +171,10 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		}
 	}
 	
+	/**
+	 * Plays the given animation
+	 * @param anim - the animation to show
+	 */
 	public void playAnimation(Animation anim) {
 		int pause_time = (int)(1000d/FPS);
 		
@@ -166,11 +186,15 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		}
 	}
 	
+	/**
+	 * CollisionListener
+	 */
 	public void onCollision(CollisionEvent e) {
 		if(e.isWallCollision()) { return; }
 		
 		PhysicsObject x = e.getObjectA() instanceof Ball ? e.getObjectB() : e.getObjectA();
 		
+		/* If it was a brick and it gets destroyed we want to remove it and add the points */
 		if(x instanceof Brick) {
 			Brick brick = (Brick)x;
 			
@@ -182,6 +206,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				
 				refreshStaticObjects();
 				
+				/* If there are no bricks left, we want to show a clear level animation */
 				if(model.getBricks().size() == 0) {
 					runLoop = false;
 					playAnimation(new GreenShockwave(e.getCollisionPoint(), model));
@@ -191,11 +216,13 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				byte typeOfBrick = brick.getBrickType();
 				Vector2D p = e.getCollisionPoint();
 				
+				/* if it was a randomBrick we will execute a random action */
 				if (typeOfBrick == 9){
 					RandomGenerator rgen = new RandomGenerator();
 					typeOfBrick = (byte) (1+rgen.nextInt(8));
 				}
 				
+				/* different Animations and actions depending on the Type of the brick */
 				if (typeOfBrick == 3){
 					model.addAnimation(new RedShockwave(p, model));
 				}
@@ -226,6 +253,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				}
 			
 			}
+			/* If it was a collision with the BarOfDeath the ball dies and will be removed, if it was the last ball the level ends */
 		} else if(x instanceof BarOfDeath) {
 			
 			if(e.getObjectA() instanceof Ball) { 
@@ -240,6 +268,9 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		}
 	}
 	
+	/**
+	 * Refreshes the Paddle, BarOfDeath and the Bricks
+	 */
 	private void refreshStaticObjects() {
 		phys.staticObjects.clear();
 		
