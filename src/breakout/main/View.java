@@ -43,14 +43,20 @@ public abstract class View extends Observable implements Observer {
 	/* used for the color shift of the flashing brick */
 	private float brickColorHue = 0f;
 	
-	/* public bc accessed by SpawnBall animation */
+	/* public BallColor accessed by SpawnBall animation */
 	public static final Color ballColor = new Color(255,255,255);
 	
-	//constructor
+	/**
+	 * Constructor
+	 */
 	public View() {
 		frame = new PixelImage(ViewWidth, ViewHeight);
 	}
 	
+	/**
+	 * Takes a Model and draws it as a PixelImage
+	 * @param model - the Model to draw
+	 */
 	public void renderFrame(Model model) {
 		PixelImage nextFrame = new PixelImage(ViewWidth, ViewHeight);
 		
@@ -102,7 +108,12 @@ public abstract class View extends Observable implements Observer {
 		frame = nextFrame;		
 	}
 	
-	/* converts model coordinates to view coordinates */
+	/**
+	  * converts model coordinates to view coordinates
+	  * @param v - the vector to convert
+	  * @param m - the Model
+	  * @return the converted Vector's components as an int Array
+	  */
 	public static int[] getViewCoordinates(Vector2D v, Model m) {
 		int[] o = new int[2];
 		
@@ -112,6 +123,15 @@ public abstract class View extends Observable implements Observer {
 		return o;
 	}
 	
+	/**
+	 * Draws a rectangle on a given PixelImage
+	 * @param pic - the PixelImage to draw on
+	 * @param x - the X-Position of the top-left corner
+	 * @param y - the Y-Position of the top-left corner
+	 * @param width - the width of the rectangle
+	 * @param height - the height of the rectangle
+	 * @param color - the color of the rectangle
+	 */
 	private void paintRect(PixelImage pic, int x, int y, int width, int height, Color color) {
 		assert (width>=0 && height>=0);
 		
@@ -138,6 +158,11 @@ public abstract class View extends Observable implements Observer {
 		return brickColors[brickType % brickColors.length];
 	}
 	
+	/**
+	 * Returns the Color of the Paddle
+	 * @param p - the Paddle
+	 * @return - the Color of the Paddle, in Case of ReverseMode its a different one
+	 */
 	public Color getPaddleColor(Paddle p) {
 	  return p.isReversed() ? paddleColors[1] : paddleColors[0];
 	}
