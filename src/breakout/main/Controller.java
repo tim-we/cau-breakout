@@ -145,13 +145,14 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				/* Level complete bonus */
 				model.addPoints(350);
 				
+				/* fireworks animation */
 				Random rgen = new Random();
 				int nextParticle = 0;
 				
 				for(int i=0; i<100; i++) {
 					if(nextParticle <= 0) {
 						model.addAnimation(new FireworksParticle());
-						nextParticle = 1 + rgen.nextInt(5);
+						nextParticle = 1 + rgen.nextInt(4);
 					}
 					
 					nextParticle--;
@@ -286,6 +287,36 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				runLoop = false;
 			}
 			
+		} else if(x instanceof Paddle) {
+			
+			/* If the Advanced Mechanics are activated the angle in 
+			 * which the Ball bounces off depends on the current paddle-speed
+			 */
+			if(Config.BALL_BOUNCE_ADVANCED_MECHANICS) {
+				Ball ball = (Ball)e.getObjectA();
+				
+				/* takes the actual ball speed and depending on the actual paddle-speed calculates the new Ball speed and angle */
+				Vector2D vel = new Vector2D(ball.getVelocity());
+				double ballspeed2 = vel.sqlength();
+				
+				vel.setX( vel.getX() + Math.min(8d*model.getPaddle().getSpeed(), 200d));
+				
+				double f = Math.sqrt(ballspeed2 / vel.sqlength());
+				
+				vel = vel.scale(f);
+				
+				/* Minimum vertical speed */
+				double minYvel = Config.WINDOW_HEIGHT * 3d;
+				
+				if(Math.abs(vel.getY()) < minYvel) {
+					double sgn = vel.getY() < 0 ? -1.0 : 1.0;
+					vel.setY(minYvel * sgn);
+					f = Math.sqrt(ballspeed2 / vel.sqlength());
+					vel = vel.scale(f);
+				}
+				
+				ball.setVelocity(vel);		
+			}
 		}
 	}
 	

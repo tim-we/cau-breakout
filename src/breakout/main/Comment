@@ -65,7 +65,7 @@ zuweisen um den Code uebersichtlicher zu gestalten.
  
 Übersicht:
 In der folgenden Übersicht finden Sie eine kurze Beschreibung des jeweiligen 
-packages und ob es zum Model, zur View oder zum Controller gehoert.
+Packages und ob es zum Model, zur View oder zum Controller gehoert.
 
 Breakout.animations	– enthaelt alle Klassen welche fuer die Animationen auf dem Hochhaus zustaendig sind. Gehoert zum View.
 

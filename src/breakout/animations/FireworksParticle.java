@@ -28,7 +28,7 @@ public class FireworksParticle extends Animation {
 		xpos = 2 + (int) Math.round((Config.WINDOW_COLUMNS-4) * rgen.nextDouble());
 		ypos = 2 + (int) Math.round((Config.WINDOW_ROWS-4) * rgen.nextDouble());
 		
-		frames = 12;
+		frames = 14;
 	}
 	
 	@Override
