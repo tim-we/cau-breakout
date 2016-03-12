@@ -63,8 +63,7 @@ public class BreakoutBot implements BreakoutInput {
 	}
 	
 	/**
-	 * If there is a Ball the bot will focus to follow this one, 
-	 * if this ball is moving up he will focus another ball moving down at the moment
+	 * finds the closest down-moving ball
 	 * @return the ball of Interest
 	 */
 	public Ball getBallOfInterest(Paddle paddle) {
@@ -88,6 +87,7 @@ public class BreakoutBot implements BreakoutInput {
 			}
 		}
 		
+		/* return at least one ball if possible */
 		if(ball == null && model.getBalls().size() > 0) {
 			ball = model.getBalls().get(0);
 		}

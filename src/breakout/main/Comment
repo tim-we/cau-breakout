@@ -3,95 +3,86 @@ Breakout von Tim Weissenfels und Henrik Valett
 Objekt-orientierte Zerlegung:
 
 Angefangen haben wir mit unserer Physiksimulation, da diese die Grundlage
-für unser Spiel darstellen sollte und wir damit sämtliche Berechnungen 
+fuer unser Spiel darstellen sollte und wir damit saemtliche Berechnungen 
 abhandeln wollten. Da wir uns dann bereits entschieden hatten Breakout 
-für das Hochhaus zu programmieren, schrieben wir uns eine Hilfsklasse 
-PixelImage welche viele Aufgaben bezüglich der Hochhaus-Darstellung 
-übernimmt. Nachdem wir dann die ersten Strukturen, des Models, der View
+fuer das Hochhaus zu programmieren, schrieben wir uns eine Hilfsklasse 
+PixelImage welche viele Aufgaben bezueglich der Hochhaus-Darstellung 
+uebernimmt. Nachdem wir dann die ersten Strukturen, des Models, der View
 und des Controllers geschrieben hatten haben wir angefangen die 
-grundlegenden Spielkomponenten umzusetzen, dazu gehörten Ball, Paddle 
+grundlegenden Spielkomponenten umzusetzen, dazu gehoerten Ball, Paddle 
 und Bricks. Nachdem wir die erste funktionierende Version hatten haben 
 wir diese immer erweitert und verbessert, so kamen dann bald bessere 
-Darstellungen für die Level hinzu, weitere Bricks, neue Mechaniken um 
+Darstellungen fuer die Level hinzu, weitere Bricks, neue Mechaniken um 
 mit dem Paddle den Ball anzuschneiden, Animationen bei verschiedenen 
 Ereignissen und auch weitere Eingabemethoden. 
-Damit man zusammengehörende Inhalte möglichst schnell wiederfinden kann
-und um den Überblick über unser Programm zu behalten haben wir 
+Damit man zusammengehoerende Inhalte moeglichst schnell wiederfinden kann
+und um den Überblick ueber unser Programm zu behalten haben wir 
 verschiedene Packages erstellt in welche sich unser Programm gliedert
-(siehe Übersicht unten). In diesen haben wir dann alle zugehörigen
+(siehe Übersicht unten). In diesen haben wir dann alle zugehoerigen
 Interfaces, Klassen und Methoden umgesetzt. Oftmals erben unsere Klassen
 von anderen Klassen aus dem Package oder aus einem anderen Package. Ein
-gutes Beispiel hierfür ist die Klasse Ball, diese erbt von MovingObject,
+gutes Beispiel hierfuer ist die Klasse Ball, diese erbt von MovingObject,
 welche im Physics-Package enthalten ist, welche von der Klasse
-PhysicsObject, auch aus dem Physics-Package erbt. So enthält PhysicsObject
-zunächst nur eine Position und einen Aufpunkt der BoundingBox, dies 
+PhysicsObject, auch aus dem Physics-Package erbt. So enthaelt PhysicsObject
+zunaechst nur eine Position und einen Aufpunkt der BoundingBox, dies 
 erweitert MovingObject um einen Geschwindigkeitsvektor und dies wird 
 wiederrum vom Ball um mehrere Eigenschaften erweitert. In jeder dieser 
 Klassen haben wir die entsprechenden Methoden umgesetzt. Die 
-Instanzvariablen haben wir immer wenn es uns möglich war auf private 
-gesetzt und zum ändern bzw. abrufen entsprechend Setter und Getter 
-hinzugefügt. Unsere Methoden sind dafür weitesgehend public da diese 
+Instanzvariablen haben wir immer wenn es uns moeglich war auf private 
+gesetzt und zum aendern bzw. abrufen entsprechend Setter und Getter 
+hinzugefuegt. Unsere Methoden sind dafuer weitesgehend public da diese 
 oftmals in anderen Klassen aufgerufen werden.
-Genauere Erklärungen diesbezüglich stehen oft an den entsprechenden 
+Genauere Erklaerungen diesbezueglich stehen oft an den entsprechenden 
 Stellen im Code.
 
 
 Umsetzung von MVC:
 
 Unserem Programm zugrunde liegt das MVC-Pattern, welches unser Programm 
-in ein Model, eine View und einen Controller gliedert. Unser Model enthält 
-alle Daten über den aktuellen Spielstand. Daher gehören unsere Klassen wie 
-z.B. Ball zum Model. Der Controller übernimmt die Aktualisierung des Models, 
-er reagiert auf den UserInput und verändert entsprechend das Model. Die 
+in ein Model, eine View und einen Controller gliedert. Unser Model enthaelt 
+alle Daten ueber den aktuellen Spielstand. Daher gehoeren unsere Klassen wie 
+z.B. Ball zum Model. Der Controller uebernimmt die Aktualisierung des Models, 
+er reagiert auf den UserInput und veraendert entsprechend das Model. Die 
 View stellt das aktuelle Model dar und wird entsprechend aktualisiert 
-sobald sich das Model verändert hat. Dazu verwenden wir wie im Beispiel-Projekt
+sobald sich das Model veraendert hat. Dazu verwenden wir wie im Beispiel-Projekt
  die Observable Klasse und Interface. Das Model wird vom Controller mit 
- einer festgelegten Rate (25/Sekunde)  regelmäßig aktualisiert. Wir haben 
+ einer festgelegten Rate (25/Sekunde)  regelmaessig aktualisiert. Wir haben 
  neben unserer ACMView (eine Darstellung auf dem PC) auch noch die LhView 
- fürs Hochhaus, welche auf dem gleichen Model beruht.
+ fuers Hochhaus, welche auf dem gleichen Model beruht.
 
 
 Sichtbarkeit und Verwendung von Instanzvariablen und lokalen Variablen:
 
-Da wir unsere Methoden größtenteils auch in anderen Klassen benötigen sind 
+Da wir unsere Methoden groesstenteils auch in anderen Klassen benoetigen sind 
 diese meistens public. Zur Übersichtlichkeit haben wir uns eine globale 
-Konfigurationsklasse breakout.main.Config angelegt welche ausschließlich 
+Konfigurationsklasse breakout.main.Config angelegt welche ausschliesslich 
 aus Konstanten besteht (public static final). Unsere Instanzvariablen haben 
-wir wenn möglich auf private gesetzt und entsprechend Getter und Setter 
-hinzugefügt um auf diese zuzugreifen. In unseren Methoden deklarieren wir 
-uns oft lokale Variablen, welchen wir Berechnungen oder lange Ausdrücke 
-zuweisen um den Code übersichtlicher zu gestalten.
+wir wenn moeglich auf private gesetzt und entsprechend Getter und Setter 
+hinzugefuegt um auf diese zuzugreifen. In unseren Methoden deklarieren wir 
+uns oft lokale Variablen, welchen wir Berechnungen oder lange Ausdruecke 
+zuweisen um den Code uebersichtlicher zu gestalten.
 
  
 Übersicht:
 In der folgenden Übersicht finden Sie eine kurze Beschreibung des jeweiligen 
-packages und ob es zum Model, zur View oder zum Controller gehört.
+packages und ob es zum Model, zur View oder zum Controller gehoert.
 
-Breakout.animations – enthaelt alle Klassen welche für die Animationen 
-auf dem Hochhaus zuständig sind. Gehört zum Model.
+Breakout.animations	– enthaelt alle Klassen welche fuer die Animationen auf dem Hochhaus zustaendig sind. Gehoert zum View.
 
-Breakout.assets – Enthält den Enum zum Blending, die Konstanten und 
-die PixelImage Klasse. Gehört zum Model.
+Breakout.assets		– entaelt die Hilfsklasse PixelImage welche von den Views & Animationen verwendet wird. Gehoert daher zur View.
 
-breakout.font – enthaelt alle Klassen die für die Schriftzuege auf dem 
-Hochhaus zuständig sind. Gehoert zur View, da damit Schrift auf dem 
-Hochhaus angezeigt wird.
+breakout.font		– enthaelt alle Klassen die fuer die Schriftzuege auf dem Hochhaus zustaendig sind. Gehoert zur View, da damit Schrift auf dem Hochhaus gerendert wird.
 
-breakout.input – enthaelt alle Klassen die für UserInput zuständig sind 
-und den Bot. Gehoert zum Controller
+breakout.input		– enthaelt alle Klassen die fuer UserInput zustaendig sind und den Bot. Gehoert zum Controller.
 
-breakout.items – Enthält die wichtigsten Spielelemente, Ball, Bricks, 
-Paddle und die BarOfDeath. Gehoert zum Model.
+breakout.items		– enthaelt die Spielobjekte, Ball, Bricks, Paddle und die BarOfDeath. Gehoert zum Model.
 
-breakout.levels – enthält die Levelklasse und den Levelloader. 
-Gehört zum Controller.
+breakout.levels		– enthaelt die Levelklasse und den Levelloader. Gehoert zum Controller.
 
-breakout.lighthouse – Enthält die LhNetwork Klasse der Uni und den LhSimulator 
-welcher zur View gehört, da dieser eine Modeldarstellung des Hochhauses enthält
+breakout.lighthouse	– enthaelt die LhNetwork Klasse aus dem Beispielprojekt und unseren LhSimulator welcher zur View gehoert, da dieser eine Modeldarstellung des Hochhauses enthaelt
 
-breakout.main – Enthält das Model, Views und Controller
+breakout.main		– enthaelt das Model, Views und Controller
 
-breakout.physics – enthält die zur Physiksimulation (in unserem Fall die 
-Ballkollision) notwendigen Klassen. Gehoert zum Controller.
+breakout.physics	– enthaelt die zur Physiksimulation (in unserem Fall die Ballkollision) notwendigen Klassen. Gehoert zum Controller.
 
 
