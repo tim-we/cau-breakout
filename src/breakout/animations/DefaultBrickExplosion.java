@@ -72,7 +72,7 @@ public class DefaultBrickExplosion extends Animation {
 	 * this function returns the current color based on the current frame and
 	 * a given alpha value */
 	private Color getColor(double f) {
-		f = Math.max(0d, Math.min(f, 0.7));
+		f = Math.max(0d, Math.min(f, 0.9d)) * 0.8d;
 		
 		int alpha = (int)Math.round(255 * f);
 		

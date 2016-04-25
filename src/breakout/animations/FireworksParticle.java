@@ -58,7 +58,7 @@ public class FireworksParticle extends Animation {
 	}
 	
 	private Color getColor(double f) {
-		f = Math.max(0d, Math.min(f, 0.5));
+		f = Math.max(0d, Math.min(f, 0.8d)) * 0.6d;
 		
 		int alpha = (int)Math.round(255 * f);
 		

@@ -74,11 +74,12 @@ public abstract class View extends Observable implements Observer {
 			}
 		
 		//draw paddle
-			int paddleWidth = (int) Math.round(model.getPaddle().getWidth() * widthScale);			
-			int[] paddlePos = getViewCoordinates(model.getPaddle().getPosition(), model);
-			
-			paintRect(nextFrame, paddlePos[0], paddlePos[1], paddleWidth, 1, getPaddleColor(model.getPaddle()));
-		
+			if(!model.hasEnded()) {
+				int paddleWidth = (int) Math.round(model.getPaddle().getWidth() * widthScale);			
+				int[] paddlePos = getViewCoordinates(model.getPaddle().getPosition(), model);
+				
+				paintRect(nextFrame, paddlePos[0], paddlePos[1], paddleWidth, 1, getPaddleColor(model.getPaddle()));
+			}
 		//render animations
 			for(Animation anim : model.getAnimations()) {
 				nextFrame = anim.renderFrame(nextFrame);

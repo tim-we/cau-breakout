@@ -15,4 +15,11 @@ public interface BreakoutInput {
 	 * @param reverse Reverses the Paddle control
 	 * 	 */
 	public void update(Paddle paddle, int ms);
+	
+	/*
+	 * was there actual input last frame?
+	 * */
+	public default boolean activeInput() {
+		return false;
+	}
 }

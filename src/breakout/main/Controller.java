@@ -63,12 +63,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 	 */
 	public void runController() {
 			
-		model = new Model(WORLDWIDTH, WORLDHEIGHT);	
-		
-		//init input handlers
-			for(BreakoutInput input : InputHandler) {
-				input.init(model);
-			}
+		model = new Model(WORLDWIDTH, WORLDHEIGHT);
 		
 		//create views and register them with the model
 		
@@ -102,7 +97,9 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		playAnimation(new IntroAnimation());
 		pause(1000);
 		
-		/* Loop which gets executed while the game is running */
+		boolean activeInput = true;
+		
+		/* main loop */
 		while(true) {
 			
 			/* Loads a random level */
@@ -111,13 +108,51 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			
 			refreshStaticObjects();
 			
+			//AUTO-BOT code
+			if(!activeInput && Config.AUTO_BOT) {
+				//no input last round, enable Bot:
+				
+				BreakoutBot bot = null;
+				
+				for(BreakoutInput input : InputHandler) {
+					if(input instanceof BreakoutBot) {
+						bot = (BreakoutBot)input;
+						break;
+					}
+				}
+				
+				if(bot == null) { 
+					bot = new BreakoutBot();
+					bot.init(model);
+					InputHandler.add(bot);
+					
+					System.out.println("Bot added!");
+				}
+				
+				bot.enable();
+			}
+			
+			activeInput = false;
+			
+			//initialize input handlers
+			for(BreakoutInput input : InputHandler) {
+				input.init(model);
+			}
+			
 			runLoop = true;
 			
+			//in-game loop
 			while(runLoop) {
 				
 				/* Updates the Paddle, depending on Input */
 				for(BreakoutInput input : InputHandler) {
+					if(activeInput && Config.AUTO_BOT && input instanceof BreakoutBot) {
+						((BreakoutBot)input).disable();
+					}
+					
 					input.update(model.getPaddle(), pause_time);
+					
+					activeInput = activeInput || input.activeInput();
 				}
 				
 				for(int i=0; i<model.getBalls().size(); i++) {
@@ -144,6 +179,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			if(model.getBricks().size() == 0) {
 				/* Level complete bonus */
 				model.addPoints(350);
+				
+				model.levelCleared();
 				
 				/* fireworks animation */
 				Random rgen = new Random();
@@ -254,6 +291,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 				else if (typeOfBrick == 5){
 					model.getPaddle().toggleReverse();
 					model.addAnimation(new DefaultBrickExplosion(p.getX(), p.getY(), model));
+					System.out.println("REVERSE INPUT!!!");
 				}
 				else if (typeOfBrick == 6){
 					if(model.getPaddle().getWidth()<=Config.normalPaddle){

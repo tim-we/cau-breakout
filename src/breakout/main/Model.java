@@ -27,6 +27,8 @@ public class Model extends Observable {
 	private double worldWidth;
 	private double worldHeight;
 	
+	private boolean hasEnded;
+	
 	/**
 	 * Constructor: Creates a new Model with given Width and Height
 	 * @param w - the width of the Model
@@ -51,6 +53,8 @@ public class Model extends Observable {
 		this.animations = new ArrayList<Animation>();
 		
 		paddle = new Paddle(worldWidth);
+		
+		hasEnded = false;
 		
 		notifyViews();
 	}
@@ -83,6 +87,8 @@ public class Model extends Observable {
 	
 	public double getHeight() {	return this.worldHeight; }
 	
+	public boolean hasEnded() { return hasEnded; } 
+	
 	/* adder for the Components */
 	public void addBrick(Brick brick) {	if(brick != null) { bricks.add(brick); } }
 	
@@ -92,7 +98,15 @@ public class Model extends Observable {
 	
 	public void addAnimation(Animation anim) {	animations.add(anim); }
 	
-	public void addPoints(int points) {	score += points; }
+	public void addPoints(int points) {	
+		score += points;
+		
+		if(points > 0) { System.out.println("added "+points+" points!"); }
+	}
+	
+	public void levelCleared() {
+		hasEnded = true;
+	}
 	
 	/**
 	 * Spawns a Ball at given Position and Velocity

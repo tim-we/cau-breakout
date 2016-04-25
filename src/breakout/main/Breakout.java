@@ -2,6 +2,11 @@ package breakout.main;
 
 import breakout.input.*;
 
+/*
+ * The detailed comment is in the text file 'Comment' in this package.
+ * In case there are any errors with the submission: https://github.com/tim-we/Breakout/
+ * */
+
 public class Breakout {
 	
 	/**

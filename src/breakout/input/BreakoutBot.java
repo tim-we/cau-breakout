@@ -13,6 +13,8 @@ public class BreakoutBot implements BreakoutInput {
 	
 	private double last_speed = 0;
 	
+	private boolean enabled;
+	
 	public void init(breakout.main.Model model) {
 		this.model = model;
 		
@@ -21,6 +23,8 @@ public class BreakoutBot implements BreakoutInput {
 		
 		model.getPaddle().move(-model.getWidth());
 		model.getPaddle().move(rgen.nextDouble() * model.getWidth());
+		
+		enabled = true;
 	}
 	
 	/**
@@ -30,6 +34,8 @@ public class BreakoutBot implements BreakoutInput {
 	 * @param ms - time in milliseconds since last frame (for more advanced implementations)
 	 * 	 */
 	public void update(Paddle paddle, int ms) {
+		if(!enabled) { return; }
+		
 		Ball ball = getBallOfInterest(paddle);
 		
 		if(ball != null) {
@@ -60,6 +66,20 @@ public class BreakoutBot implements BreakoutInput {
 			paddle.move(d * ms/40d);
 			last_speed = d;
 		}
+	}
+	
+	public void enable() { 
+		if(!enabled) { System.out.println("Bot enabled"); }
+		enabled = true;
+	}
+	public void disable() {
+		if(enabled) { System.out.println("Bot disabled"); }
+		enabled = false;
+	}
+	
+	@Override
+	public boolean activeInput() {
+		return false;
 	}
 	
 	/**
