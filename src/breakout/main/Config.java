@@ -44,4 +44,7 @@ public class Config {
 	public static final String INPUT_SOURCE = "Mouse,Keyboard";
 	
 	public static final boolean AUTO_BOT = true;
+	
+	public static final String USER_NAME = "";
+	public static final String USER_TOKEN = "";
 }

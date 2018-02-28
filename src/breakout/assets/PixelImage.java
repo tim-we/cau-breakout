@@ -227,4 +227,33 @@ public class PixelImage {
 		
 		return buf;
 	}
+	
+	/**
+	 * Calculates a byteArray, as needed for Lighthouse from the
+	 * ImageData array which contains the Colors of our PixelImage
+	 * @return The ByteArray as needed for Lighthouse
+	 */
+	public byte[] getFlippedByteArray() {
+		byte[] buf = new byte[width*height*3];
+		
+		int i = 0;
+		
+		for(int row=0; row<height; row++) {
+			for(int col=0; col<width; col++) {
+				Color clr = getPixel(col, row, BGCOLOR);
+				
+				int r = clr.getRed();
+				int g = clr.getGreen();
+				int b = clr.getBlue();				
+				
+				buf[i] = (byte)r;
+				buf[i +1] = (byte)g;
+				buf[i +2] = (byte)b;
+				
+				i = i+3;
+			}
+		}
+		
+		return buf;
+	}
 }

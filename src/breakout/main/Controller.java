@@ -36,7 +36,7 @@ public class Controller implements Observer, PhysicsEventReceiver {
 	
 	private LhSimulator lhs;
 	
-	private LhNetwork net;
+	private LighthouseDisplay lhd;
 	
 	private boolean runLoop = false;
 	
@@ -68,8 +68,8 @@ public class Controller implements Observer, PhysicsEventReceiver {
 		//create views and register them with the model
 		
 			if(Config.HIGHRISER_VIEW_ENABLED) {
-				net = new LhNetwork();
-				lhv = new LhView(net);
+				lhd = new LighthouseDisplay(Config.USER_NAME, Config.USER_TOKEN, 1);
+				lhv = new LhView(lhd);
 				model.addObserver(lhv);
 			}
 			
@@ -90,8 +90,12 @@ public class Controller implements Observer, PhysicsEventReceiver {
 			*	because our program should continue doing stuff instead of idling around
 			*	while it waits for the server to send the next request
 			*/
-			
-			new Thread(net).start();
+			try {
+			    lhd.connect();
+			} catch (Exception e) {
+			    System.out.println("Connection failed: " + e.getMessage());
+			    e.printStackTrace();
+			}
 		}
 		
 		playAnimation(new IntroAnimation());
